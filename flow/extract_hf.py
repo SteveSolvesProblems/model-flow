@@ -11,6 +11,7 @@ one cache per layer: <name>_L<ii>.
 import argparse
 import os
 import time
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -59,16 +60,29 @@ def newsgroups():
     return out, {"fine": fine_names, "coarse": coarse_names}
 
 
+def yelp(n_train, n_test, seed=0):
+    """Yelp Review Full (research/PREREG_stability_v2.md): stars = rating 0-4; sampled like dbpedia()."""
+    from datasets import load_dataset
+    ds = load_dataset("Yelp/yelp_review_full")
+    out = {}
+    for split, n in (("train", n_train), ("test", n_test)):
+        d = ds[split].shuffle(seed=seed).select(range(min(n, len(ds[split]))))
+        out[split] = (list(d["text"]), {"stars": np.array(d["label"])})
+    return out, {"stars": [str(i + 1) for i in range(5)]}
+
+
 def text_data(a):
-    return newsgroups() if a.data == "20ng" else dbpedia(a.n_train, a.n_test)
+    return {"20ng": newsgroups, "yelp": lambda: yelp(a.n_train, a.n_test)}.get(a.data, lambda: dbpedia(a.n_train, a.n_test))()
 
 
 def meta(a, extra=None):
     from huggingface_hub import HfApi
     try:
         sha = HfApi().model_info(a.model, revision=getattr(a, "revision", None)).sha
-    except Exception:
-        sha = None
+    except Exception:        # offline: the local snapshot directory is named by its commit sha
+        from huggingface_hub import try_to_load_from_cache
+        p = try_to_load_from_cache(a.model, "config.json", revision=getattr(a, "revision", None))
+        sha = Path(p).parent.name if isinstance(p, str) else None
     return {"model": a.model, "revision": sha, "checkpoint": getattr(a, "revision", None), "mode": a.mode, **(extra or {})}
 
 
@@ -316,7 +330,7 @@ def main():
     ap.add_argument("--max-len", type=int, default=64)
     ap.add_argument("--n-train", type=int, default=24000)
     ap.add_argument("--n-test", type=int, default=6000)
-    ap.add_argument("--data", default="dbpedia", choices=["dbpedia", "20ng"])
+    ap.add_argument("--data", default="dbpedia", choices=["dbpedia", "20ng", "yelp"])
     ap.add_argument("--offload", action="store_true")
     ap.add_argument("--gpu-mem", default="14GiB")
     ap.add_argument("--gguf-file", default=None, help="load this GGUF file from --model repo (dequantized)")

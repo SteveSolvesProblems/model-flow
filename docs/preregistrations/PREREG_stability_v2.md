@@ -117,3 +117,46 @@ Vertical marks show the S10 pick, FEPoID, ID-min, L − 1, last, and the best la
 - **Small models (0.36B–4B).** The FEPoID paper's models are 1B–8B.
 - **One rating collection.** Star ratings are partly topical (cuisine and service words).
 - **A self-dated registration,** as before.
+
+## Addendum 1 (2026-10-17, written before any fresh extraction)
+
+These are implementation details that the text above left open. They were fixed while writing the code, and before
+any fresh pair was extracted.
+
+**Code**
+- `diag/stab_v2.py`: per-layer measures.
+- `diag/score_stability_v2.py`: scoring.
+- `diag/stabv2_local.sh`: extraction on an RTX 3060. Caches are stored on the GPU host.
+- `diag/stabv2_host.sh`: the CPU half.
+
+**Probe**
+- PCA, standardization and logistic regression are all fit on the same ≤ 12,000 train rows (seed 0).
+- Scored on the full test split.
+
+**P2 interval**
+- Resample pairs.
+- Within each pair, resample its 10 seed pairs with replacement and re-pick S10.
+- Statistic: mean over pairs of (L − 1 shortfall − S10 shortfall). 10,000 draws.
+
+**One-label baseline**
+- 20 draws of one train example per class, picking the layer whose label-agreement of 10 nearest train neighbours is highest (as in PREREG_baselines.md).
+- Reported as the mean shortfall over draws.
+
+**Revisions**
+- Earlier models on Yelp use the same commit and dtype as their earlier caches.
+- Qwen3.5-4B-Base is new and comes from the hub at commit 1001bb4. It is extracted in float16, like Qwen3.5-4B.
+- Pythia-2.8B uses commit dbe7ae3 (step143000) in **float16**, not the float32 of its earlier caches. Its float32 weights do not fit the 3060.
+
+**Development check**
+- Before any fresh pair, stab_v2.py runs on qwen35_08b (DBpedia, already scored).
+- It must reproduce robust_b1.json stability, select.json p@10, and baselines_a.json TwoNN.
+
+**Development check result (2026-10-17 13:30).** On qwen35_08b layers 0–1, stab_v2.py reproduces all of the
+following exactly:
+- robust_b1 stability (max |diff| 0.0 over 10 seed pairs);
+- select.json p@10;
+- baselines_a TwoNN;
+- one-label hits.
+
+The FEPoID and ID-min functions were checked on two hand-made curves. The run took about 9 minutes per layer with
+10 threads.
