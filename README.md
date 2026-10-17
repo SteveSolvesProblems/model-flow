@@ -1,5 +1,7 @@
 # Model Flow
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23437748.svg)](https://doi.org/10.5281/zenodo.23437748)
+
 What does a language model look like if you study it the way you would study a fluid: by how a population of texts
 moves through its layers, rather than weight by weight?
 
@@ -53,3 +55,8 @@ and drafted the write-up. Results and wording were reviewed together.
 ## Citation
 
 See [CITATION.cff](CITATION.cff). The archived release has a DOI on Zenodo.
+
+## Citing
+
+Steve Ball (2026). *Model Flow: following texts through a language model's layers.* Zenodo. https://doi.org/10.5281/zenodo.23437748
+(this DOI always resolves to the latest version; see CITATION.cff).

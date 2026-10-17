@@ -12,6 +12,8 @@ authors:
   - given-names: Steve
     family-names: Ball
 version: 0.1.0
+doi: "10.5281/zenodo.23437748"
+date-released: "2026-10-17"
 license: MIT
 repository-code: "https://github.com/SteveSolvesProblems/model-flow"
 url: "https://stevesolvesproblems.github.io/model-flow/"
