@@ -1,0 +1,49 @@
+{
+  "cache": "mnist_s0",
+  "exp": "v1_fine",
+  "code_hash": "08aaf0b0a7",
+  "time": "2026-09-29 12:35:35",
+  "args": {
+    "cache": "mnist_s0",
+    "label": "fine",
+    "coarse": null,
+    "exp": [
+      "sanity",
+      "v1"
+    ],
+    "ks": null,
+    "k0": null,
+    "leaves": null,
+    "seeds": 5,
+    "n_flow": 2000,
+    "tag": ""
+  },
+  "seconds": 30.338491201400757,
+  "result": {
+    "1d_boundary_iq_p1": 0.373,
+    "1d_boundary_iq_p2": 0.45599999999999996,
+    "1d_boundary_iq_p8": 0.499,
+    "1d_boundary_iq_p32": 0.5,
+    "2d_agree_iq_p1": 0.86975,
+    "2d_agree_iq_p2": 0.92325,
+    "2d_agree_iq_p4": 0.98625,
+    "2d_agree_iq_p8": 0.9945,
+    "2d_agree_iq_p16": 0.999,
+    "2d_agree_iq_p32": 0.9995,
+    "2d_agree_gauss_s2.0": 0.08325,
+    "2d_agree_iq2_s2.0": 0.3355,
+    "2d_agree_gauss_s1.0": 0.35175,
+    "2d_agree_iq2_s1.0": 0.7895,
+    "2d_agree_gauss_s0.5": 0.84025,
+    "2d_agree_iq2_s0.5": 0.92325,
+    "2d_agree_gauss_s0.25": 0.95975,
+    "2d_agree_iq2_s0.25": 0.9675,
+    "2d_agree_gauss_s0.1": 1.0,
+    "2d_agree_iq2_s0.1": 0.9685
+  },
+  "cache_meta": {
+    "model": "MSADCL S0 MNISTEncoder",
+    "ckpt": "../ckpt/mnist_s0/s0_encoder_final.pth",
+    "dim": 128
+  }
+}

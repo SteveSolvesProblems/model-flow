@@ -1,0 +1,60 @@
+{
+  "cache": "mnist_s0",
+  "exp": "v5_fine",
+  "code_hash": "08aaf0b0a7",
+  "time": "2026-09-29 12:37:44",
+  "args": {
+    "cache": "mnist_s0",
+    "label": "fine",
+    "coarse": null,
+    "exp": [
+      "v4",
+      "v5",
+      "v3",
+      "h1h2",
+      "v2",
+      "h3",
+      "h4"
+    ],
+    "ks": null,
+    "k0": null,
+    "leaves": null,
+    "seeds": 5,
+    "n_flow": 2000,
+    "tag": ""
+  },
+  "seconds": 5.095253944396973,
+  "result": {
+    "K40": {
+      "recall_np1": 0.6995,
+      "recall_np2": 0.8747,
+      "frac_queries_with_miss_np1": 0.7192,
+      "auroc_miss_by_d1_over_d2": 0.9296228557212982,
+      "auroc_miss_by_d1": 0.7885952340207067,
+      "budget0.1_guided": 0.7358600000000001,
+      "budget0.1_random": 0.7171200000000001,
+      "budget0.2_guided": 0.76766,
+      "budget0.2_random": 0.73454,
+      "budget0.3_guided": 0.7964,
+      "budget0.3_random": 0.7521800000000001
+    },
+    "K160": {
+      "recall_np1": 0.5888,
+      "recall_np2": 0.7776200000000001,
+      "frac_queries_with_miss_np1": 0.8744,
+      "auroc_miss_by_d1_over_d2": 0.9333916323331449,
+      "auroc_miss_by_d1": 0.7788237685095074,
+      "budget0.1_guided": 0.61644,
+      "budget0.1_random": 0.6078,
+      "budget0.2_guided": 0.64512,
+      "budget0.2_random": 0.62746,
+      "budget0.3_guided": 0.67164,
+      "budget0.3_random": 0.6461399999999999
+    }
+  },
+  "cache_meta": {
+    "model": "MSADCL S0 MNISTEncoder",
+    "ckpt": "../ckpt/mnist_s0/s0_encoder_final.pth",
+    "dim": 128
+  }
+}

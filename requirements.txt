@@ -1,0 +1,15 @@
+# Versions used for every run (Python 3.12). torch was the CUDA 12.6 build; any CUDA build of 2.11 should work.
+torch==2.11.0
+transformers==5.17.0
+accelerate==1.15.0
+tokenizers==0.23.2
+safetensors==0.8.0
+huggingface_hub==1.33.0
+datasets==5.0.1
+gguf==0.19.0
+numpy==2.5.2
+scipy==1.18.1
+scikit-learn==1.9.1
+faiss-cpu==1.15.1
+pandas==3.0.6
+matplotlib==3.11.2

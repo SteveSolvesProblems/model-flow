@@ -1,0 +1,134 @@
+{
+ "gemma4_e2b": {
+  "skip_vs_change": 0.7399732620320856,
+  "skip_vs_update": 0.7443181818181819,
+  "skip_vs_change_partial_update": 0.3396680976110511,
+  "skip_boundary_median": 1.2255984544754028,
+  "skip_interior_median": 0.3080200254917145,
+  "blocks": [
+   [
+    0,
+    0
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    3,
+    12
+   ],
+   [
+    13,
+    13
+   ],
+   [
+    14,
+    14
+   ],
+   [
+    15,
+    34
+   ]
+  ],
+  "skip_boundary_vs_interior_p": 0.00043094085085186313
+ },
+ "tok_base": {
+  "skip_vs_change": 0.7125668449197862,
+  "skip_vs_update": 0.7296122994652406,
+  "skip_vs_change_partial_update": 0.11121330148019457,
+  "skip_boundary_median": 0.9271436929702759,
+  "skip_interior_median": 0.35320359468460083,
+  "blocks": [
+   [
+    0,
+    2
+   ],
+   [
+    3,
+    11
+   ],
+   [
+    12,
+    13
+   ],
+   [
+    14,
+    19
+   ],
+   [
+    20,
+    34
+   ]
+  ],
+  "skip_boundary_vs_interior_p": 0.019925806077085273
+ },
+ "qwen3_17b": {
+  "skip_vs_change": 0.2854700854700854,
+  "skip_vs_update": 0.29435897435897435,
+  "skip_vs_change_partial_update": 0.031931694702376924,
+  "skip_boundary_median": 1.4283489882946014,
+  "skip_interior_median": 0.30140794813632965,
+  "blocks": [
+   [
+    0,
+    1
+   ],
+   [
+    2,
+    8
+   ],
+   [
+    9,
+    27
+   ]
+  ],
+  "skip_boundary_vs_interior_p": 0.07505016722408027,
+  "swap_across": [
+   [
+    8,
+    0.175
+   ]
+  ],
+  "swap_inside_median": 0.1394311487674713,
+  "swap_first_last": {
+   "0-1": 12.883599281311035,
+   "1-2": 10.987128257751465,
+   "26-27": 13.634949684143066
+  }
+ },
+ "tok_qwen3": {
+  "skip_vs_change": 0.558974358974359,
+  "skip_vs_update": 0.5117948717948718,
+  "skip_vs_change_partial_update": 0.2744085047013629,
+  "skip_boundary_median": 0.3721539080142975,
+  "skip_interior_median": 0.3003164529800415,
+  "blocks": [
+   [
+    0,
+    0
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    6,
+    27
+   ]
+  ],
+  "skip_boundary_vs_interior_p": 0.07846153846153846,
+  "swap_across": [
+   [
+    5,
+    0.222
+   ]
+  ],
+  "swap_inside_median": 0.1394311487674713,
+  "swap_first_last": {
+   "0-1": 12.883599281311035,
+   "1-2": 10.987128257751465,
+   "26-27": 13.634949684143066
+  }
+ }
+}

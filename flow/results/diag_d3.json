@@ -1,0 +1,110 @@
+{
+ "qwen3_17b|qwen35_08b": {
+  "nmi_vs_cka_whitened": 0.9607110681452115,
+  "nmi_vs_cka_raw": -0.0794131900763467,
+  "X1_cka_whitened": 0.966857682099035
+ },
+ "qwen3_17b|qwen35_2b": {
+  "nmi_vs_cka_whitened": 0.967157569564608,
+  "nmi_vs_cka_raw": 0.07063028140739913,
+  "X1_cka_whitened": 0.9946914435080322
+ },
+ "qwen3_17b|qwen35_4b": {
+  "nmi_vs_cka_whitened": 0.9500969196158789,
+  "nmi_vs_cka_raw": 0.20624200990601194,
+  "X1_cka_whitened": 0.9965462476688507
+ },
+ "qwen3_17b|gemma4_e2b": {
+  "nmi_vs_cka_whitened": 0.963294470853699,
+  "nmi_vs_cka_raw": 0.020250632893905038,
+  "X1_cka_whitened": 0.988605028046
+ },
+ "qwen3_17b|gemma4_e4b": {
+  "nmi_vs_cka_whitened": 0.9698026358608894,
+  "nmi_vs_cka_raw": 0.010766338038307621,
+  "X1_cka_whitened": 0.9826085163810291
+ },
+ "qwen3_17b|smollm2_17b": {
+  "nmi_vs_cka_whitened": 0.9643439994079942,
+  "nmi_vs_cka_raw": 0.500903344045068,
+  "X1_cka_whitened": 0.9593953272937296
+ },
+ "qwen35_08b|qwen35_2b": {
+  "nmi_vs_cka_whitened": 0.9621782256082577,
+  "nmi_vs_cka_raw": 0.9116050001426027,
+  "X1_cka_whitened": 0.9994229104068777
+ },
+ "qwen35_08b|qwen35_4b": {
+  "nmi_vs_cka_whitened": 0.9352412011223927,
+  "nmi_vs_cka_raw": 0.8541256045254729,
+  "X1_cka_whitened": 0.9911219070479307
+ },
+ "qwen35_08b|gemma4_e2b": {
+  "nmi_vs_cka_whitened": 0.9346079686518133,
+  "nmi_vs_cka_raw": 0.6376463180818743,
+  "X1_cka_whitened": 0.912727602383936
+ },
+ "qwen35_08b|gemma4_e4b": {
+  "nmi_vs_cka_whitened": 0.9354995452773808,
+  "nmi_vs_cka_raw": 0.47922007946899614,
+  "X1_cka_whitened": 0.9844951849708405
+ },
+ "qwen35_08b|smollm2_17b": {
+  "nmi_vs_cka_whitened": 0.9680852789383142,
+  "nmi_vs_cka_raw": -0.14943438374827214,
+  "X1_cka_whitened": 0.9711175180093496
+ },
+ "qwen35_2b|qwen35_4b": {
+  "nmi_vs_cka_whitened": 0.9638665267594017,
+  "nmi_vs_cka_raw": 0.909696877090328,
+  "X1_cka_whitened": 0.9986529388669981
+ },
+ "qwen35_2b|gemma4_e2b": {
+  "nmi_vs_cka_whitened": 0.9610239518814222,
+  "nmi_vs_cka_raw": 0.7146188081713682,
+  "X1_cka_whitened": 0.9729020821945349
+ },
+ "qwen35_2b|gemma4_e4b": {
+  "nmi_vs_cka_whitened": 0.9621416735048127,
+  "nmi_vs_cka_raw": 0.543458528959045,
+  "X1_cka_whitened": 0.978617549246031
+ },
+ "qwen35_2b|smollm2_17b": {
+  "nmi_vs_cka_whitened": 0.9674163185057755,
+  "nmi_vs_cka_raw": 0.04196274268862128,
+  "X1_cka_whitened": 0.9889777161680252
+ },
+ "qwen35_4b|gemma4_e2b": {
+  "nmi_vs_cka_whitened": 0.9683711889950912,
+  "nmi_vs_cka_raw": 0.7156646706238833,
+  "X1_cka_whitened": 0.9660133710402932
+ },
+ "qwen35_4b|gemma4_e4b": {
+  "nmi_vs_cka_whitened": 0.9707475913727759,
+  "nmi_vs_cka_raw": 0.501370841004543,
+  "X1_cka_whitened": 0.9563424485709686
+ },
+ "qwen35_4b|smollm2_17b": {
+  "nmi_vs_cka_whitened": 0.9577414735996274,
+  "nmi_vs_cka_raw": 0.2094728901179453,
+  "X1_cka_whitened": 0.8423573803293836
+ },
+ "gemma4_e2b|gemma4_e4b": {
+  "nmi_vs_cka_whitened": 0.9558935564071926,
+  "nmi_vs_cka_raw": 0.6718690927151617,
+  "X1_cka_whitened": 0.9958730801478631
+ },
+ "gemma4_e2b|smollm2_17b": {
+  "nmi_vs_cka_whitened": 0.9608054166322016,
+  "nmi_vs_cka_raw": -0.15939555480932693,
+  "X1_cka_whitened": 0.7258088082097491
+ },
+ "gemma4_e4b|smollm2_17b": {
+  "nmi_vs_cka_whitened": 0.9636945114038058,
+  "nmi_vs_cka_raw": -0.1534620498596228,
+  "X1_cka_whitened": 0.7196482275011455
+ },
+ "pairs_ge_0.7": 21,
+ "pairs_higher_than_raw": 21,
+ "D3_H1": true
+}

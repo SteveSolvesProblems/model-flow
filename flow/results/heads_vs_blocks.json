@@ -1,0 +1,470 @@
+{
+ "gemma4_e2b": {
+  "blocks": [
+   {
+    "layers": [
+     0,
+     0
+    ],
+    "entropy": 0.502,
+    "sink": 0.32,
+    "prev": 0.197,
+    "self": 0.043,
+    "dist": 0.487,
+    "induction": 0.005,
+    "n_sink": 3,
+    "n_prev_token": 1,
+    "n_induction": 0,
+    "n_local": 1,
+    "n_diffuse": 1,
+    "n_heads": 8
+   },
+   {
+    "layers": [
+     1,
+     2
+    ],
+    "entropy": 0.534,
+    "sink": 0.394,
+    "prev": 0.13,
+    "self": 0.041,
+    "dist": 0.558,
+    "induction": 0.008,
+    "n_sink": 2,
+    "n_prev_token": 1,
+    "n_induction": 0,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 16
+   },
+   {
+    "layers": [
+     3,
+     12
+    ],
+    "entropy": 0.591,
+    "sink": 0.392,
+    "prev": 0.082,
+    "self": 0.069,
+    "dist": 0.585,
+    "induction": 0.027,
+    "n_sink": 20,
+    "n_prev_token": 2,
+    "n_induction": 1,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 80
+   },
+   {
+    "layers": [
+     13,
+     13
+    ],
+    "entropy": 0.554,
+    "sink": 0.439,
+    "prev": 0.079,
+    "self": 0.095,
+    "dist": 0.586,
+    "induction": 0.008,
+    "n_sink": 4,
+    "n_prev_token": 0,
+    "n_induction": 0,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 8
+   },
+   {
+    "layers": [
+     14,
+     14
+    ],
+    "entropy": 0.639,
+    "sink": 0.285,
+    "prev": 0.058,
+    "self": 0.066,
+    "dist": 0.602,
+    "induction": 0.087,
+    "n_sink": 2,
+    "n_prev_token": 0,
+    "n_induction": 1,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 8
+   },
+   {
+    "layers": [
+     15,
+     34
+    ],
+    "entropy": 0.442,
+    "sink": 0.572,
+    "prev": 0.034,
+    "self": 0.048,
+    "dist": 0.753,
+    "induction": 0.058,
+    "n_sink": 94,
+    "n_prev_token": 0,
+    "n_induction": 6,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 160
+   }
+  ],
+  "block_test": {
+   "rho": 0.2043473423125778,
+   "null_mean": 0.32047648150552543,
+   "p": 1.0
+  },
+  "boundary": {
+   "entropy": -0.2516424751718869,
+   "sink": -0.2045836516424752,
+   "prev": 0.49885408708938117,
+   "self": -0.0505729564553094,
+   "dist": -0.18808250572956453,
+   "induction": -0.0019862490450725744,
+   "profile": 0.10038197097020625
+  }
+ },
+ "tok_base": {
+  "blocks": [
+   {
+    "layers": [
+     0,
+     2
+    ],
+    "entropy": 0.524,
+    "sink": 0.369,
+    "prev": 0.152,
+    "self": 0.042,
+    "dist": 0.534,
+    "induction": 0.007,
+    "n_sink": 5,
+    "n_prev_token": 2,
+    "n_induction": 0,
+    "n_local": 1,
+    "n_diffuse": 1,
+    "n_heads": 24
+   },
+   {
+    "layers": [
+     3,
+     11
+    ],
+    "entropy": 0.59,
+    "sink": 0.392,
+    "prev": 0.078,
+    "self": 0.069,
+    "dist": 0.587,
+    "induction": 0.029,
+    "n_sink": 18,
+    "n_prev_token": 1,
+    "n_induction": 1,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 72
+   },
+   {
+    "layers": [
+     12,
+     13
+    ],
+    "entropy": 0.577,
+    "sink": 0.419,
+    "prev": 0.101,
+    "self": 0.082,
+    "dist": 0.573,
+    "induction": 0.01,
+    "n_sink": 6,
+    "n_prev_token": 1,
+    "n_induction": 0,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 16
+   },
+   {
+    "layers": [
+     14,
+     19
+    ],
+    "entropy": 0.614,
+    "sink": 0.375,
+    "prev": 0.053,
+    "self": 0.066,
+    "dist": 0.62,
+    "induction": 0.032,
+    "n_sink": 10,
+    "n_prev_token": 0,
+    "n_induction": 1,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 48
+   },
+   {
+    "layers": [
+     20,
+     34
+    ],
+    "entropy": 0.386,
+    "sink": 0.632,
+    "prev": 0.028,
+    "self": 0.042,
+    "dist": 0.796,
+    "induction": 0.07,
+    "n_sink": 86,
+    "n_prev_token": 0,
+    "n_induction": 6,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 120
+   }
+  ],
+  "block_test": {
+   "rho": 0.213567430431779,
+   "null_mean": 0.3426331258620972,
+   "p": 1.0
+  },
+  "boundary": {
+   "entropy": -0.2828113063407181,
+   "sink": -0.21069518716577537,
+   "prev": 0.5339954163483575,
+   "self": 0.1630252100840336,
+   "dist": -0.15538579067990832,
+   "induction": 0.07685255920550038,
+   "profile": 0.15538579067990832
+  }
+ },
+ "qwen3_17b": {
+  "blocks": [
+   {
+    "layers": [
+     0,
+     1
+    ],
+    "entropy": 0.569,
+    "sink": 0.035,
+    "prev": 0.162,
+    "self": 0.256,
+    "dist": 0.257,
+    "induction": 0.008,
+    "n_sink": 0,
+    "n_prev_token": 2,
+    "n_induction": 0,
+    "n_local": 9,
+    "n_diffuse": 6,
+    "n_heads": 32
+   },
+   {
+    "layers": [
+     2,
+     8
+    ],
+    "entropy": 0.391,
+    "sink": 0.571,
+    "prev": 0.064,
+    "self": 0.08,
+    "dist": 0.687,
+    "induction": 0.026,
+    "n_sink": 80,
+    "n_prev_token": 1,
+    "n_induction": 2,
+    "n_local": 4,
+    "n_diffuse": 2,
+    "n_heads": 112
+   },
+   {
+    "layers": [
+     9,
+     27
+    ],
+    "entropy": 0.345,
+    "sink": 0.666,
+    "prev": 0.047,
+    "self": 0.062,
+    "dist": 0.759,
+    "induction": 0.058,
+    "n_sink": 234,
+    "n_prev_token": 2,
+    "n_induction": 13,
+    "n_local": 3,
+    "n_diffuse": 0,
+    "n_heads": 304
+   }
+  ],
+  "block_test": {
+   "rho": 0.16545456246362855,
+   "null_mean": 0.23006407368417212,
+   "p": 0.953023488255872
+  },
+  "boundary": {
+   "entropy": -0.04029304029304029,
+   "sink": -0.28937728937728935,
+   "prev": -0.14041514041514042,
+   "self": -0.2588522588522589,
+   "dist": -0.2625152625152625,
+   "induction": -0.04884004884004883,
+   "profile": -0.14468864468864467
+  }
+ },
+ "tok_qwen3": {
+  "blocks": [
+   {
+    "layers": [
+     0,
+     0
+    ],
+    "entropy": 0.479,
+    "sink": 0.019,
+    "prev": 0.17,
+    "self": 0.38,
+    "dist": 0.184,
+    "induction": 0.006,
+    "n_sink": 0,
+    "n_prev_token": 1,
+    "n_induction": 0,
+    "n_local": 8,
+    "n_diffuse": 2,
+    "n_heads": 16
+   },
+   {
+    "layers": [
+     1,
+     5
+    ],
+    "entropy": 0.443,
+    "sink": 0.448,
+    "prev": 0.091,
+    "self": 0.097,
+    "dist": 0.598,
+    "induction": 0.019,
+    "n_sink": 41,
+    "n_prev_token": 2,
+    "n_induction": 1,
+    "n_local": 4,
+    "n_diffuse": 6,
+    "n_heads": 80
+   },
+   {
+    "layers": [
+     6,
+     27
+    ],
+    "entropy": 0.352,
+    "sink": 0.658,
+    "prev": 0.048,
+    "self": 0.063,
+    "dist": 0.753,
+    "induction": 0.055,
+    "n_sink": 273,
+    "n_prev_token": 2,
+    "n_induction": 14,
+    "n_local": 4,
+    "n_diffuse": 0,
+    "n_heads": 352
+   }
+  ],
+  "block_test": {
+   "rho": 0.5109369112388668,
+   "null_mean": 0.32475233173049767,
+   "p": 0.0004997501249375312
+  },
+  "boundary": {
+   "entropy": 0.2063492063492063,
+   "sink": 0.221001221001221,
+   "prev": 0.43589743589743585,
+   "self": 0.48229548229548225,
+   "dist": 0.33333333333333326,
+   "induction": 0.11233211233211234,
+   "profile": 0.3601953601953602
+  }
+ },
+ "mbert_large": {
+  "blocks": [
+   {
+    "layers": [
+     0,
+     13
+    ],
+    "entropy": 0.575,
+    "sink": 0.067,
+    "prev": 0.051,
+    "self": 0.066,
+    "dist": 0.936,
+    "induction": 0.007,
+    "n_sink": 1,
+    "n_prev_token": 1,
+    "n_induction": 0,
+    "n_local": 0,
+    "n_diffuse": 23,
+    "n_heads": 224
+   },
+   {
+    "layers": [
+     14,
+     18
+    ],
+    "entropy": 0.528,
+    "sink": 0.018,
+    "prev": 0.053,
+    "self": 0.098,
+    "dist": 0.885,
+    "induction": 0.009,
+    "n_sink": 0,
+    "n_prev_token": 1,
+    "n_induction": 0,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 80
+   },
+   {
+    "layers": [
+     19,
+     26
+    ],
+    "entropy": 0.365,
+    "sink": 0.006,
+    "prev": 0.041,
+    "self": 0.068,
+    "dist": 0.968,
+    "induction": 0.015,
+    "n_sink": 0,
+    "n_prev_token": 0,
+    "n_induction": 0,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 128
+   },
+   {
+    "layers": [
+     27,
+     27
+    ],
+    "entropy": 0.553,
+    "sink": 0.019,
+    "prev": 0.032,
+    "self": 0.165,
+    "dist": 0.908,
+    "induction": 0.014,
+    "n_sink": 0,
+    "n_prev_token": 0,
+    "n_induction": 0,
+    "n_local": 0,
+    "n_diffuse": 0,
+    "n_heads": 16
+   }
+  ],
+  "block_test": {
+   "rho": 0.2500487581896297,
+   "null_mean": 0.24575243131838792,
+   "p": 0.46776611694152925
+  },
+  "boundary": {
+   "entropy": 0.13186813186813187,
+   "sink": 0.5567765567765567,
+   "prev": 0.2576312576312576,
+   "self": -0.05616605616605617,
+   "dist": -0.23870573870573872,
+   "induction": -0.1336996336996337,
+   "profile": 0.12148962148962149
+  }
+ }
+}

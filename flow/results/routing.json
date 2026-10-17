@@ -1,0 +1,249 @@
+{
+ "qwen35_08b": {
+  "layer": 20,
+  "spearman": 0.21247152187366472,
+  "ci95": [
+   0.1899603649142158,
+   0.23737777777919739
+  ],
+  "failure_rate": 0.1355,
+  "auroc": {
+   "routing_stability": 0.6057083763434511,
+   "centroid_distance": 0.6266136056386591,
+   "centroid_margin": 0.6434933724698728,
+   "hubness": 0.6084064831394409
+  },
+  "beats_all_three": false,
+  "beats_original_two": false,
+  "spearman_baselines": {
+   "centroid_distance": 0.2565149037649455,
+   "centroid_margin": 0.2784959838490064,
+   "hubness": 0.2271385682190243
+  }
+ },
+ "qwen35_08b_20ng": {
+  "layer": 23,
+  "spearman": 0.08907785395830303,
+  "ci95": [
+   0.06746434123056896,
+   0.11313684776852
+  ],
+  "failure_rate": 0.638874137015401,
+  "auroc": {
+   "routing_stability": 0.5699135662681531,
+   "centroid_distance": 0.4692219359689014,
+   "centroid_margin": 0.5436151884382181,
+   "hubness": 0.6052304899515916
+  },
+  "beats_all_three": false,
+  "beats_original_two": true,
+  "spearman_baselines": {
+   "centroid_distance": -0.06633466174032399,
+   "centroid_margin": 0.04972552912393244,
+   "hubness": 0.1979002995890756
+  }
+ },
+ "qwen35_4b": {
+  "layer": 25,
+  "spearman": 0.1890588889771517,
+  "ci95": [
+   0.16409495830999862,
+   0.21397614279415805
+  ],
+  "failure_rate": 0.13933333333333334,
+  "auroc": {
+   "routing_stability": 0.599944661977103,
+   "centroid_distance": 0.6886485708938214,
+   "centroid_margin": 0.6591484708267394,
+   "hubness": 0.6303105044492789
+  },
+  "beats_all_three": false,
+  "beats_original_two": false,
+  "spearman_baselines": {
+   "centroid_distance": 0.37073571234781294,
+   "centroid_margin": 0.28611925785875275,
+   "hubness": 0.23147964994794057
+  }
+ },
+ "qwen35_4b_20ng": {
+  "layer": 31,
+  "spearman": 0.07004841872210374,
+  "ci95": [
+   0.04729882076468827,
+   0.09332672738039151
+  ],
+  "failure_rate": 0.5693043016463091,
+  "auroc": {
+   "routing_stability": 0.5520764439401329,
+   "centroid_distance": 0.4957855604836484,
+   "centroid_margin": 0.5426238250409482,
+   "hubness": 0.5922808339046138
+  },
+  "beats_all_three": false,
+  "beats_original_two": true,
+  "spearman_baselines": {
+   "centroid_distance": -0.01688302481893101,
+   "centroid_margin": 0.06318095845681868,
+   "hubness": 0.18032862499416302
+  }
+ },
+ "gemma4_e4b": {
+  "layer": 14,
+  "spearman": 0.1910382379170255,
+  "ci95": [
+   0.16572466699442015,
+   0.21523403053800852
+  ],
+  "failure_rate": 0.08766666666666667,
+  "auroc": {
+   "routing_stability": 0.6163590828958465,
+   "centroid_distance": 0.6906167906077953,
+   "centroid_margin": 0.677046765143485,
+   "hubness": 0.6408860204686933
+  },
+  "beats_all_three": false,
+  "beats_original_two": false,
+  "spearman_baselines": {
+   "centroid_distance": 0.348521797185131,
+   "centroid_margin": 0.3005958327239665,
+   "hubness": 0.2178819010267449
+  }
+ },
+ "gemma4_e4b_20ng": {
+  "layer": 42,
+  "spearman": 0.06508578514881683,
+  "ci95": [
+   0.04021960572502562,
+   0.08916930909050036
+  ],
+  "failure_rate": 0.50570897503983,
+  "auroc": {
+   "routing_stability": 0.5393694846175918,
+   "centroid_distance": 0.3844961045157408,
+   "centroid_margin": 0.524995509807659,
+   "hubness": 0.6021445243241492
+  },
+  "beats_all_three": false,
+  "beats_original_two": true,
+  "spearman_baselines": {
+   "centroid_distance": -0.22379030959636242,
+   "centroid_margin": 0.03729362060827722,
+   "hubness": 0.20233331703212815
+  }
+ },
+ "smollm2_17b": {
+  "layer": 23,
+  "spearman": 0.182209655491805,
+  "ci95": [
+   0.15718786114406924,
+   0.2051247072202898
+  ],
+  "failure_rate": 0.167,
+  "auroc": {
+   "routing_stability": 0.5959960830639641,
+   "centroid_distance": 0.6799196724598022,
+   "centroid_margin": 0.6259198290094481,
+   "hubness": 0.6166131123107925
+  },
+  "beats_all_three": false,
+  "beats_original_two": false,
+  "spearman_baselines": {
+   "centroid_distance": 0.3636020859216452,
+   "centroid_margin": 0.25672425458781395,
+   "hubness": 0.21789957384629638
+  }
+ },
+ "smollm2_17b_20ng": {
+  "layer": 22,
+  "spearman": 0.11645412294610158,
+  "ci95": [
+   0.09291663373771665,
+   0.13962482759431982
+  ],
+  "failure_rate": 0.6056824216675518,
+  "auroc": {
+   "routing_stability": 0.5838098949453618,
+   "centroid_distance": 0.4483306320548758,
+   "centroid_margin": 0.5628595615662693,
+   "hubness": 0.5687598622495598
+  },
+  "beats_all_three": true,
+  "beats_original_two": true,
+  "spearman_baselines": {
+   "centroid_distance": -0.10804597652682618,
+   "centroid_margin": 0.09596155418452966,
+   "hubness": 0.13652861950167106
+  }
+ },
+ "qwen3_17b_20ng": {
+  "layer": 25,
+  "spearman": 0.10991701584265519,
+  "ci95": [
+   0.08742330577306398,
+   0.13171163178690956
+  ],
+  "failure_rate": 0.5985130111524164,
+  "auroc": {
+   "routing_stability": 0.5705451478382934,
+   "centroid_distance": 0.45913936658169135,
+   "centroid_margin": 0.5593774647540175,
+   "hubness": 0.6131543261714624
+  },
+  "beats_all_three": false,
+  "beats_original_two": true,
+  "spearman_baselines": {
+   "centroid_distance": -0.08544516340677208,
+   "centroid_margin": 0.085774311849528,
+   "hubness": 0.20348630004710042
+  }
+ },
+ "qwen35_2b_20ng": {
+  "layer": 23,
+  "spearman": 0.12162647253752477,
+  "ci95": [
+   0.09895751263497769,
+   0.14350600106114988
+  ],
+  "failure_rate": 0.5966542750929368,
+  "auroc": {
+   "routing_stability": 0.5781206190215438,
+   "centroid_distance": 0.47794590724872577,
+   "centroid_margin": 0.5481335218957732,
+   "hubness": 0.5969058517933208
+  },
+  "beats_all_three": false,
+  "beats_original_two": true,
+  "spearman_baselines": {
+   "centroid_distance": -0.059907368229703765,
+   "centroid_margin": 0.06815717754595368,
+   "hubness": 0.19077732149660065
+  }
+ },
+ "gemma4_e2b_20ng": {
+  "layer": 28,
+  "spearman": 0.09810132839323786,
+  "ci95": [
+   0.0743863048854535,
+   0.1206234391718995
+  ],
+  "failure_rate": 0.5444768985661179,
+  "auroc": {
+   "routing_stability": 0.5633577368188876,
+   "centroid_distance": 0.4409645947263824,
+   "centroid_margin": 0.5496830219129613,
+   "hubness": 0.6084502070319876
+  },
+  "beats_all_three": false,
+  "beats_original_two": true,
+  "spearman_baselines": {
+   "centroid_distance": -0.11693917341600248,
+   "centroid_margin": 0.07482649195391113,
+   "hubness": 0.20922606828261078
+  }
+ },
+ "Q1_pairs": 11,
+ "Q1_supported": true,
+ "Q2_pairs": 1,
+ "Q2_supported": false,
+ "Q2_original_two_baselines_pairs": 7
+}

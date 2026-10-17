@@ -1,0 +1,141 @@
+{
+ "model": "gemma4_e2b",
+ "layers": [
+  13,
+  15
+ ],
+ "n": 3000,
+ "median_overlap": 5,
+ "mean_overlap": 0.49143333333333333,
+ "article": {
+  "title": "New Jersey Monthly",
+  "l1": 8,
+  "l3": 118,
+  "text": "New Jersey Monthly is a monthly glossy publication featuring issues of possible interest to residents of the United States state of New Jersey. The magazine was started in 1976. It is based in Morristown. In addition to articles of general interest, the publication features occasional special subjec"
+ },
+ "centered_cos_self": -0.014707483351230621,
+ "before": [
+  {
+   "title": "The Bellingham Business Journal",
+   "l1": 8,
+   "l3": 144,
+   "kept": true
+  },
+  {
+   "title": "Archives of Scientific Psychology",
+   "l1": 8,
+   "l3": 0,
+   "kept": true
+  },
+  {
+   "title": "Biotechniques",
+   "l1": 8,
+   "l3": 0,
+   "kept": false
+  },
+  {
+   "title": "MotorMag",
+   "l1": 8,
+   "l3": 118,
+   "kept": true
+  },
+  {
+   "title": "Fugues",
+   "l1": 8,
+   "l3": 118,
+   "kept": true
+  },
+  {
+   "title": "The Harvard Political Review",
+   "l1": 8,
+   "l3": 118,
+   "kept": false
+  },
+  {
+   "title": "Metroland",
+   "l1": 8,
+   "l3": 144,
+   "kept": false
+  },
+  {
+   "title": "Jazz FM",
+   "l1": 0,
+   "l3": 167,
+   "kept": false
+  },
+  {
+   "title": "The Wisconsin State Baseball League",
+   "l1": 0,
+   "l3": 23,
+   "kept": true
+  },
+  {
+   "title": "Style",
+   "l1": 8,
+   "l3": 118,
+   "kept": false
+  }
+ ],
+ "after": [
+  {
+   "title": "The Bellingham Business Journal",
+   "l1": 8,
+   "l3": 144,
+   "kept": true
+  },
+  {
+   "title": "The UFCW Local 832",
+   "l1": 0,
+   "l3": 210,
+   "kept": false
+  },
+  {
+   "title": "MotorMag",
+   "l1": 8,
+   "l3": 118,
+   "kept": true
+  },
+  {
+   "title": "The Isaacs Art Center",
+   "l1": 3,
+   "l3": 135,
+   "kept": false
+  },
+  {
+   "title": "Fugues",
+   "l1": 8,
+   "l3": 118,
+   "kept": true
+  },
+  {
+   "title": "The Wisconsin State Baseball League",
+   "l1": 0,
+   "l3": 23,
+   "kept": true
+  },
+  {
+   "title": "The Mountain Times",
+   "l1": 8,
+   "l3": 144,
+   "kept": false
+  },
+  {
+   "title": "Red Issue",
+   "l1": 8,
+   "l3": 118,
+   "kept": false
+  },
+  {
+   "title": "NorthernBlues Music",
+   "l1": 0,
+   "l3": 170,
+   "kept": false
+  },
+  {
+   "title": "Archives of Scientific Psychology",
+   "l1": 8,
+   "l3": 0,
+   "kept": true
+  }
+ ]
+}

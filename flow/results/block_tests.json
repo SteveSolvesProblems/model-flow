@@ -1,0 +1,1007 @@
+{
+ "geometry_blocks": {
+  "gemma4_e2b": {
+   "self_top1": {
+    "gain": 198.0166778711485,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 159.6459366032858,
+    "blocks": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      3,
+      12
+     ],
+     [
+      13,
+      13
+     ],
+     [
+      14,
+      14
+     ],
+     [
+      15,
+      34
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      10
+     ],
+     [
+      11,
+      22
+     ],
+     [
+      23,
+      34
+     ]
+    ]
+   },
+   "cos_centered": {
+    "gain": 105.42365131089593,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.001998001998001998,
+    "gain_null_median": 100.83268183751706,
+    "blocks": [
+     [
+      0,
+      2
+     ],
+     [
+      3,
+      10
+     ],
+     [
+      11,
+      12
+     ],
+     [
+      13,
+      13
+     ],
+     [
+      14,
+      14
+     ],
+     [
+      15,
+      22
+     ],
+     [
+      23,
+      34
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      10
+     ],
+     [
+      11,
+      22
+     ],
+     [
+      23,
+      34
+     ]
+    ]
+   },
+   "knn10": {
+    "gain": 51.93028661064429,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.02097902097902098,
+    "gain_null_median": 47.72158189504344,
+    "blocks": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      4,
+      9
+     ],
+     [
+      10,
+      13
+     ],
+     [
+      14,
+      14
+     ],
+     [
+      15,
+      34
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      8
+     ],
+     [
+      9,
+      21
+     ],
+     [
+      22,
+      34
+     ]
+    ]
+   }
+  },
+  "tok_base": {
+   "self_top1": {
+    "gain": 175.9285322128851,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 152.78607556098876,
+    "blocks": [
+     [
+      0,
+      2
+     ],
+     [
+      3,
+      11
+     ],
+     [
+      12,
+      13
+     ],
+     [
+      14,
+      19
+     ],
+     [
+      20,
+      34
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      11
+     ],
+     [
+      12,
+      23
+     ],
+     [
+      24,
+      34
+     ]
+    ]
+   },
+   "cos_centered": {
+    "gain": 89.70569581949393,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.007992007992007992,
+    "gain_null_median": 85.84533698013058,
+    "blocks": [
+     [
+      0,
+      2
+     ],
+     [
+      3,
+      8
+     ],
+     [
+      9,
+      12
+     ],
+     [
+      13,
+      13
+     ],
+     [
+      14,
+      14
+     ],
+     [
+      15,
+      22
+     ],
+     [
+      23,
+      34
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      11
+     ],
+     [
+      12,
+      22
+     ],
+     [
+      23,
+      34
+     ]
+    ]
+   },
+   "knn10": {
+    "gain": 60.45570722689075,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 55.12826502097111,
+    "blocks": [
+     [
+      0,
+      7
+     ],
+     [
+      8,
+      13
+     ],
+     [
+      14,
+      18
+     ],
+     [
+      19,
+      34
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      10
+     ],
+     [
+      11,
+      22
+     ],
+     [
+      23,
+      34
+     ]
+    ]
+   }
+  },
+  "qwen3_17b": {
+   "self_top1": {
+    "gain": 119.71949559082891,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 76.2535688615684,
+    "blocks": [
+     [
+      0,
+      1
+     ],
+     [
+      2,
+      8
+     ],
+     [
+      9,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      8
+     ],
+     [
+      9,
+      17
+     ],
+     [
+      18,
+      27
+     ]
+    ]
+   },
+   "cos_centered": {
+    "gain": 86.07323361930274,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 65.25623708829457,
+    "blocks": [
+     [
+      0,
+      1
+     ],
+     [
+      2,
+      18
+     ],
+     [
+      19,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      13
+     ],
+     [
+      14,
+      27
+     ]
+    ]
+   },
+   "knn10": {
+    "gain": 49.93611622574955,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 40.96151999686563,
+    "blocks": [
+     [
+      0,
+      1
+     ],
+     [
+      2,
+      4
+     ],
+     [
+      5,
+      19
+     ],
+     [
+      20,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      13
+     ],
+     [
+      14,
+      27
+     ]
+    ]
+   }
+  },
+  "tok_qwen3": {
+   "self_top1": {
+    "gain": 53.27434567901233,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 46.25632748600062,
+    "blocks": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      5
+     ],
+     [
+      6,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      13
+     ],
+     [
+      14,
+      27
+     ]
+    ]
+   },
+   "cos_centered": {
+    "gain": 57.50985745368182,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 52.34788474245115,
+    "blocks": [
+     [
+      0,
+      5
+     ],
+     [
+      6,
+      19
+     ],
+     [
+      20,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      13
+     ],
+     [
+      14,
+      27
+     ]
+    ]
+   },
+   "knn10": {
+    "gain": 44.76922945326278,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 38.12667612137032,
+    "blocks": [
+     [
+      0,
+      4
+     ],
+     [
+      5,
+      20
+     ],
+     [
+      21,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      13
+     ],
+     [
+      14,
+      27
+     ]
+    ]
+   }
+  },
+  "mbert_large": {
+   "self_top1": {
+    "gain": 101.00121164021164,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 66.02468617171675,
+    "blocks": [
+     [
+      0,
+      13
+     ],
+     [
+      14,
+      18
+     ],
+     [
+      19,
+      26
+     ],
+     [
+      27,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      8
+     ],
+     [
+      9,
+      17
+     ],
+     [
+      18,
+      27
+     ]
+    ]
+   },
+   "cos_centered": {
+    "gain": 83.2379811648181,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 66.25768053950574,
+    "blocks": [
+     [
+      0,
+      4
+     ],
+     [
+      5,
+      13
+     ],
+     [
+      14,
+      26
+     ],
+     [
+      27,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      13
+     ],
+     [
+      14,
+      27
+     ]
+    ]
+   },
+   "knn10": {
+    "gain": 44.02042116402116,
+    "p_diag": 0.000999000999000999,
+    "p_trend": 0.000999000999000999,
+    "gain_null_median": 36.83191263042959,
+    "blocks": [
+     [
+      0,
+      4
+     ],
+     [
+      5,
+      13
+     ],
+     [
+      14,
+      26
+     ],
+     [
+      27,
+      27
+     ]
+    ],
+    "blocks_on_blockfree": [
+     [
+      0,
+      8
+     ],
+     [
+      9,
+      17
+     ],
+     [
+      18,
+      27
+     ]
+    ]
+   }
+  }
+ },
+ "weights_vs_geometry": {
+  "gemma4_e2b": {
+   "self_top1~write_overlap": {
+    "rho_partial": 0.07844184114148516,
+    "p": 0.04939506049395061
+   },
+   "self_top1~read_overlap": {
+    "rho_partial": 0.026838609491458165,
+    "p": 0.2298770122987701
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho_partial": 0.36595121824952404,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~gain_cos": {
+    "rho_partial": 0.4652077599653509,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~compose_excess": {
+    "rho_partial": -0.26100943738783294,
+    "p": 1.0
+   },
+   "cos_centered~write_overlap": {
+    "rho_partial": 0.033222425178722044,
+    "p": 0.2980701929807019
+   },
+   "cos_centered~read_overlap": {
+    "rho_partial": -0.0353750167146306,
+    "p": 0.7543245675432457
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho_partial": 0.35866941169753946,
+    "p": 9.999000099990002e-05
+   },
+   "cos_centered~gain_cos": {
+    "rho_partial": 0.38828420083085563,
+    "p": 9.999000099990002e-05
+   },
+   "cos_centered~compose_excess": {
+    "rho_partial": -0.21005200138295027,
+    "p": 1.0
+   },
+   "knn10~write_overlap": {
+    "rho_partial": -0.03500936294681207,
+    "p": 0.960903909609039
+   },
+   "knn10~read_overlap": {
+    "rho_partial": -0.015311063061855515,
+    "p": 0.8004199580041996
+   },
+   "knn10~read_overlap_nogain": {
+    "rho_partial": 0.1717061233007084,
+    "p": 0.00019998000199980003
+   },
+   "knn10~gain_cos": {
+    "rho_partial": -0.007570970959255116,
+    "p": 0.9213078692130787
+   },
+   "knn10~compose_excess": {
+    "rho_partial": -0.19532047538073177,
+    "p": 1.0
+   }
+  },
+  "tok_base": {
+   "self_top1~write_overlap": {
+    "rho_partial": 0.06435231365325159,
+    "p": 0.0608939106089391
+   },
+   "self_top1~read_overlap": {
+    "rho_partial": 0.06472809706089641,
+    "p": 0.0740925907409259
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho_partial": 0.24111986608860583,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~gain_cos": {
+    "rho_partial": 0.44807286914731065,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~compose_excess": {
+    "rho_partial": -0.244730916518239,
+    "p": 1.0
+   },
+   "cos_centered~write_overlap": {
+    "rho_partial": 0.019967170317883153,
+    "p": 0.20727927207279273
+   },
+   "cos_centered~read_overlap": {
+    "rho_partial": -0.02190139147042923,
+    "p": 0.7301269873012699
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho_partial": 0.27473503712713027,
+    "p": 9.999000099990002e-05
+   },
+   "cos_centered~gain_cos": {
+    "rho_partial": 0.3912882524012281,
+    "p": 9.999000099990002e-05
+   },
+   "cos_centered~compose_excess": {
+    "rho_partial": -0.21008490583389988,
+    "p": 1.0
+   },
+   "knn10~write_overlap": {
+    "rho_partial": 0.05625417129720988,
+    "p": 0.21207879212078792
+   },
+   "knn10~read_overlap": {
+    "rho_partial": -0.055288929613921865,
+    "p": 0.9311068893110689
+   },
+   "knn10~read_overlap_nogain": {
+    "rho_partial": 0.342110471645026,
+    "p": 9.999000099990002e-05
+   },
+   "knn10~gain_cos": {
+    "rho_partial": 0.3038902820769968,
+    "p": 9.999000099990002e-05
+   },
+   "knn10~compose_excess": {
+    "rho_partial": -0.07818739384394079,
+    "p": 0.9261073892610739
+   }
+  },
+  "qwen3_17b": {
+   "self_top1~write_overlap": {
+    "rho_partial": 0.03431125089111712,
+    "p": 0.19658034196580343
+   },
+   "self_top1~read_overlap": {
+    "rho_partial": 0.49146084125392886,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho_partial": -0.11201012519359786,
+    "p": 0.9897010298970103
+   },
+   "self_top1~gain_cos": {
+    "rho_partial": -0.30490300020074385,
+    "p": 1.0
+   },
+   "self_top1~compose_excess": {
+    "rho_partial": 0.054325412197719254,
+    "p": 0.12198780121987801
+   },
+   "cos_centered~write_overlap": {
+    "rho_partial": 0.09859077398241409,
+    "p": 0.0108989101089891
+   },
+   "cos_centered~read_overlap": {
+    "rho_partial": -0.22581183373727276,
+    "p": 1.0
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho_partial": 0.12378053704370597,
+    "p": 0.007799220077992201
+   },
+   "cos_centered~gain_cos": {
+    "rho_partial": 0.5478184810313781,
+    "p": 9.999000099990002e-05
+   },
+   "cos_centered~compose_excess": {
+    "rho_partial": 0.07758356928256893,
+    "p": 0.1192880711928807
+   },
+   "knn10~write_overlap": {
+    "rho_partial": 0.048810130318472686,
+    "p": 0.24197580241975802
+   },
+   "knn10~read_overlap": {
+    "rho_partial": 0.05340704990295172,
+    "p": 0.21397860213978603
+   },
+   "knn10~read_overlap_nogain": {
+    "rho_partial": 0.36829488142305494,
+    "p": 9.999000099990002e-05
+   },
+   "knn10~gain_cos": {
+    "rho_partial": 0.4066477958598281,
+    "p": 9.999000099990002e-05
+   },
+   "knn10~compose_excess": {
+    "rho_partial": 0.1098467699181549,
+    "p": 0.044295570442955706
+   }
+  },
+  "tok_qwen3": {
+   "self_top1~write_overlap": {
+    "rho_partial": -0.09994866377559032,
+    "p": 0.9506049395060494
+   },
+   "self_top1~read_overlap": {
+    "rho_partial": 0.341291724958139,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho_partial": 0.5128256556005188,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~gain_cos": {
+    "rho_partial": 0.12826856732353148,
+    "p": 0.0365963403659634
+   },
+   "self_top1~compose_excess": {
+    "rho_partial": 0.029480419875265014,
+    "p": 0.3431656834316568
+   },
+   "cos_centered~write_overlap": {
+    "rho_partial": -0.02808579819262933,
+    "p": 0.6128387161283871
+   },
+   "cos_centered~read_overlap": {
+    "rho_partial": 0.1247160041686483,
+    "p": 0.020097990200979902
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho_partial": 0.39192039660111105,
+    "p": 9.999000099990002e-05
+   },
+   "cos_centered~gain_cos": {
+    "rho_partial": 0.3074584250299985,
+    "p": 9.999000099990002e-05
+   },
+   "cos_centered~compose_excess": {
+    "rho_partial": -0.06245002542619576,
+    "p": 0.9024097590240976
+   },
+   "knn10~write_overlap": {
+    "rho_partial": -0.05291044693354051,
+    "p": 0.6862313768623137
+   },
+   "knn10~read_overlap": {
+    "rho_partial": 0.14115695355902125,
+    "p": 0.027097290270972903
+   },
+   "knn10~read_overlap_nogain": {
+    "rho_partial": 0.4291206825970953,
+    "p": 9.999000099990002e-05
+   },
+   "knn10~gain_cos": {
+    "rho_partial": 0.35424922556461397,
+    "p": 9.999000099990002e-05
+   },
+   "knn10~compose_excess": {
+    "rho_partial": 0.007865750816450497,
+    "p": 0.49895010498950104
+   }
+  },
+  "mbert_large": {
+   "self_top1~write_overlap": {
+    "rho_partial": 0.011238377214377149,
+    "p": 0.529047095290471
+   },
+   "self_top1~read_overlap": {
+    "rho_partial": 0.2082116072781462,
+    "p": 0.00029997000299970003
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho_partial": 0.2781887370074301,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~gain_cos": {
+    "rho_partial": 0.283793236752919,
+    "p": 9.999000099990002e-05
+   },
+   "self_top1~compose_excess": {
+    "rho_partial": -0.13974695833715328,
+    "p": 0.9897010298970103
+   },
+   "cos_centered~write_overlap": {
+    "rho_partial": -0.030385851656397404,
+    "p": 0.7876212378762124
+   },
+   "cos_centered~read_overlap": {
+    "rho_partial": 0.089685908224115,
+    "p": 0.08789121087891211
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho_partial": -0.036339869231330466,
+    "p": 0.8492150784921508
+   },
+   "cos_centered~gain_cos": {
+    "rho_partial": 0.06514520683910639,
+    "p": 0.128987101289871
+   },
+   "cos_centered~compose_excess": {
+    "rho_partial": -0.17757068881257984,
+    "p": 0.9993000699930007
+   },
+   "knn10~write_overlap": {
+    "rho_partial": -0.1582219071228761,
+    "p": 0.9994000599940006
+   },
+   "knn10~read_overlap": {
+    "rho_partial": -0.27628017090287615,
+    "p": 1.0
+   },
+   "knn10~read_overlap_nogain": {
+    "rho_partial": -0.34571500994998666,
+    "p": 1.0
+   },
+   "knn10~gain_cos": {
+    "rho_partial": -0.30897627732947625,
+    "p": 1.0
+   },
+   "knn10~compose_excess": {
+    "rho_partial": -0.1449841000875462,
+    "p": 0.9992000799920008
+   }
+  }
+ },
+ "calibration": {
+  "gemma4_e2b": {
+   "rho_partial": -0.20363169453040292,
+   "p": 1.0
+  },
+  "qwen3_17b": {
+   "rho_partial": -0.1782494275364091,
+   "p": 1.0
+  },
+  "modernbert_large": {
+   "rho_partial": 0.2225783918337753,
+   "p": 9.999000099990002e-05
+  }
+ },
+ "holm": {
+  "gemma4_e2b|self_top1~read_overlap_nogain": 0.008999100089991002,
+  "gemma4_e2b|self_top1~gain_cos": 0.008999100089991002,
+  "gemma4_e2b|cos_centered~read_overlap_nogain": 0.008999100089991002,
+  "gemma4_e2b|cos_centered~gain_cos": 0.008999100089991002,
+  "tok_base|self_top1~read_overlap_nogain": 0.008999100089991002,
+  "tok_base|self_top1~gain_cos": 0.008999100089991002,
+  "tok_base|cos_centered~read_overlap_nogain": 0.008999100089991002,
+  "tok_base|cos_centered~gain_cos": 0.008999100089991002,
+  "tok_base|knn10~read_overlap_nogain": 0.008999100089991002,
+  "tok_base|knn10~gain_cos": 0.008999100089991002,
+  "qwen3_17b|self_top1~read_overlap": 0.008999100089991002,
+  "qwen3_17b|cos_centered~gain_cos": 0.008999100089991002,
+  "qwen3_17b|knn10~read_overlap_nogain": 0.008999100089991002,
+  "qwen3_17b|knn10~gain_cos": 0.008999100089991002,
+  "tok_qwen3|self_top1~read_overlap": 0.008999100089991002,
+  "tok_qwen3|self_top1~read_overlap_nogain": 0.008999100089991002,
+  "tok_qwen3|cos_centered~read_overlap_nogain": 0.008999100089991002,
+  "tok_qwen3|cos_centered~gain_cos": 0.008999100089991002,
+  "tok_qwen3|knn10~read_overlap_nogain": 0.008999100089991002,
+  "tok_qwen3|knn10~gain_cos": 0.008999100089991002,
+  "mbert_large|self_top1~read_overlap_nogain": 0.008999100089991002,
+  "mbert_large|self_top1~gain_cos": 0.008999100089991002,
+  "gemma4_e2b|knn10~read_overlap_nogain": 0.013598640135986401,
+  "mbert_large|self_top1~read_overlap": 0.020097990200979902,
+  "gemma4_e2b|blocks|self_top1": 0.06593406593406594,
+  "tok_base|blocks|self_top1": 0.06593406593406594,
+  "tok_base|blocks|knn10": 0.06593406593406594,
+  "qwen3_17b|blocks|self_top1": 0.06593406593406594,
+  "qwen3_17b|blocks|cos_centered": 0.06593406593406594,
+  "qwen3_17b|blocks|knn10": 0.06593406593406594,
+  "tok_qwen3|blocks|self_top1": 0.06593406593406594,
+  "tok_qwen3|blocks|cos_centered": 0.06593406593406594,
+  "tok_qwen3|blocks|knn10": 0.06593406593406594,
+  "mbert_large|blocks|self_top1": 0.06593406593406594,
+  "mbert_large|blocks|cos_centered": 0.06593406593406594,
+  "mbert_large|blocks|knn10": 0.06593406593406594,
+  "gemma4_e2b|blocks|cos_centered": 0.10789210789210789,
+  "qwen3_17b|cos_centered~read_overlap_nogain": 0.4133586641335867,
+  "tok_base|blocks|cos_centered": 0.4155844155844156,
+  "qwen3_17b|cos_centered~write_overlap": 0.5558444155584441,
+  "tok_qwen3|cos_centered~read_overlap": 1.0,
+  "gemma4_e2b|blocks|knn10": 1.0,
+  "tok_qwen3|knn10~read_overlap": 1.0,
+  "tok_qwen3|self_top1~gain_cos": 1.0,
+  "qwen3_17b|knn10~compose_excess": 1.0,
+  "gemma4_e2b|self_top1~write_overlap": 1.0,
+  "tok_base|self_top1~write_overlap": 1.0,
+  "tok_base|self_top1~read_overlap": 1.0,
+  "mbert_large|cos_centered~read_overlap": 1.0,
+  "qwen3_17b|cos_centered~compose_excess": 1.0,
+  "qwen3_17b|self_top1~compose_excess": 1.0,
+  "mbert_large|cos_centered~gain_cos": 1.0,
+  "qwen3_17b|self_top1~write_overlap": 1.0,
+  "tok_base|cos_centered~write_overlap": 1.0,
+  "tok_base|knn10~write_overlap": 1.0,
+  "qwen3_17b|knn10~read_overlap": 1.0,
+  "gemma4_e2b|self_top1~read_overlap": 1.0,
+  "qwen3_17b|knn10~write_overlap": 1.0,
+  "gemma4_e2b|cos_centered~write_overlap": 1.0,
+  "tok_qwen3|self_top1~compose_excess": 1.0,
+  "tok_qwen3|knn10~compose_excess": 1.0,
+  "mbert_large|self_top1~write_overlap": 1.0,
+  "tok_qwen3|cos_centered~write_overlap": 1.0,
+  "tok_qwen3|knn10~write_overlap": 1.0,
+  "tok_base|cos_centered~read_overlap": 1.0,
+  "gemma4_e2b|cos_centered~read_overlap": 1.0,
+  "mbert_large|cos_centered~write_overlap": 1.0,
+  "gemma4_e2b|knn10~read_overlap": 1.0,
+  "mbert_large|cos_centered~read_overlap_nogain": 1.0,
+  "tok_qwen3|cos_centered~compose_excess": 1.0,
+  "gemma4_e2b|knn10~gain_cos": 1.0,
+  "tok_base|knn10~compose_excess": 1.0,
+  "tok_base|knn10~read_overlap": 1.0,
+  "tok_qwen3|self_top1~write_overlap": 1.0,
+  "gemma4_e2b|knn10~write_overlap": 1.0,
+  "qwen3_17b|self_top1~read_overlap_nogain": 1.0,
+  "mbert_large|self_top1~compose_excess": 1.0,
+  "mbert_large|knn10~compose_excess": 1.0,
+  "mbert_large|cos_centered~compose_excess": 1.0,
+  "mbert_large|knn10~write_overlap": 1.0,
+  "gemma4_e2b|self_top1~compose_excess": 1.0,
+  "gemma4_e2b|cos_centered~compose_excess": 1.0,
+  "gemma4_e2b|knn10~compose_excess": 1.0,
+  "tok_base|self_top1~compose_excess": 1.0,
+  "tok_base|cos_centered~compose_excess": 1.0,
+  "qwen3_17b|self_top1~gain_cos": 1.0,
+  "qwen3_17b|cos_centered~read_overlap": 1.0,
+  "mbert_large|knn10~read_overlap": 1.0,
+  "mbert_large|knn10~read_overlap_nogain": 1.0,
+  "mbert_large|knn10~gain_cos": 1.0
+ },
+ "n_tests": 90
+}

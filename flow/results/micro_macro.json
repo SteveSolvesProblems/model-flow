@@ -1,0 +1,327 @@
+{
+ "gemma4_e2b": {
+  "boundary": {
+   "change_write_overlap": 0.1944996180290298,
+   "change_read_overlap": 0.060656990068754774,
+   "change_read_overlap_nogain": 0.7689839572192514,
+   "change_gain_cos": 0.27364400305576775,
+   "change_compose_excess": 0.3485103132161956,
+   "write_norm": 0.7260504201680673,
+   "write_pr": -0.7523809523809525,
+   "attn_share": -0.21960784313725493,
+   "layer_scalar": -0.8397534751105903,
+   "full_attention": 0.08486978939800066
+  },
+  "block": {
+   "self_top1~write_overlap": {
+    "rho": 0.33039488850351517,
+    "null_mean": 0.3296056425211481,
+    "p": 0.49225387306346824
+   },
+   "self_top1~read_overlap": {
+    "rho": 0.6089055219558773,
+    "null_mean": 0.5036018224139249,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho": 0.7287692064444217,
+    "null_mean": 0.47372108432904686,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~gain_cos": {
+    "rho": 0.6874772489444526,
+    "null_mean": 0.39272612620151587,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~compose_excess": {
+    "rho": -0.5252231354585598,
+    "null_mean": -0.4534236918650467,
+    "p": 0.999000499750125
+   },
+   "cos_centered~write_overlap": {
+    "rho": 0.29923548837879677,
+    "null_mean": 0.323195026914569,
+    "p": 0.8460769615192404
+   },
+   "cos_centered~read_overlap": {
+    "rho": 0.5787301701237746,
+    "null_mean": 0.49290886437552456,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho": 0.7250419712322596,
+    "null_mean": 0.4672439339250039,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~gain_cos": {
+    "rho": 0.6627995595228128,
+    "null_mean": 0.385542566634138,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~compose_excess": {
+    "rho": -0.49286320995756455,
+    "null_mean": -0.4457986859742881,
+    "p": 0.9805097451274363
+   }
+  }
+ },
+ "tok_base": {
+  "boundary": {
+   "change_write_overlap": 0.24125286478227656,
+   "change_read_overlap": -0.09732620320855614,
+   "change_read_overlap_nogain": 0.6323911382734911,
+   "change_gain_cos": 0.1679144385026738,
+   "change_compose_excess": 0.3527883880825057,
+   "write_norm": 0.7638655462184873,
+   "write_pr": -0.7120448179271709,
+   "attn_share": -0.2296918767507003,
+   "layer_scalar": -0.8911612358054338,
+   "full_attention": 0.25460936819400193
+  },
+  "block": {
+   "self_top1~write_overlap": {
+    "rho": 0.33134776488118256,
+    "null_mean": 0.3356537439573089,
+    "p": 0.584207896051974
+   },
+   "self_top1~read_overlap": {
+    "rho": 0.6387281014067039,
+    "null_mean": 0.526844875430244,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho": 0.6913855968974577,
+    "null_mean": 0.4889321647427894,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~gain_cos": {
+    "rho": 0.6825001227298452,
+    "null_mean": 0.40458966989810824,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~compose_excess": {
+    "rho": -0.5297866003978765,
+    "null_mean": -0.4791067210831907,
+    "p": 0.9905047476261869
+   },
+   "cos_centered~write_overlap": {
+    "rho": 0.32791020007759064,
+    "null_mean": 0.3434402484036121,
+    "p": 0.7691154422788605
+   },
+   "cos_centered~read_overlap": {
+    "rho": 0.6217509822721037,
+    "null_mean": 0.5471396057751962,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho": 0.7119056449099878,
+    "null_mean": 0.5091079161703325,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~gain_cos": {
+    "rho": 0.6763238384635939,
+    "null_mean": 0.41819865971200365,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~compose_excess": {
+    "rho": -0.5394362666766932,
+    "null_mean": -0.49587622648001656,
+    "p": 0.9860069965017492
+   }
+  }
+ },
+ "qwen3_17b": {
+  "boundary": {
+   "change_write_overlap": 0.5036630036630036,
+   "change_read_overlap": 0.3119658119658119,
+   "change_read_overlap_nogain": 0.5299145299145299,
+   "change_gain_cos": 0.2063492063492063,
+   "change_compose_excess": 0.37362637362637363,
+   "write_norm": 0.3918992884510125,
+   "write_pr": 0.3798576902025178,
+   "attn_share": -0.28133552271483303
+  },
+  "block": {
+   "self_top1~write_overlap": {
+    "rho": 0.5143951637415521,
+    "null_mean": 0.5581146978020527,
+    "p": 0.9965017491254373
+   },
+   "self_top1~read_overlap": {
+    "rho": 0.7672306589818336,
+    "null_mean": 0.5183476188313398,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho": 0.5932906632080359,
+    "null_mean": 0.5453395062902584,
+    "p": 0.005997001499250375
+   },
+   "self_top1~gain_cos": {
+    "rho": 0.20218152106819504,
+    "null_mean": 0.3679069956073792,
+    "p": 1.0
+   },
+   "self_top1~compose_excess": {
+    "rho": 0.026005324051936535,
+    "null_mean": 0.2467968243103842,
+    "p": 1.0
+   },
+   "cos_centered~write_overlap": {
+    "rho": 0.8014850423184514,
+    "null_mean": 0.752547572333852,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~read_overlap": {
+    "rho": 0.6752061210254278,
+    "null_mean": 0.7058109854338586,
+    "p": 0.9845077461269365
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho": 0.8014390506429446,
+    "null_mean": 0.7302096530527974,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~gain_cos": {
+    "rho": 0.7741933154543472,
+    "null_mean": 0.49578913161162275,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~compose_excess": {
+    "rho": 0.4354515166088272,
+    "null_mean": 0.34308107710282215,
+    "p": 0.0014992503748125937
+   }
+  }
+ },
+ "tok_qwen3": {
+  "boundary": {
+   "change_write_overlap": 0.07753357753357752,
+   "change_read_overlap": 0.7606837606837606,
+   "change_read_overlap_nogain": 0.21062271062271062,
+   "change_gain_cos": 0.575091575091575,
+   "change_compose_excess": -0.18192918192918192,
+   "write_norm": -0.458128078817734,
+   "write_pr": 0.42747673782156537,
+   "attn_share": 0.7110016420361247
+  },
+  "block": {
+   "self_top1~write_overlap": {
+    "rho": 0.7151737215008174,
+    "null_mean": 0.7487349458314343,
+    "p": 0.9995002498750625
+   },
+   "self_top1~read_overlap": {
+    "rho": 0.8839773568005149,
+    "null_mean": 0.7036322946259436,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho": 0.921638151582438,
+    "null_mean": 0.7290520984252298,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~gain_cos": {
+    "rho": 0.6050975078354071,
+    "null_mean": 0.4959596369706535,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~compose_excess": {
+    "rho": 0.1841284643074758,
+    "null_mean": 0.34172369534090297,
+    "p": 1.0
+   },
+   "cos_centered~write_overlap": {
+    "rho": 0.8913407784302152,
+    "null_mean": 0.8678568318023326,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~read_overlap": {
+    "rho": 0.8079263208914741,
+    "null_mean": 0.8094578653485942,
+    "p": 0.5817091454272864
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho": 0.8784619983782935,
+    "null_mean": 0.8413970338035482,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~gain_cos": {
+    "rho": 0.6670029391346832,
+    "null_mean": 0.5695455723625135,
+    "p": 0.0004997501249375312
+   },
+   "cos_centered~compose_excess": {
+    "rho": 0.4437691222333202,
+    "null_mean": 0.39232633137846495,
+    "p": 0.0004997501249375312
+   }
+  }
+ },
+ "mbert_large": {
+  "boundary": {
+   "change_write_overlap": -0.15262515262515264,
+   "change_read_overlap": -0.32112332112332115,
+   "change_read_overlap_nogain": -0.3455433455433455,
+   "change_gain_cos": 0.3418803418803419,
+   "change_compose_excess": -0.25457875457875456,
+   "write_norm": -0.5363984674329502,
+   "write_pr": -0.4329501915708812,
+   "attn_share": -0.6124794745484401,
+   "full_attention": 0.1568636841681755
+  },
+  "block": {
+   "self_top1~write_overlap": {
+    "rho": 0.49368998362148103,
+    "null_mean": 0.4034220116279561,
+    "p": 0.0009995002498750624
+   },
+   "self_top1~read_overlap": {
+    "rho": 0.5055512794148785,
+    "null_mean": 0.4377734330515425,
+    "p": 0.00399800099950025
+   },
+   "self_top1~read_overlap_nogain": {
+    "rho": 0.5574384631477104,
+    "null_mean": 0.4580116161014639,
+    "p": 0.0004997501249375312
+   },
+   "self_top1~gain_cos": {
+    "rho": 0.3980925945006462,
+    "null_mean": 0.37214178414724,
+    "p": 0.22188905547226387
+   },
+   "self_top1~compose_excess": {
+    "rho": 0.3636842269142992,
+    "null_mean": 0.26910510978985736,
+    "p": 0.0079960019990005
+   },
+   "cos_centered~write_overlap": {
+    "rho": 0.5923746690737866,
+    "null_mean": 0.6412142186708649,
+    "p": 0.9955022488755623
+   },
+   "cos_centered~read_overlap": {
+    "rho": 0.7337106428180944,
+    "null_mean": 0.6795442947048806,
+    "p": 0.001999000499750125
+   },
+   "cos_centered~read_overlap_nogain": {
+    "rho": 0.7244438756585059,
+    "null_mean": 0.7029541529649801,
+    "p": 0.111944027986007
+   },
+   "cos_centered~gain_cos": {
+    "rho": 0.5861466852277515,
+    "null_mean": 0.5406341538848135,
+    "p": 0.014992503748125937
+   },
+   "cos_centered~compose_excess": {
+    "rho": 0.3081234518774324,
+    "null_mean": 0.4211414019618005,
+    "p": 1.0
+   }
+  }
+ }
+}

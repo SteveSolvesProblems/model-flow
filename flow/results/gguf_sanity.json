@@ -1,0 +1,61 @@
+{
+  "n_params": 541,
+  "n_compared": 540,
+  "n_missing_in_official": 1,
+  "missing_examples": [
+    "lm_head.weight"
+  ],
+  "shape_mismatches": [],
+  "worst_rel_l2": [
+    {
+      "key": "model.embed_tokens.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.embed_tokens_per_layer.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.layers.0.input_layernorm.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.layers.0.layer_scalar",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.layers.0.mlp.down_proj.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.layers.0.mlp.gate_proj.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.layers.0.mlp.up_proj.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.layers.0.per_layer_input_gate.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.layers.0.per_layer_projection.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    },
+    {
+      "key": "model.layers.0.post_attention_layernorm.weight",
+      "max_abs": 0.0,
+      "rel_l2": 0.0
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "cache": "mnist_s0",
+  "exp": "v3_fine",
+  "code_hash": "08aaf0b0a7",
+  "time": "2026-09-29 12:38:07",
+  "args": {
+    "cache": "mnist_s0",
+    "label": "fine",
+    "coarse": null,
+    "exp": [
+      "v4",
+      "v5",
+      "v3",
+      "h1h2",
+      "v2",
+      "h3",
+      "h4"
+    ],
+    "ks": null,
+    "k0": null,
+    "leaves": null,
+    "seeds": 5,
+    "n_flow": 2000,
+    "tag": ""
+  },
+  "seconds": 22.531656980514526,
+  "result": {
+    "K10": {
+      "cell_error": {
+        "base_rate": 0.612,
+        "distances": 0.7032229128764907,
+        "distances+dynamics": 0.705100102755879,
+        "d1_over_d2_alone": 0.6971512617074321,
+        "basin_deviation_alone": 0.5272976888349842
+      },
+      "probe_error": {
+        "base_rate": 0.038,
+        "distances": 0.5410329357697778,
+        "distances+dynamics": 0.5592036874931611,
+        "d1_over_d2_alone": 0.5762460334828756,
+        "basin_deviation_alone": 0.48749863223547435,
+        "probe_msp_reference": 0.9470059634533319
+      },
+      "frac_basin_deviates": 0.103
+    },
+    "K50": {
+      "cell_error": {
+        "base_rate": 0.373,
+        "distances": 0.7008414895391049,
+        "distances+dynamics": 0.7020023859307054,
+        "d1_over_d2_alone": 0.6834355264226859,
+        "basin_deviation_alone": 0.5777244720380038
+      },
+      "probe_error": {
+        "base_rate": 0.038,
+        "distances": 0.6278312725681146,
+        "distances+dynamics": 0.6324064449064448,
+        "d1_over_d2_alone": 0.589226118831382,
+        "basin_deviation_alone": 0.5838439654229127,
+        "probe_msp_reference": 0.9470059634533319
+      },
+      "frac_basin_deviates": 0.365
+    }
+  },
+  "cache_meta": {
+    "model": "MSADCL S0 MNISTEncoder",
+    "ckpt": "../ckpt/mnist_s0/s0_encoder_final.pth",
+    "dim": 128
+  }
+}

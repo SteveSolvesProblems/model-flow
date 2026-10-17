@@ -1,0 +1,310 @@
+{
+  "cache": "qwen3_17b_20ng",
+  "exp": "select",
+  "code_hash": "26fb6bfa67",
+  "time": "2026-09-29 21:16:01",
+  "args": {
+    "model": "qwen3_17b_20ng",
+    "primary": "fine",
+    "secondary": "coarse"
+  },
+  "rows": [
+    {
+      "layer": 0,
+      "layer_type": "embeddings",
+      "stability_K512": 0.6456884123900802,
+      "rankme": 1477.5992431640625,
+      "p@10_fine": 0.17505310674455657,
+      "p@10_coarse": 0.3556293149229952
+    },
+    {
+      "layer": 1,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6211022761116567,
+      "rankme": 1331.00341796875,
+      "p@10_fine": 0.2625862984599044,
+      "p@10_coarse": 0.4681359532660648
+    },
+    {
+      "layer": 2,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6504456345770226,
+      "rankme": 933.2949829101562,
+      "p@10_fine": 0.2420738183749336,
+      "p@10_coarse": 0.458271375464684
+    },
+    {
+      "layer": 3,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6511781380445733,
+      "rankme": 3.6723368167877197,
+      "p@10_fine": 0.23526287838555496,
+      "p@10_coarse": 0.45905469994689324
+    },
+    {
+      "layer": 4,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6682598477237185,
+      "rankme": 4.738723278045654,
+      "p@10_fine": 0.27855815188528943,
+      "p@10_coarse": 0.5055496548061604
+    },
+    {
+      "layer": 5,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6644726193071028,
+      "rankme": 5.565516948699951,
+      "p@10_fine": 0.292963356346256,
+      "p@10_coarse": 0.5140600106213489
+    },
+    {
+      "layer": 6,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6590006949182503,
+      "rankme": 7.6480231285095215,
+      "p@10_fine": 0.29806160382368563,
+      "p@10_coarse": 0.5283855549654806
+    },
+    {
+      "layer": 7,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6861040387676686,
+      "rankme": 10.138880729675293,
+      "p@10_fine": 0.3390600106213489,
+      "p@10_coarse": 0.5659851301115242
+    },
+    {
+      "layer": 8,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6894712960867821,
+      "rankme": 12.801880836486816,
+      "p@10_fine": 0.3424721189591078,
+      "p@10_coarse": 0.5720924057355284
+    },
+    {
+      "layer": 9,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6912399675036228,
+      "rankme": 15.879612922668457,
+      "p@10_fine": 0.336311736590547,
+      "p@10_coarse": 0.5682819968135954
+    },
+    {
+      "layer": 10,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6993875317610144,
+      "rankme": 21.275224685668945,
+      "p@10_fine": 0.36745884227296866,
+      "p@10_coarse": 0.5975172596919809
+    },
+    {
+      "layer": 11,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7014107695345778,
+      "rankme": 32.514190673828125,
+      "p@10_fine": 0.3570897503983006,
+      "p@10_coarse": 0.5906399362719066
+    },
+    {
+      "layer": 12,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7008994720068388,
+      "rankme": 43.528526306152344,
+      "p@10_fine": 0.3525225703664365,
+      "p@10_coarse": 0.5865639936271907
+    },
+    {
+      "layer": 13,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6993169469676155,
+      "rankme": 51.85110092163086,
+      "p@10_fine": 0.3399628252788104,
+      "p@10_coarse": 0.5765533722782793
+    },
+    {
+      "layer": 14,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6994495816846349,
+      "rankme": 63.76541519165039,
+      "p@10_fine": 0.3275092936802974,
+      "p@10_coarse": 0.5653345724907063
+    },
+    {
+      "layer": 15,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6908072036389342,
+      "rankme": 77.3543930053711,
+      "p@10_fine": 0.32203929899097183,
+      "p@10_coarse": 0.5596919808815719
+    },
+    {
+      "layer": 16,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6908646892024873,
+      "rankme": 108.71997833251953,
+      "p@10_fine": 0.3154275092936803,
+      "p@10_coarse": 0.5567180031864046
+    },
+    {
+      "layer": 17,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6889011814487349,
+      "rankme": 171.20021057128906,
+      "p@10_fine": 0.3109665427509294,
+      "p@10_coarse": 0.5502389803505046
+    },
+    {
+      "layer": 18,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6943024386368245,
+      "rankme": 270.4931640625,
+      "p@10_fine": 0.312453531598513,
+      "p@10_coarse": 0.5495485926712692
+    },
+    {
+      "layer": 19,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6955695891347411,
+      "rankme": 373.43280029296875,
+      "p@10_fine": 0.3337227827934148,
+      "p@10_coarse": 0.569583112055231
+    },
+    {
+      "layer": 20,
+      "layer_type": "full_attention",
+      "stability_K512": 0.6899964520379825,
+      "rankme": 512.2967529296875,
+      "p@10_fine": 0.32076473712161446,
+      "p@10_coarse": 0.5565719596388742
+    },
+    {
+      "layer": 21,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7173067775968421,
+      "rankme": 672.2977294921875,
+      "p@10_fine": 0.40333244822092407,
+      "p@10_coarse": 0.6175252257036644
+    },
+    {
+      "layer": 22,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7305322015582691,
+      "rankme": 810.0927734375,
+      "p@10_fine": 0.43507700477960704,
+      "p@10_coarse": 0.6385289431757833
+    },
+    {
+      "layer": 23,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7367856682756551,
+      "rankme": 913.2623901367188,
+      "p@10_fine": 0.45354487519915027,
+      "p@10_coarse": 0.6470392989909719
+    },
+    {
+      "layer": 24,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7419184848402861,
+      "rankme": 989.8660278320312,
+      "p@10_fine": 0.4561603823685608,
+      "p@10_coarse": 0.646959638874137
+    },
+    {
+      "layer": 25,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7429937994099761,
+      "rankme": 1058.3017578125,
+      "p@10_fine": 0.4532129580456718,
+      "p@10_coarse": 0.6453797132235793
+    },
+    {
+      "layer": 26,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7384269311549804,
+      "rankme": 1118.2857666015625,
+      "p@10_fine": 0.4544875199150292,
+      "p@10_coarse": 0.6468799787573022
+    },
+    {
+      "layer": 27,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7424587891412711,
+      "rankme": 1148.7373046875,
+      "p@10_fine": 0.45897503983005844,
+      "p@10_coarse": 0.6502655337227828
+    },
+    {
+      "layer": 28,
+      "layer_type": "full_attention",
+      "stability_K512": 0.7279973423123246,
+      "rankme": 1161.5863037109375,
+      "p@10_fine": 0.3948884758364312,
+      "p@10_coarse": 0.6060674455655868
+    }
+  ],
+  "selection": {
+    "fine": {
+      "oracle_layer": 27,
+      "oracle": 0.45897503983005844,
+      "S": {
+        "layer": 25,
+        "p@10": 0.4532129580456718,
+        "regret": 0.005762081784386641
+      },
+      "last": {
+        "layer": 28,
+        "p@10": 0.3948884758364312,
+        "regret": 0.06408656399362722
+      },
+      "middle": {
+        "layer": 14,
+        "p@10": 0.3275092936802974,
+        "regret": 0.13146574614976103
+      },
+      "rankme_max": {
+        "layer": 0,
+        "p@10": 0.17505310674455657,
+        "regret": 0.28392193308550184
+      },
+      "rankme_min": {
+        "layer": 3,
+        "p@10": 0.23526287838555496,
+        "regret": 0.22371216144450348
+      }
+    },
+    "coarse": {
+      "oracle_layer": 27,
+      "oracle": 0.6502655337227828,
+      "S": {
+        "layer": 25,
+        "p@10": 0.6453797132235793,
+        "regret": 0.004885820499203497
+      },
+      "last": {
+        "layer": 28,
+        "p@10": 0.6060674455655868,
+        "regret": 0.04419808815719606
+      },
+      "middle": {
+        "layer": 14,
+        "p@10": 0.5653345724907063,
+        "regret": 0.08493096123207655
+      },
+      "rankme_max": {
+        "layer": 0,
+        "p@10": 0.3556293149229952,
+        "regret": 0.29463621879978763
+      },
+      "rankme_min": {
+        "layer": 3,
+        "p@10": 0.45905469994689324,
+        "regret": 0.1912108337758896
+      }
+    }
+  },
+  "churn": {
+    "point": {
+      "full_attention": 0.10502039497506237
+    }
+  }
+}

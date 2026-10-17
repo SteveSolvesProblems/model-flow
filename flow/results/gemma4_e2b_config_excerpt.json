@@ -1,0 +1,8 @@
+{
+ "source": "google/gemma-4-E2B config.json (text_config), revision d29ff6b45f081a49ee2733a859c9c9c2d95d1a6f",
+ "num_hidden_layers": 35,
+ "num_kv_shared_layers": 20,
+ "hidden_size_per_layer_input": 256,
+ "hidden_size": 1536,
+ "note": "Decoder layers 15-34 (zero-based; the last 20) reuse KV from earlier layers; decoder layer 14, whose output is lens layer 15, is the last with its own KV."
+}

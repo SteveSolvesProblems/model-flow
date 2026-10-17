@@ -1,0 +1,756 @@
+{
+ "directions": {
+  "twonn": {
+   "chosen": "argmin",
+   "dev_mean_regret": {
+    "argmax": 0.24130000000000004,
+    "argmin": 0.03481666666666668
+   }
+  },
+  "dataset_entropy": {
+   "chosen": "argmax",
+   "dev_mean_regret": {
+    "argmax": 0.16803888888888893,
+    "argmin": 0.26993333333333336
+   }
+  },
+  "prompt_entropy": {
+   "chosen": "argmin",
+   "dev_mean_regret": {
+    "argmax": 0.18390000000000004,
+    "argmin": 0.10150555555555556
+   }
+  },
+  "curvature": {
+   "chosen": "argmin",
+   "dev_mean_regret": {
+    "argmax": 0.24130000000000004,
+    "argmin": 0.05211111111111114
+   }
+  }
+ },
+ "mean_regret": {
+  "S": 0.004885004586491563,
+  "last": 0.03420366677931732,
+  "rankme_min": 0.1353504329004329,
+  "twonn_first_peak": 0.158843389819598,
+  "twonn": 0.029592745296834512,
+  "dataset_entropy": 0.1656109882682373,
+  "prompt_entropy": 0.15357855694491382,
+  "curvature": 0.10407388435604048
+ },
+ "mean_regret_secondary": {
+  "S": 0.004258791580167045,
+  "last": 0.03130003620914403,
+  "rankme_min": 0.12452789632919746,
+  "twonn_first_peak": 0.15304556156359128,
+  "twonn": 0.023382616392281837,
+  "dataset_entropy": 0.1651171269251195,
+  "prompt_entropy": 0.15405554482692033,
+  "curvature": 0.0926360787910974
+ },
+ "wins_vs_rivals": {
+  "twonn": {
+   "S_better": 9,
+   "tie": 1,
+   "S_worse": 1
+  },
+  "dataset_entropy": {
+   "S_better": 10,
+   "tie": 1,
+   "S_worse": 0
+  },
+  "prompt_entropy": {
+   "S_better": 10,
+   "tie": 0,
+   "S_worse": 1
+  },
+  "curvature": {
+   "S_better": 10,
+   "tie": 0,
+   "S_worse": 1
+  }
+ },
+ "B1_pass": true,
+ "fewlabel_mean_regret": {
+  "1": 0.004880646735544499,
+  "2": 0.0032786929705981706,
+  "5": 0.0012605793060718664,
+  "10": 0.000899155039508195
+ },
+ "m_star": 1,
+ "B2_expectation_met": false,
+ "per_pair_ci": {
+  "qwen35_08b": {
+   "S_minus_last": {
+    "point": 0.030816666608055432,
+    "ci95": [
+     0.027366666686659057,
+     0.03401708343621964
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "qwen35_08b_20ng": {
+   "S_minus_last": {
+    "point": 0.003305894869220934,
+    "ci95": [
+     0.0009688661412488762,
+     0.005788967207215618
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.0007169411175914477,
+    "ci95": [
+     -0.0009028144746838781,
+     0.002217538584373886
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "qwen35_4b": {
+   "S_minus_last": {
+    "point": 0.01651666646823287,
+    "ci95": [
+     0.01379999995349596,
+     0.019166666147392243
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.028233333403865496,
+    "ci95": [
+     0.025216250166296958,
+     0.031517083524477976
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "qwen35_4b_20ng": {
+   "S_minus_last": {
+    "point": 0.007076473555473716,
+    "ci95": [
+     0.004606346050015217,
+     0.009507434925932945
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.0033988317200717177,
+    "ci95": [
+     0.001991170821454232,
+     0.004819437074071895
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "gemma4_e4b": {
+   "S_minus_last": {
+    "point": 0.05254999976232648,
+    "ci95": [
+     0.04869999992024775,
+     0.056400416421393554
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.002466666697214047,
+    "ci95": [
+     0.0006833335767500103,
+     0.004216666755421708
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "gemma4_e4b_20ng": {
+   "S_minus_last": {
+    "point": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "same_layer_S_last": true
+  },
+  "smollm2_17b": {
+   "S_minus_last": {
+    "point": 0.0652666659988463,
+    "ci95": [
+     0.060533332749238854,
+     0.06996666597649455
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "smollm2_17b_20ng": {
+   "S_minus_last": {
+    "point": 0.044835368553161684,
+    "ci95": [
+     0.039762678704745334,
+     0.04960203062766689
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.01310408911388318,
+    "ci95": [
+     0.010979819495109244,
+     0.015069370535046525
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "qwen3_17b_20ng": {
+   "S_minus_last": {
+    "point": 0.0583908650034913,
+    "ci95": [
+     0.05418182348034212,
+     0.06283888667792208
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.005469994951856624,
+    "ci95": [
+     0.003359001852098142,
+     0.007647703371400955
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "qwen35_2b_20ng": {
+   "S_minus_last": {
+    "point": 0.012241104425811982,
+    "ci95": [
+     0.009850968680242142,
+     0.014750729957907062
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "same_layer_S_last": false
+  },
+  "gemma4_e2b_20ng": {
+   "S_minus_last": {
+    "point": 0.03181093972546271,
+    "ci95": [
+     0.028252788044960373,
+     0.035489245571900384
+    ]
+   },
+   "oracle_minus_S": {
+    "point": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "same_layer_S_last": false
+  }
+ },
+ "pairs_S_above_last": 10,
+ "two_level_mean_S_minus_last": {
+  "point": 0.029346422270007586,
+  "ci95": [
+   0.016118261166835967,
+   0.0427457862871094
+  ]
+ },
+ "B3_pass": true,
+ "selections": {
+  "qwen35_08b": {
+   "S": {
+    "layer": 20,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "last": {
+    "layer": 24,
+    "regret": 0.030816666666666603,
+    "regret_secondary": 0.03283333333333338
+   },
+   "rankme_min": {
+    "layer": 17,
+    "regret": 0.03784999999999994,
+    "regret_secondary": 0.06333333333333335
+   },
+   "twonn_first_peak": {
+    "layer": 10,
+    "regret": 0.0762166666666666,
+    "regret_secondary": 0.11043333333333338
+   },
+   "twonn": {
+    "layer": 19,
+    "regret": 0.009399999999999964,
+    "regret_secondary": 0.01685000000000003
+   },
+   "dataset_entropy": {
+    "layer": 1,
+    "regret": 0.1374333333333333,
+    "regret_secondary": 0.1422
+   },
+   "prompt_entropy": {
+    "layer": 22,
+    "regret": 0.01691666666666658,
+    "regret_secondary": 0.018433333333333413
+   },
+   "curvature": {
+    "layer": 14,
+    "regret": 0.09141666666666659,
+    "regret_secondary": 0.13468333333333338
+   },
+   "oracle": 20
+  },
+  "qwen35_08b_20ng": {
+   "S": {
+    "layer": 23,
+    "regret": 0.0009824747742963047,
+    "regret_secondary": 0.0016861391396707504
+   },
+   "last": {
+    "layer": 24,
+    "regret": 0.004288369622942101,
+    "regret_secondary": 0.004567180031864071
+   },
+   "rankme_min": {
+    "layer": 15,
+    "regret": 0.12225172596919809,
+    "regret_secondary": 0.10043813064259166
+   },
+   "twonn_first_peak": {
+    "layer": 9,
+    "regret": 0.11419277748274032,
+    "regret_secondary": 0.09295007966011681
+   },
+   "twonn": {
+    "layer": 24,
+    "regret": 0.004288369622942101,
+    "regret_secondary": 0.004567180031864071
+   },
+   "dataset_entropy": {
+    "layer": 1,
+    "regret": 0.1702867764206054,
+    "regret_secondary": 0.17079129049389274
+   },
+   "prompt_entropy": {
+    "layer": 24,
+    "regret": 0.004288369622942101,
+    "regret_secondary": 0.004567180031864071
+   },
+   "curvature": {
+    "layer": 14,
+    "regret": 0.1334306956983537,
+    "regret_secondary": 0.10831120552310147
+   },
+   "oracle": 22
+  },
+  "qwen35_4b": {
+   "S": {
+    "layer": 25,
+    "regret": 0.028233333333333333,
+    "regret_secondary": 0.030449999999999977
+   },
+   "last": {
+    "layer": 32,
+    "regret": 0.044749999999999956,
+    "regret_secondary": 0.0497833333333334
+   },
+   "rankme_min": {
+    "layer": 20,
+    "regret": 0.0014166666666666217,
+    "regret_secondary": 0.01595000000000002
+   },
+   "twonn_first_peak": {
+    "layer": 2,
+    "regret": 0.14998333333333336,
+    "regret_secondary": 0.18874999999999997
+   },
+   "twonn": {
+    "layer": 26,
+    "regret": 0.025050000000000017,
+    "regret_secondary": 0.025249999999999995
+   },
+   "dataset_entropy": {
+    "layer": 1,
+    "regret": 0.15426666666666666,
+    "regret_secondary": 0.1821166666666667
+   },
+   "prompt_entropy": {
+    "layer": 1,
+    "regret": 0.15426666666666666,
+    "regret_secondary": 0.1821166666666667
+   },
+   "curvature": {
+    "layer": 21,
+    "regret": 0.00931666666666664,
+    "regret_secondary": 0.027716666666666723
+   },
+   "oracle": 9
+  },
+  "qwen35_4b_20ng": {
+   "S": {
+    "layer": 31,
+    "regret": 0.0031731279872543317,
+    "regret_secondary": 0.0013011152416356753
+   },
+   "last": {
+    "layer": 32,
+    "regret": 0.010369091874668057,
+    "regret_secondary": 0.005084970791290444
+   },
+   "rankme_min": {
+    "layer": 19,
+    "regret": 0.1333775889537971,
+    "regret_secondary": 0.09016197557089745
+   },
+   "twonn_first_peak": {
+    "layer": 16,
+    "regret": 0.12047265002655333,
+    "regret_secondary": 0.07797397769516723
+   },
+   "twonn": {
+    "layer": 26,
+    "regret": 0.006625066383430689,
+    "regret_secondary": 0.0016861391396707504
+   },
+   "dataset_entropy": {
+    "layer": 1,
+    "regret": 0.21828199681359528,
+    "regret_secondary": 0.19790228359001594
+   },
+   "prompt_entropy": {
+    "layer": 1,
+    "regret": 0.21828199681359528,
+    "regret_secondary": 0.19790228359001594
+   },
+   "curvature": {
+    "layer": 22,
+    "regret": 0.05981147105682422,
+    "regret_secondary": 0.02920870950610721
+   },
+   "oracle": 30
+  },
+  "gemma4_e4b": {
+   "S": {
+    "layer": 14,
+    "regret": 0.002466666666666617,
+    "regret_secondary": 0.0
+   },
+   "last": {
+    "layer": 42,
+    "regret": 0.0550166666666666,
+    "regret_secondary": 0.05568333333333331
+   },
+   "rankme_min": {
+    "layer": 10,
+    "regret": 0.1413833333333333,
+    "regret_secondary": 0.21624999999999994
+   },
+   "twonn_first_peak": {
+    "layer": 4,
+    "regret": 0.20643333333333325,
+    "regret_secondary": 0.28215
+   },
+   "twonn": {
+    "layer": 35,
+    "regret": 0.05461666666666665,
+    "regret_secondary": 0.06153333333333333
+   },
+   "dataset_entropy": {
+    "layer": 42,
+    "regret": 0.0550166666666666,
+    "regret_secondary": 0.05568333333333331
+   },
+   "prompt_entropy": {
+    "layer": 2,
+    "regret": 0.22278333333333333,
+    "regret_secondary": 0.2917833333333333
+   },
+   "curvature": {
+    "layer": 25,
+    "regret": 0.0879833333333333,
+    "regret_secondary": 0.1408666666666667
+   },
+   "oracle": 15
+  },
+  "gemma4_e4b_20ng": {
+   "S": {
+    "layer": 42,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "last": {
+    "layer": 42,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "rankme_min": {
+    "layer": 10,
+    "regret": 0.2295140732873075,
+    "regret_secondary": 0.16520180562931497
+   },
+   "twonn_first_peak": {
+    "layer": 4,
+    "regret": 0.2723844928305895,
+    "regret_secondary": 0.21885289431757832
+   },
+   "twonn": {
+    "layer": 15,
+    "regret": 0.06728624535315986,
+    "regret_secondary": 0.03324482209240576
+   },
+   "dataset_entropy": {
+    "layer": 42,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "prompt_entropy": {
+    "layer": 2,
+    "regret": 0.25505841741901225,
+    "regret_secondary": 0.18713489113117365
+   },
+   "curvature": {
+    "layer": 25,
+    "regret": 0.1878783855549655,
+    "regret_secondary": 0.1190653212958046
+   },
+   "oracle": 42
+  },
+  "smollm2_17b": {
+   "S": {
+    "layer": 23,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "last": {
+    "layer": 24,
+    "regret": 0.0652666666666667,
+    "regret_secondary": 0.09125000000000005
+   },
+   "rankme_min": {
+    "layer": 8,
+    "regret": 0.10463333333333336,
+    "regret_secondary": 0.15635
+   },
+   "twonn_first_peak": {
+    "layer": 8,
+    "regret": 0.10463333333333336,
+    "regret_secondary": 0.15635
+   },
+   "twonn": {
+    "layer": 21,
+    "regret": 0.02400000000000002,
+    "regret_secondary": 0.0306333333333334
+   },
+   "dataset_entropy": {
+    "layer": 0,
+    "regret": 0.2220833333333334,
+    "regret_secondary": 0.23435000000000006
+   },
+   "prompt_entropy": {
+    "layer": 2,
+    "regret": 0.24558333333333338,
+    "regret_secondary": 0.3001666666666667
+   },
+   "curvature": {
+    "layer": 15,
+    "regret": 0.08251666666666668,
+    "regret_secondary": 0.1384333333333334
+   },
+   "oracle": 23
+  },
+  "smollm2_17b_20ng": {
+   "S": {
+    "layer": 22,
+    "regret": 0.013117365905469969,
+    "regret_secondary": 0.008523632501327594
+   },
+   "last": {
+    "layer": 24,
+    "regret": 0.05817843866171002,
+    "regret_secondary": 0.03186404673393517
+   },
+   "rankme_min": {
+    "layer": 8,
+    "regret": 0.15933351035581517,
+    "regret_secondary": 0.1251327668613914
+   },
+   "twonn_first_peak": {
+    "layer": 4,
+    "regret": 0.2051646309081253,
+    "regret_secondary": 0.17490706319702598
+   },
+   "twonn": {
+    "layer": 24,
+    "regret": 0.05817843866171002,
+    "regret_secondary": 0.03186404673393517
+   },
+   "dataset_entropy": {
+    "layer": 0,
+    "regret": 0.3154275092936803,
+    "regret_secondary": 0.33362984599044077
+   },
+   "prompt_entropy": {
+    "layer": 2,
+    "regret": 0.25799256505576207,
+    "regret_secondary": 0.23349707912904932
+   },
+   "curvature": {
+    "layer": 15,
+    "regret": 0.14158258098778542,
+    "regret_secondary": 0.09556558682952732
+   },
+   "oracle": 23
+  },
+  "qwen3_17b_20ng": {
+   "S": {
+    "layer": 25,
+    "regret": 0.005762081784386641,
+    "regret_secondary": 0.004885820499203497
+   },
+   "last": {
+    "layer": 28,
+    "regret": 0.06408656399362722,
+    "regret_secondary": 0.04419808815719606
+   },
+   "rankme_min": {
+    "layer": 3,
+    "regret": 0.22371216144450348,
+    "regret_secondary": 0.1912108337758896
+   },
+   "twonn_first_peak": {
+    "layer": 6,
+    "regret": 0.1609134360063728,
+    "regret_secondary": 0.12187997875730228
+   },
+   "twonn": {
+    "layer": 28,
+    "regret": 0.06408656399362722,
+    "regret_secondary": 0.04419808815719606
+   },
+   "dataset_entropy": {
+    "layer": 0,
+    "regret": 0.28392193308550184,
+    "regret_secondary": 0.29463621879978763
+   },
+   "prompt_entropy": {
+    "layer": 27,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "curvature": {
+    "layer": 16,
+    "regret": 0.14354753053637814,
+    "regret_secondary": 0.09354753053637821
+   },
+   "oracle": 27
+  },
+  "qwen35_2b_20ng": {
+   "S": {
+    "layer": 23,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "last": {
+    "layer": 24,
+    "regret": 0.011988847583643103,
+    "regret_secondary": 0.0073818374933616315
+   },
+   "rankme_min": {
+    "layer": 15,
+    "regret": 0.11099309612320762,
+    "regret_secondary": 0.07595592140201801
+   },
+   "twonn_first_peak": {
+    "layer": 8,
+    "regret": 0.10400955921402016,
+    "regret_secondary": 0.07464152947424318
+   },
+   "twonn": {
+    "layer": 24,
+    "regret": 0.011988847583643103,
+    "regret_secondary": 0.0073818374933616315
+   },
+   "dataset_entropy": {
+    "layer": 2,
+    "regret": 0.19827403080191186,
+    "regret_secondary": 0.17554434413170472
+   },
+   "prompt_entropy": {
+    "layer": 24,
+    "regret": 0.011988847583643103,
+    "regret_secondary": 0.0073818374933616315
+   },
+   "curvature": {
+    "layer": 14,
+    "regret": 0.14060010621348912,
+    "regret_secondary": 0.10216409984067976
+   },
+   "oracle": 23
+  },
+  "gemma4_e2b_20ng": {
+   "S": {
+    "layer": 28,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "last": {
+    "layer": 35,
+    "regret": 0.03147902283590015,
+    "regret_secondary": 0.021654275092936826
+   },
+   "rankme_min": {
+    "layer": 2,
+    "regret": 0.2243892724375996,
+    "regret_secondary": 0.16982209240573554
+   },
+   "twonn_first_peak": {
+    "layer": 3,
+    "regret": 0.23287307488050984,
+    "regret_secondary": 0.1846123207647371
+   },
+   "twonn": {
+    "layer": 28,
+    "regret": 0.0,
+    "regret_secondary": 0.0
+   },
+   "dataset_entropy": {
+    "layer": 18,
+    "regret": 0.06672862453531597,
+    "regret_secondary": 0.029434413170472684
+   },
+   "prompt_entropy": {
+    "layer": 1,
+    "regret": 0.30220392989909717,
+    "regret_secondary": 0.2716277217206585
+   },
+   "curvature": {
+    "layer": 18,
+    "regret": 0.06672862453531597,
+    "regret_secondary": 0.029434413170472684
+   },
+   "oracle": 28
+  }
+ }
+}

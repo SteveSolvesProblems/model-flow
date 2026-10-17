@@ -1,0 +1,1038 @@
+{
+ "gemma4_e2b_base": {
+  "primary_layer": 18,
+  "n_words": 307,
+  "layers": [
+   {
+    "layer": 0,
+    "spearman_raw": 0.1771732700219241,
+    "partial_freq": 0.17624071207053438,
+    "partial_freq_topics": 0.16878446874381525
+   },
+   {
+    "layer": 1,
+    "spearman_raw": 0.20941245880410628,
+    "partial_freq": 0.20373955581530487,
+    "partial_freq_topics": 0.197471177537038
+   },
+   {
+    "layer": 2,
+    "spearman_raw": 0.06906248198966107,
+    "partial_freq": 0.06655691158710875,
+    "partial_freq_topics": 0.05875520058278056
+   },
+   {
+    "layer": 3,
+    "spearman_raw": 0.11472084826453602,
+    "partial_freq": 0.10921553596454371,
+    "partial_freq_topics": 0.10240119333669763
+   },
+   {
+    "layer": 4,
+    "spearman_raw": 0.21051626056718487,
+    "partial_freq": 0.2052284852467024,
+    "partial_freq_topics": 0.20194173985180996
+   },
+   {
+    "layer": 5,
+    "spearman_raw": 0.1798308000853861,
+    "partial_freq": 0.18452757719388227,
+    "partial_freq_topics": 0.17777401339041185
+   },
+   {
+    "layer": 6,
+    "spearman_raw": 0.13771639460776536,
+    "partial_freq": 0.137283965576421,
+    "partial_freq_topics": 0.12795667972437577
+   },
+   {
+    "layer": 7,
+    "spearman_raw": 0.18598553651490093,
+    "partial_freq": 0.18501125387583559,
+    "partial_freq_topics": 0.17824436696426255
+   },
+   {
+    "layer": 8,
+    "spearman_raw": 0.14982386387135202,
+    "partial_freq": 0.1474135437916743,
+    "partial_freq_topics": 0.138969314804598
+   },
+   {
+    "layer": 9,
+    "spearman_raw": 0.21697352241960358,
+    "partial_freq": 0.21245655754290244,
+    "partial_freq_topics": 0.20745944639486216
+   },
+   {
+    "layer": 10,
+    "spearman_raw": 0.23325781547246968,
+    "partial_freq": 0.229230936904075,
+    "partial_freq_topics": 0.22676587120597994
+   },
+   {
+    "layer": 11,
+    "spearman_raw": 0.18442593446374064,
+    "partial_freq": 0.17854131019825,
+    "partial_freq_topics": 0.17873946382100775
+   },
+   {
+    "layer": 12,
+    "spearman_raw": 0.1965607663128493,
+    "partial_freq": 0.19113093670074008,
+    "partial_freq_topics": 0.1883882062584782
+   },
+   {
+    "layer": 13,
+    "spearman_raw": 0.1683708570091674,
+    "partial_freq": 0.16180406716619997,
+    "partial_freq_topics": 0.16294222346358161
+   },
+   {
+    "layer": 14,
+    "spearman_raw": 0.03705387568633027,
+    "partial_freq": 0.03199343428382096,
+    "partial_freq_topics": 0.03326983496834364
+   },
+   {
+    "layer": 15,
+    "spearman_raw": 0.14659615036000992,
+    "partial_freq": 0.14356976346447736,
+    "partial_freq_topics": 0.1354162745373031
+   },
+   {
+    "layer": 16,
+    "spearman_raw": 0.17325211977155047,
+    "partial_freq": 0.16866659370618056,
+    "partial_freq_topics": 0.1614623506321459
+   },
+   {
+    "layer": 17,
+    "spearman_raw": 0.12849182274660206,
+    "partial_freq": 0.12511238743839306,
+    "partial_freq_topics": 0.11564184308893256
+   },
+   {
+    "layer": 18,
+    "spearman_raw": 0.052513940826288324,
+    "partial_freq": 0.0500602322922048,
+    "partial_freq_topics": 0.038092983299412186,
+    "ci95": {
+     "partial_freq": [
+      -0.0676654393398032,
+      0.16533139316168835
+     ],
+     "partial_freq_topics": [
+      -0.07589396137050074,
+      0.15254058884026248
+     ]
+    },
+    "top30": [
+     [
+      "festival",
+      1.0,
+      2
+     ],
+     [
+      "two",
+      1.0,
+      3
+     ],
+     [
+      "known",
+      1.0,
+      12
+     ],
+     [
+      "car",
+      1.0,
+      5
+     ],
+     [
+      "town",
+      1.0,
+      4
+     ],
+     [
+      "high",
+      1.0,
+      18
+     ],
+     [
+      "dam",
+      1.0,
+      4
+     ],
+     [
+      "major",
+      1.0,
+      13
+     ],
+     [
+      "all",
+      1.0,
+      3
+     ],
+     [
+      "women",
+      0.977,
+      4
+     ],
+     [
+      "art",
+      0.977,
+      4
+     ],
+     [
+      "three",
+      0.977,
+      3
+     ],
+     [
+      "radio",
+      0.977,
+      5
+     ],
+     [
+      "united",
+      0.977,
+      8
+     ],
+     [
+      "under",
+      0.977,
+      10
+     ],
+     [
+      "group",
+      0.977,
+      5
+     ],
+     [
+      "land",
+      0.977,
+      18
+     ],
+     [
+      "party",
+      0.977,
+      6
+     ],
+     [
+      "international",
+      0.977,
+      3
+     ],
+     [
+      "association",
+      0.977,
+      8
+     ],
+     [
+      "water",
+      0.977,
+      10
+     ],
+     [
+      "rock",
+      0.977,
+      9
+     ],
+     [
+      "coast",
+      0.977,
+      5
+     ],
+     [
+      "air",
+      0.977,
+      15
+     ],
+     [
+      "side",
+      0.977,
+      14
+     ],
+     [
+      "western",
+      0.977,
+      6
+     ],
+     [
+      "ice",
+      0.977,
+      11
+     ],
+     [
+      "off",
+      0.977,
+      9
+     ],
+     [
+      "first",
+      0.977,
+      16
+     ],
+     [
+      "wales",
+      0.977,
+      3
+     ]
+    ],
+    "bottom30": [
+     [
+      "home",
+      0.68,
+      17
+     ],
+     [
+      "competed",
+      0.68,
+      1
+     ],
+     [
+      "john",
+      0.676,
+      5
+     ],
+     [
+      "horse",
+      0.676,
+      6
+     ],
+     [
+      "joseph",
+      0.667,
+      3
+     ],
+     [
+      "represented",
+      0.663,
+      16
+     ],
+     [
+      "february",
+      0.65,
+      1
+     ],
+     [
+      "july",
+      0.638,
+      1
+     ],
+     [
+      "politician",
+      0.63,
+      3
+     ],
+     [
+      "footballer",
+      0.618,
+      1
+     ],
+     [
+      "part",
+      0.616,
+      18
+     ],
+     [
+      "opened",
+      0.616,
+      14
+     ],
+     [
+      "found",
+      0.615,
+      21
+     ],
+     [
+      "launched",
+      0.615,
+      6
+     ],
+     [
+      "war",
+      0.615,
+      5
+     ],
+     [
+      "plays",
+      0.601,
+      52
+     ],
+     [
+      "september",
+      0.595,
+      1
+     ],
+     [
+      "court",
+      0.592,
+      14
+     ],
+     [
+      "currently",
+      0.569,
+      1
+     ],
+     [
+      "former",
+      0.569,
+      5
+     ],
+     [
+      "october",
+      0.56,
+      1
+     ],
+     [
+      "well",
+      0.545,
+      22
+     ],
+     [
+      "june",
+      0.542,
+      1
+     ],
+     [
+      "player",
+      0.538,
+      5
+     ],
+     [
+      "summer",
+      0.531,
+      3
+     ],
+     [
+      "miss",
+      0.502,
+      12
+     ],
+     [
+      "founded",
+      0.479,
+      3
+     ],
+     [
+      "established",
+      0.42,
+      13
+     ],
+     [
+      "supreme",
+      0.383,
+      4
+     ],
+     [
+      "largest",
+      0.322,
+      7
+     ]
+    ]
+   },
+   {
+    "layer": 19,
+    "spearman_raw": 0.10464034508331906,
+    "partial_freq": 0.10214162786916163,
+    "partial_freq_topics": 0.09374756356350854
+   },
+   {
+    "layer": 20,
+    "spearman_raw": 0.18006698985416567,
+    "partial_freq": 0.17545392486075845,
+    "partial_freq_topics": 0.16936834664117192
+   },
+   {
+    "layer": 21,
+    "spearman_raw": 0.12215162234896676,
+    "partial_freq": 0.11454564120591253,
+    "partial_freq_topics": 0.11353723427995176
+   },
+   {
+    "layer": 22,
+    "spearman_raw": 0.1271196905637846,
+    "partial_freq": 0.1198296890887645,
+    "partial_freq_topics": 0.12269700413821631
+   },
+   {
+    "layer": 23,
+    "spearman_raw": 0.09071270052955695,
+    "partial_freq": 0.08302836879755716,
+    "partial_freq_topics": 0.08548317032401119
+   },
+   {
+    "layer": 24,
+    "spearman_raw": 0.06900655051114461,
+    "partial_freq": 0.061063830411553506,
+    "partial_freq_topics": 0.06807806960052314
+   },
+   {
+    "layer": 25,
+    "spearman_raw": -0.02671141984533368,
+    "partial_freq": -0.03775104338406032,
+    "partial_freq_topics": -0.03506513947400579
+   },
+   {
+    "layer": 26,
+    "spearman_raw": -0.027569952868134195,
+    "partial_freq": -0.03727220483849825,
+    "partial_freq_topics": -0.04196715111575486
+   },
+   {
+    "layer": 27,
+    "spearman_raw": 0.01088906822903354,
+    "partial_freq": 0.0008324806416510358,
+    "partial_freq_topics": -0.0009572386645968806
+   },
+   {
+    "layer": 28,
+    "spearman_raw": 0.06611067237313299,
+    "partial_freq": 0.05680699954738674,
+    "partial_freq_topics": 0.05595208126368738
+   },
+   {
+    "layer": 29,
+    "spearman_raw": -0.07091760264953625,
+    "partial_freq": -0.0788501771787068,
+    "partial_freq_topics": -0.07754443722252492
+   },
+   {
+    "layer": 30,
+    "spearman_raw": -0.043534151661418045,
+    "partial_freq": -0.05225892567640511,
+    "partial_freq_topics": -0.05491523993826401
+   },
+   {
+    "layer": 31,
+    "spearman_raw": 0.03009548412524432,
+    "partial_freq": 0.02202828763700642,
+    "partial_freq_topics": 0.018300842024473588
+   },
+   {
+    "layer": 32,
+    "spearman_raw": 0.047503219714005965,
+    "partial_freq": 0.038542003373430424,
+    "partial_freq_topics": 0.03538173162809781
+   },
+   {
+    "layer": 33,
+    "spearman_raw": -0.02670731856587645,
+    "partial_freq": -0.03737995664255923,
+    "partial_freq_topics": -0.04348739765557651
+   },
+   {
+    "layer": 34,
+    "spearman_raw": 0.07840972038851625,
+    "partial_freq": 0.07080585928566407,
+    "partial_freq_topics": 0.06648574287435673
+   },
+   {
+    "layer": 35,
+    "spearman_raw": 0.09446940825383088,
+    "partial_freq": 0.08893474229031897,
+    "partial_freq_topics": 0.08463282948060727
+   }
+  ],
+  "W1_holds": false,
+  "W1_holds_with_topic_control": false
+ },
+ "qwen3_17b": {
+  "primary_layer": 23,
+  "n_words": 303,
+  "layers": [
+   {
+    "layer": 0,
+    "spearman_raw": 0.18516703634151,
+    "partial_freq": 0.18326535002066296,
+    "partial_freq_topics": 0.17721544764465225
+   },
+   {
+    "layer": 1,
+    "spearman_raw": 0.052012476438404405,
+    "partial_freq": 0.05082401743356868,
+    "partial_freq_topics": 0.04220314751812706
+   },
+   {
+    "layer": 2,
+    "spearman_raw": -0.030973126218508975,
+    "partial_freq": -0.02900636188583442,
+    "partial_freq_topics": -0.04336053478992788
+   },
+   {
+    "layer": 3,
+    "spearman_raw": -0.031188287487465775,
+    "partial_freq": -0.031227005188867955,
+    "partial_freq_topics": -0.042091736124605594
+   },
+   {
+    "layer": 4,
+    "spearman_raw": 0.034428741607048854,
+    "partial_freq": 0.034582327631423125,
+    "partial_freq_topics": 0.019128033736936185
+   },
+   {
+    "layer": 5,
+    "spearman_raw": 0.04914686514981371,
+    "partial_freq": 0.04786086679846516,
+    "partial_freq_topics": 0.03651438617282638
+   },
+   {
+    "layer": 6,
+    "spearman_raw": -0.05740128315012373,
+    "partial_freq": -0.057768405004704385,
+    "partial_freq_topics": -0.08164876324936778
+   },
+   {
+    "layer": 7,
+    "spearman_raw": 0.02541990665111122,
+    "partial_freq": 0.024946081455733397,
+    "partial_freq_topics": 0.008510757446402882
+   },
+   {
+    "layer": 8,
+    "spearman_raw": 0.06737624638421683,
+    "partial_freq": 0.07246482349968673,
+    "partial_freq_topics": 0.05574752194638686
+   },
+   {
+    "layer": 9,
+    "spearman_raw": 0.11340986530271771,
+    "partial_freq": 0.11374640305394192,
+    "partial_freq_topics": 0.10045706330976593
+   },
+   {
+    "layer": 10,
+    "spearman_raw": 0.19341826200742251,
+    "partial_freq": 0.1923367872929822,
+    "partial_freq_topics": 0.18576922376123442
+   },
+   {
+    "layer": 11,
+    "spearman_raw": 0.20334650331589801,
+    "partial_freq": 0.20199783658136858,
+    "partial_freq_topics": 0.19587373195500038
+   },
+   {
+    "layer": 12,
+    "spearman_raw": 0.08511073511016058,
+    "partial_freq": 0.08940721195650816,
+    "partial_freq_topics": 0.07459912270691027
+   },
+   {
+    "layer": 13,
+    "spearman_raw": 0.12761018309781547,
+    "partial_freq": 0.12798428051876634,
+    "partial_freq_topics": 0.11692678844266123
+   },
+   {
+    "layer": 14,
+    "spearman_raw": 0.07216405036317401,
+    "partial_freq": 0.07058904374461139,
+    "partial_freq_topics": 0.05740573713870964
+   },
+   {
+    "layer": 15,
+    "spearman_raw": 0.10634593298386763,
+    "partial_freq": 0.10159546923063344,
+    "partial_freq_topics": 0.0902678461904159
+   },
+   {
+    "layer": 16,
+    "spearman_raw": 0.1289066669977178,
+    "partial_freq": 0.12224771667486656,
+    "partial_freq_topics": 0.11137361930080085
+   },
+   {
+    "layer": 17,
+    "spearman_raw": 0.053658418468739054,
+    "partial_freq": 0.05180780320365503,
+    "partial_freq_topics": 0.041187817584331286
+   },
+   {
+    "layer": 18,
+    "spearman_raw": 0.08576561098641687,
+    "partial_freq": 0.08263986267826566,
+    "partial_freq_topics": 0.07182144734869352
+   },
+   {
+    "layer": 19,
+    "spearman_raw": 0.050769209545466105,
+    "partial_freq": 0.050561899818604816,
+    "partial_freq_topics": 0.03777304693383068
+   },
+   {
+    "layer": 20,
+    "spearman_raw": 0.10331611488214383,
+    "partial_freq": 0.10126857488169531,
+    "partial_freq_topics": 0.08993304784489638
+   },
+   {
+    "layer": 21,
+    "spearman_raw": 0.09012156193496461,
+    "partial_freq": 0.08865507128410952,
+    "partial_freq_topics": 0.07353712115367508
+   },
+   {
+    "layer": 22,
+    "spearman_raw": 0.11664591866601588,
+    "partial_freq": 0.11481284842725535,
+    "partial_freq_topics": 0.10224504487382617
+   },
+   {
+    "layer": 23,
+    "spearman_raw": 0.12080851966033526,
+    "partial_freq": 0.11888681164172014,
+    "partial_freq_topics": 0.10602409323519175,
+    "ci95": {
+     "partial_freq": [
+      0.012659651997896532,
+      0.23530704256353663
+     ],
+     "partial_freq_topics": [
+      0.005222706543099717,
+      0.21947184113987891
+     ]
+    },
+    "top30": [
+     [
+      "field",
+      0.907,
+      21
+     ],
+     [
+      "has",
+      0.907,
+      20
+     ],
+     [
+      "general",
+      0.899,
+      10
+     ],
+     [
+      "major",
+      0.899,
+      13
+     ],
+     [
+      "its",
+      0.884,
+      1
+     ],
+     [
+      "ion",
+      0.884,
+      1
+     ],
+     [
+      "land",
+      0.884,
+      18
+     ],
+     [
+      "time",
+      0.876,
+      15
+     ],
+     [
+      "are",
+      0.876,
+      14
+     ],
+     [
+      "old",
+      0.876,
+      9
+     ],
+     [
+      "first",
+      0.876,
+      16
+     ],
+     [
+      "man",
+      0.861,
+      13
+     ],
+     [
+      "both",
+      0.852,
+      1
+     ],
+     [
+      "two",
+      0.844,
+      3
+     ],
+     [
+      "several",
+      0.838,
+      3
+     ],
+     [
+      "port",
+      0.829,
+      14
+     ],
+     [
+      "way",
+      0.821,
+      13
+     ],
+     [
+      "art",
+      0.819,
+      4
+     ],
+     [
+      "union",
+      0.819,
+      13
+     ],
+     [
+      "more",
+      0.806,
+      5
+     ],
+     [
+      "had",
+      0.797,
+      19
+     ],
+     [
+      "bay",
+      0.797,
+      10
+     ],
+     [
+      "high",
+      0.796,
+      18
+     ],
+     [
+      "system",
+      0.796,
+      9
+     ],
+     [
+      "open",
+      0.792,
+      36
+     ],
+     [
+      "state",
+      0.789,
+      11
+     ],
+     [
+      "america",
+      0.783,
+      2
+     ],
+     [
+      "have",
+      0.774,
+      20
+     ],
+     [
+      "were",
+      0.774,
+      13
+     ],
+     [
+      "group",
+      0.774,
+      5
+     ]
+    ],
+    "bottom30": [
+     [
+      "album",
+      0.205,
+      2
+     ],
+     [
+      "championships",
+      0.196,
+      3
+     ],
+     [
+      "former",
+      0.196,
+      5
+     ],
+     [
+      "supreme",
+      0.196,
+      4
+     ],
+     [
+      "new",
+      0.196,
+      12
+     ],
+     [
+      "march",
+      0.188,
+      14
+     ],
+     [
+      "southern",
+      0.188,
+      4
+     ],
+     [
+      "established",
+      0.173,
+      13
+     ],
+     [
+      "tennis",
+      0.173,
+      1
+     ],
+     [
+      "saint",
+      0.173,
+      5
+     ],
+     [
+      "april",
+      0.167,
+      1
+     ],
+     [
+      "football",
+      0.167,
+      2
+     ],
+     [
+      "february",
+      0.167,
+      1
+     ],
+     [
+      "retired",
+      0.141,
+      12
+     ],
+     [
+      "eastern",
+      0.141,
+      5
+     ],
+     [
+      "northern",
+      0.141,
+      5
+     ],
+     [
+      "miss",
+      0.132,
+      12
+     ],
+     [
+      "albums",
+      0.132,
+      2
+     ],
+     [
+      "united",
+      0.109,
+      8
+     ],
+     [
+      "owned",
+      0.066,
+      2
+     ],
+     [
+      "built",
+      0.066,
+      11
+     ],
+     [
+      "olympics",
+      0.066,
+      1
+     ],
+     [
+      "found",
+      0.066,
+      21
+     ],
+     [
+      "opened",
+      0.066,
+      14
+     ],
+     [
+      "summer",
+      0.066,
+      3
+     ],
+     [
+      "rugby",
+      -0.0,
+      1
+     ],
+     [
+      "known",
+      -0.0,
+      12
+     ],
+     [
+      "politician",
+      -0.0,
+      3
+     ],
+     [
+      "catholic",
+      -0.0,
+      3
+     ],
+     [
+      "hurl",
+      -0.0,
+      4
+     ]
+    ]
+   },
+   {
+    "layer": 24,
+    "spearman_raw": 0.12493075498515925,
+    "partial_freq": 0.12222081243650827,
+    "partial_freq_topics": 0.10985757001841143
+   },
+   {
+    "layer": 25,
+    "spearman_raw": 0.09236037269369105,
+    "partial_freq": 0.09219950016537819,
+    "partial_freq_topics": 0.07558936958187258
+   },
+   {
+    "layer": 26,
+    "spearman_raw": 0.10849027071804764,
+    "partial_freq": 0.10648114633148398,
+    "partial_freq_topics": 0.09193679646472955
+   },
+   {
+    "layer": 27,
+    "spearman_raw": 0.09186964175610385,
+    "partial_freq": 0.0905616839670893,
+    "partial_freq_topics": 0.07348713994280927
+   },
+   {
+    "layer": 28,
+    "spearman_raw": 0.15106281708868635,
+    "partial_freq": 0.1486030535531816,
+    "partial_freq_topics": 0.1392134153432322
+   }
+  ],
+  "W1_holds": true,
+  "W1_holds_with_topic_control": true
+ },
+ "W1_supported": false,
+ "W1_supported_with_topic_control": false
+}

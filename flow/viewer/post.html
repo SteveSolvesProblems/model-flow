@@ -1,0 +1,570 @@
+<title>Model Flow</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Public+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (68ch) with full-width figures; each claim = heading, short text, figure, caption. */
+:root {
+  --bg: #f3f5f4; --panel: #ffffff; --ink: #18211f; --muted: #5b6763; --rule: #d9dfdc; --accent: #1f5fbf; --accent-soft: #dbe6f7;
+  --warm: #c2582b; --good: #2f7d4f; --good-soft: #dcefe3; --bad: #a33a3a; --bad-soft: #f5e0de; --note: #eef3f1;
+  --c0: #3b6fb6; --c1: #c2582b; --c2: #3f8f5a; --c3: #8a5bb0; --c4: #b8912a; --c5: #2d8c93; --c6: #b5476f; --c7: #6d7a3a; --c8: #7a6553;
+  --display: "Fraunces", Georgia, serif; --body: "Public Sans", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111615; --panel: #182020; --ink: #e4ebe8; --muted: #93a19c; --rule: #2b3634; --accent: #7eaaf0; --accent-soft: #1d2b40;
+  --warm: #e58a5f; --good: #74c08c; --good-soft: #1c3326; --bad: #e08080; --bad-soft: #3a2224; --note: #1a2322;
+  --c0: #7ba4e6; --c1: #e58a5f; --c2: #74c08c; --c3: #b793dc; --c4: #dcbd5e; --c5: #62c0c6; --c6: #e3809f; --c7: #a8b86a; --c8: #b49c88;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111615; --panel: #182020; --ink: #e4ebe8; --muted: #93a19c; --rule: #2b3634; --accent: #7eaaf0; --accent-soft: #1d2b40;
+  --warm: #e58a5f; --good: #74c08c; --good-soft: #1c3326; --bad: #e08080; --bad-soft: #3a2224; --note: #1a2322;
+  --c0: #7ba4e6; --c1: #e58a5f; --c2: #74c08c; --c3: #b793dc; --c4: #dcbd5e; --c5: #62c0c6; --c6: #e3809f; --c7: #a8b86a; --c8: #b49c88;
+  color-scheme: dark; }
+body { background: var(--bg); color: var(--ink); font: 16.5px/1.65 var(--body); }
+.wrap { max-width: 1100px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 80px; display: grid; gap: 34px; }
+.prose { max-width: 68ch; display: grid; gap: 14px; }
+.prose p, .prose ul { margin: 0; }
+.prose ul { padding-left: 1.2em; display: grid; gap: 6px; }
+h1 { font: 650 clamp(32px, 5.4vw, 50px)/1.05 var(--display); margin: 0; letter-spacing: -0.015em; text-wrap: balance; }
+h2 { font: 600 clamp(22px, 3vw, 29px)/1.2 var(--display); margin: 8px 0 0; text-wrap: balance; }
+.lede { font-size: 19px; line-height: 1.55; color: var(--muted); }
+.eyebrow { font: 500 11px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+a { color: var(--accent); }
+.num { font-variant-numeric: tabular-nums; }
+.claims { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; counter-reset: c; }
+.claims li { display: grid; grid-template-columns: 2.2em minmax(0, 1fr) auto; gap: 4px 14px; align-items: baseline;
+  padding: 14px 16px; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; counter-increment: c; }
+.claims li::before { content: counter(c); font: 600 22px/1 var(--display); color: var(--accent); grid-row: span 2; }
+.claims b { font-weight: 600; }
+.claims .ev { grid-column: 2; font-size: 14.5px; color: var(--muted); }
+.claims a { grid-column: 3; grid-row: 1; font: 500 12px var(--mono); text-decoration: none; white-space: nowrap; }
+@media (max-width: 640px) { .claims li { grid-template-columns: 2em minmax(0, 1fr); } .claims a { grid-column: 2; grid-row: auto; } }
+.chip { display: inline-block; font: 500 10.5px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 6px;
+  border-radius: 3px; vertical-align: 2px; margin-left: 6px; white-space: nowrap; }
+.chip.pre { background: var(--good-soft); color: var(--good); }
+.chip.exp { background: var(--accent-soft); color: var(--accent); }
+.chip.fail { background: var(--bad-soft); color: var(--bad); }
+figure { margin: 0; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
+figcaption { font-size: 14px; color: var(--muted); max-width: 92ch; line-height: 1.55; }
+figcaption b { color: var(--ink); font-weight: 600; }
+.scroll { overflow-x: auto; }
+svg { display: block; width: 100%; height: auto; }
+svg text { fill: var(--muted); font: 11px var(--mono); }
+svg .ink { fill: var(--ink); }
+svg .warn { fill: var(--bad); }
+table.methods { border-collapse: collapse; font-size: 14px; line-height: 1.45; min-width: 640px; }
+table.methods th { text-align: left; font: 600 12px/1.3 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 10px; border-bottom: 2px solid var(--rule); }
+table.methods td { padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.methods td:first-child { font-weight: 600; }
+table.methods td:last-child { color: var(--muted); }
+a.cite { text-decoration: none; border-bottom: 1px dotted var(--accent); }
+.prior-wrap { max-width: 1100px; }
+table.prior td:nth-child(2) { color: var(--ink); }
+table.prior td:last-child { white-space: nowrap; }
+ol.refs { font-size: 14px; line-height: 1.5; padding-left: 22px; display: grid; gap: 6px; }
+ol.refs li:target { background: var(--accent-soft); }
+.tells { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.tells > div { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 16px; font-size: 15px; }
+.tells > div:first-child { border-top: 3px solid var(--good); }
+.tells > div:last-child { border-top: 3px solid var(--warm); }
+.tells ul { margin: 6px 0 0; padding-left: 18px; }
+.tells li { margin: 4px 0; }
+.ktoggle { display: flex; gap: 6px; }
+.ktoggle button { font: 500 11.5px/1 var(--mono); padding: 6px 10px; border: 1px solid var(--rule); border-radius: 4px;
+  background: var(--panel); color: var(--muted); cursor: pointer; }
+.ktoggle button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+label.ctl { max-width: 100%; min-width: 0; flex-wrap: wrap; font: 500 11px/1 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; display: inline-flex; gap: 8px; align-items: center; }
+select { max-width: 100%; min-width: 0; font: 13px var(--body); padding: 6px 8px; border: 1px solid var(--rule); border-radius: 4px; background: var(--panel); color: var(--ink); }
+select:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.legend i.line { height: 3px; vertical-align: 3px; border-radius: 0; }
+.note { background: var(--note); border-radius: 6px; padding: 14px 16px; font-size: 15px; line-height: 1.6; }
+.fails { display: grid; gap: 8px; }
+.fails div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 10px 14px; border-left: 3px solid var(--bad); background: var(--panel); }
+.fails b { font-weight: 600; }
+.fails span { font-size: 14.5px; color: var(--muted); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
+.small { font-size: 14px; color: var(--muted); }
+.excols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.excols h4{margin:0 0 4px;font-size:13px;color:var(--muted);font-weight:600}.excols ol{margin:0;padding-left:22px;font-size:13px;line-height:1.5}
+</style>
+
+<main class="wrap">
+  <header class="prose">
+    <span class="eyebrow">Model Flow · an exploration · October 2026</span>
+    <h1>Model Flow</h1>
+    <p class="lede">What does a language model look like if you study it the way you would study a fluid: not
+      molecule by molecule, but by how the whole body of it moves? Here, the molecules are the model's weights and
+      circuits, and the fluid is thousands of texts flowing through the model's layers.</p>
+    <p>This is an exploratory project. It does not try to explain individual weights. It follows a population of texts
+      through a model and measures where the population holds its shape and where it reorganizes. Most of the flow is
+      smooth. Some apparent sharp changes turn out to be measurement artifacts. One large event, in Gemma 4, survives every
+      control we tried, and we show how it happens.</p>
+    <div class="note"><b>How this was made.</b> This is a human–AI collaboration. Steve set the question and the ideas
+      behind it, chose the directions, and reviewed each step. Claude (Anthropic), working in Claude Code, wrote the code,
+      ran the experiments, searched the literature and drafted this page, including proposing the checks that narrowed
+      several claims. Results and wording were reviewed together.</div>
+  </header>
+
+  <section class="prose" id="s-residual" aria-labelledby="h-residual">
+    <h2 id="h-residual">One running total</h2>
+    <p>A language model reads text as tokens (words or pieces of words) and turns each token into a vector, a list of a
+      few thousand numbers. The vectors then pass through a stack of <b>layers</b>. Each layer reads the current vector,
+      computes something nonlinear from it, and <em>adds</em> its result, its <b>write</b>, back on. The running total
+      is called the <b>residual stream</b> (<a class="cite" href="#r-elhage">Elhage et al. 2021</a>).</p>
+    <p>Because every layer adds to the same running total, the vector after layer 9 and the vector after layer 18 live
+      in the same space, with the same axes. That is what makes the fluid picture possible: one space, and a flow through
+      it, layer by layer.</p>
+  </section>
+
+  <section class="prose" id="s-cloud" aria-labelledby="h-cloud">
+    <h2 id="h-cloud">A cloud of texts</h2>
+    <p>One text gives one point per layer. We send thousands of short encyclopedia articles (DBpedia summaries, at most
+      64 tokens) through a frozen, already-trained model, and represent each article at each layer by the average of its
+      token vectors. That gives a cloud of points at every layer. The question is how the cloud changes from one layer to
+      the next.</p>
+    <p>We compare two layers in two ways:</p>
+    <ul>
+      <li><b>Place.</b> Does an article keep its coordinates? We take the cosine between its vectors at the two layers,
+        after subtracting each layer's average vector: the <b>centered cosine</b>. 1 means the same direction, 0 means
+        unrelated.</li>
+      <li><b>Company.</b> Does an article keep its neighbours? We list its 10 nearest articles at each layer and count
+        how many are shared. This ignores the axes entirely: if the whole cloud rotated, every article would keep all its
+        neighbours.</li>
+    </ul>
+    <p class="small">Models: Gemma 4 E2B and E4B, Qwen3-1.7B, Qwen3.5-2B, SmolLM2-1.7B, Pythia-410M (untrained and
+      trained), and one encoder, ModernBERT-large. All public, all frozen.</p>
+  </section>
+
+  <section class="prose" id="s-see" aria-labelledby="h-see">
+    <h2 id="h-see">What we see</h2>
+    <p>Comparing every pair of layers gives a map of the whole model. In Gemma 4 E2B the map has two features. Dark square
+      blocks are stretches of layers that share coordinates. And at layer 14 there is a sharp break: across that one
+      layer, articles' coordinates become unrelated. We call a layer like that a <b>turn</b>.</p>
+  </section>
+  <figure>
+    <div class="controls"><label class="ctl" for="heatSet">model <select id="heatSet"></select></label></div>
+    <div class="scroll"><svg id="heat" role="img" aria-label="Layer by layer heatmaps of same place and same company"></svg></div>
+    <figcaption><b>Every pair of layers, compared.</b> Left: share of 3,000 held-out articles whose nearest point at the
+      other layer is themselves (same place). Right: share of 10 neighbours kept (same company). Darker is more similar.
+      Switch models to compare; hover a cell for its value.</figcaption>
+  </figure>
+  <section class="prose">
+    <p>Other models show breaks too, if measured plainly: Qwen3 seems to turn at layer 2 (centered cosine 0.18) and
+      SmolLM2 at layer 7 (0.25). Before reading anything into these, each needs a reference.</p>
+  </section>
+
+  <section class="prose" id="s-real" aria-labelledby="h-real">
+    <h2 id="h-real">Is it real? Three controls</h2>
+    <h3 class="tsub">An untrained model: staying put is the default</h3>
+    <p>In an untrained Pythia (choose "pythia_0" above), every article still finds itself at any layer up to six layers
+      away, and keeps 68% of its neighbours at that distance. Each layer adds a small random write to a large running total,
+      so nothing moves far quickly. So blocks of shared coordinates are not, by themselves, something the model learned
+      (<a class="cite" href="#r-veit">Veit et al. 2016</a>). Training shows up as departures from this.</p>
+    <h3 class="tsub">Robust scaling: a few huge coordinates can fake a turn</h3>
+    <p>Language models carry a handful of coordinates with values hundreds of times larger than the rest
+      (<a class="cite" href="#r-kovaleva">Kovaleva et al. 2021</a>; <a class="cite" href="#r-massive">Sun et al. 2024</a>).
+      When one switches on, it dominates every cosine. Rescale each coordinate by its typical spread, and the Qwen3 and
+      SmolLM2 breaks become ordinary layers (0.69 and 0.85). Qwen3, Qwen3.5 and SmolLM2 then keep their coordinates all
+      the way through. Gemma's turn stays (0.05).</p>
+    <h3 class="tsub">A second model: rotations link layers, and they link models</h3>
+    <p>To ask whether information survives a layer, fit a <b>rotation</b> from one layer's cloud to another's on some
+      articles, then check whether it carries new articles to themselves. It does, very well. The same procedure works
+      almost as well between two <em>different</em> models.</p>
+  </section>
+  <figure>
+    <div class="scroll"><svg id="rot" role="img" aria-label="How often a fitted rotation finds the same article again, within and across models"></svg></div>
+    <div class="legend"><span><i style="background:var(--muted)"></i>no map</span><span><i style="background:var(--accent)"></i>within one model</span><span><i style="background:var(--c2)"></i>across different models</span><span><i style="background:var(--bad)"></i>shuffled pairs (null)</span></div>
+    <figcaption><b>Share of 3,000 held-out articles whose nearest neighbour, after the fitted map, is the same
+      article</b> (chance 1 in 3,000; maps fit on 10,000 other articles). Fitting on shuffled pairs falls to chance.</figcaption>
+  </figure>
+  <section class="prose">
+    <p>Both results say the same thing: the arrangement of articles is shared, between layers of one model and between
+      models (<a class="cite" href="#r-huh">Huh et al. 2024</a>), and a rotation carries one onto the other. What the
+      cross-model result rules out is a narrower reading: a good fit alone cannot tell "this layer rotated the last one"
+      apart from "these are two good encodings of the same articles"
+      (<a class="cite" href="#r-ding21">Ding et al. 2021</a>). A rotation also carries the arrangement, not everything:
+      about half of each vector's length is left unexplained.</p>
+  </section>
+
+  <section class="prose" id="s-turn" aria-labelledby="h-turn">
+    <h2 id="h-turn">What survives: Gemma 4's turn, up close</h2>
+    <p>Across layers 13 to 15 of Gemma 4 E2B, articles' coordinates become unrelated (centered cosine 0.004), yet each
+      article keeps about half of its 10 neighbours (0.49, against 0.81 between neighbouring layers elsewhere). The turn
+      holds on a second sample, at 1,000 to 6,000 articles, with the huge coordinates removed, in 32-bit and 16-bit
+      arithmetic, and for single tokens as well as whole articles.</p>
+    <p>Here is one article, chosen by a fixed rule (the first in the sample with the median number of neighbours kept):</p>
+  </section>
+  <figure>
+    <div id="example"></div>
+    <figcaption><b>One article across the turn.</b> Its 10 nearest neighbours at layer 13 and at layer 15; shared ones in
+      bold. Its own centered cosine across the turn is <span id="exCos"></span>: its coordinates are unrelated. Yet half
+      its company is the same, and the rest is the same kind of thing.</figcaption>
+  </figure>
+  <section class="prose">
+    <p>To see the turn as a flow, we need one more idea. At each layer we sort the articles into a few <b>groups</b> with
+      k-means, using no labels. k-means starts from random points, so we run it twice and score how well the two runs
+      agree: the <b>repeatability</b> (1 = identical, 0 = chance). Then we follow the same articles from one layer's
+      groups to the next.</p>
+  </section>
+  <figure>
+    <div class="controls"><div class="ktoggle" id="flowK" role="group" aria-label="Groups per layer"></div>
+      <div class="ktoggle" id="flowCols" role="group" aria-label="Layers shown"></div></div>
+    <div class="scroll"><svg id="flow" role="img" aria-label="Flow of 1,500 articles through groups across layers of Gemma 4 E2B"></svg></div>
+    <div class="legend" id="flowLegend"></div>
+    <div class="scroll"><svg id="flowStats" role="img" aria-label="Per layer: topic agreement of the groups and how much of the grouping carries to the next layer"></svg></div>
+    <div class="legend"><span><i class="line" style="background:var(--accent)"></i>topic agreement of the groups</span><span><i class="line" style="background:var(--warm)"></i>grouping carried to the next layer</span><span><i class="line" style="background:var(--muted)"></i>repeatability</span></div>
+    <figcaption><b>Gemma 4 E2B, 1,500 held-out articles.</b> Bands follow the same articles between layers. Colours show
+      the topic most over-represented in each group, added after the grouping. Repeatability under each layer (median
+      <span id="flowRep4"></span> with four groups, <span id="flowRep8"></span> with eight); layers below 0.8 are faded.
+      Lower panel: topic agreement (adjusted mutual information with the nine DBpedia topics) and carry-over (adjusted
+      Rand index between consecutive layers). Try "layers 10–20". Hover a band for its size.</figcaption>
+  </figure>
+  <section class="prose">
+    <p>Most of the depth is steady flow: groups carry over from layer to layer. At layers 12–16 the carry-over drops and
+      topic agreement falls from 0.50 to 0.26 (eight groups), then the groups re-form by layer 17. The map shows who moves
+      with whom, not why. Its groups are our choice of resolution, not the model's concepts.</p>
+  </section>
+
+  <section class="prose" id="s-how" aria-labelledby="h-how">
+    <h2 id="h-how">How Gemma turns</h2>
+    <p>After each layer, Gemma 4 multiplies the whole residual stream by a fixed number stored in the checkpoint, the
+      <b>layer scalar</b> (<a class="cite" href="#r-gemma4src">layer_scalar</a>). Gemma's technical report says it is
+      there to keep values within 16-bit range (<a class="cite" href="#r-gemma4report">Gemma Team 2026</a>). Unlike
+      similar tricks that scale only a layer's write (<a class="cite" href="#r-layerscale">Touvron et al. 2021</a>), it
+      scales the running total too.</p>
+    <ul>
+      <li><b>Two layers out-write the stream.</b> Layers 13 and 14 write vectors 14 and 40 times the size of the
+        residual, at right angles to it. Their scalars (0.07 and 0.05) then shrink the sum. The old residual becomes a
+        small remainder next to the new write, so the coordinates turn. Nothing can be deleted from a running total;
+        writing something much larger is the way to overwrite it, an idea proposed for GPT-2 by
+        <a class="cite" href="#r-heimersheim">Heimersheim &amp; Turner 2023</a>.</li>
+      <li><b>The scalar sets the turn.</b> Multiply the scalars of layers 13–14 by a factor and the turn changes
+        smoothly: centered cosine across layer 14 goes from 0.02 (×0.5) to 0.04 (as trained), 0.08 (×2), 0.17 (×4) and
+        0.48 (scalars set to 1).</li>
+      <li><b>The MLPs make the write.</b> Replacing the MLP output of layer 13 or 14 with its average moves the turn to
+        the next layers rather than removing it. Attention heads barely matter.</li>
+    </ul>
+  </section>
+  <figure>
+    <div class="scroll"><svg id="tracks" role="img" aria-label="Gemma 4 E2B per-layer tracks: blocks, coordinate turn, layer write, scalar, attention"></svg></div>
+    <figcaption><b>Gemma 4 E2B, one column per layer.</b> Blocks: stretches of layers that share coordinates. Coordinate
+      turn: 1 − centered cosine between a layer's input and output. Layer write: the layer's own write relative to the
+      residual, scalar divided out (log scale). Layer scalar: the stored multiplier. Attention: full-attention layers
+      (circles; size = strongest induction head) and mean attention to the first token. Shaded: layers that reuse earlier
+      layers' attention keys and values.</figcaption>
+  </figure>
+
+  <section class="prose" id="s-predict" aria-labelledby="h-predict">
+    <h2 id="h-predict">A prediction on a second model</h2>
+    <p>In Gemma 4 E2B, the smaller a layer's scalar, the sharper its turn (rank correlation 0.86). So before computing
+      any geometry of the larger Gemma 4 E4B, we read only its stored scalars and wrote down three predictions: its two
+      sharpest turns lie in layers 22–24; the scalar–turn correlation is at least 0.5; a block of shared coordinates
+      starts at layer 23–25. All three held: sharpest turns at 23 and 22, correlation 0.90, a block starting at 23.
+      <span class="chip pre">pre-registered · held-out model</span></p>
+    <p class="small">Caveats: the prediction window left out layer 1 (third-smallest scalar), a choice made after reading
+      the scalars. Both models are Gemma 4. A scalar meant to keep values in range is expected to be small where a layer
+      writes something huge; the test shows that this numerical device also marks the geometry. The causal check on E4B
+      has not been run.</p>
+  </section>
+  <figure>
+    <div class="scroll"><svg id="e4b" role="img" aria-label="Gemma 4 E4B: per-layer scalar and coordinate turn by layer"></svg></div>
+    <div class="legend"><span><i style="background:var(--c3)"></i>layer scalar (from the checkpoint)</span><span><i style="background:var(--warm)"></i>coordinate turn (1 − centered cosine across the layer)</span></div>
+    <figcaption><b>Gemma 4 E4B, one column per layer.</b> The green band is the predicted window, fixed before the turn
+      was measured.</figcaption>
+  </figure>
+
+  <section class="prose" id="s-map" aria-labelledby="h-map">
+    <h2 id="h-map">The mental map, provisionally</h2>
+    <p>This is the picture we now work from. It summarizes these measurements on these models; it is not a law.</p>
+    <ul>
+      <li>The residual stream is one space, but not a fixed coordinate system for meaning. Each layer is a nonlinear
+        update that can shift the coordinates.</li>
+      <li>Mostly the shift is gradual. Stretches of layers share coordinates closely, partly because a running total
+        resists change even before training.</li>
+      <li>Some shifts are sudden. In Gemma 4 a layer can re-express the whole cloud at once, keeping much of who sits near
+        whom but changing the axes. It does so by out-writing the stream, with a stored scalar setting how sharp the
+        change is.</li>
+      <li>Across a shift the arrangement survives and a rotation carries it over. So layers can be compared with measures
+        that ignore the axes (neighbours, groups), directly within a stretch that shares coordinates, or after fitting a
+        rotation.</li>
+    </ul>
+  </section>
+
+  <section class="prose" id="s-fail" aria-labelledby="h-fail">
+    <h2 id="h-fail">What did not hold</h2>
+    <ul>
+      <li>An attention head was expected to drive the turn. Knocking out Gemma's layer-14 induction head, or any single
+        head tried, leaves it unchanged.</li>
+      <li>Blocks were expected to predict which layers can be skipped. Skip damage follows how much a layer writes
+        instead.</li>
+      <li>Layers were expected to settle bottom-up during training <span class="chip fail">pre-registered</span>. In
+        Pythia-410M the ends settled first and the middle last.</li>
+    </ul>
+  </section>
+
+  <section class="prose" id="s-cav" aria-labelledby="h-cav">
+    <h2 id="h-cav">Limits</h2>
+    <ul>
+      <li>One family turns. Why the others do not is open; Gemma's scalars and its key-value sharing are the remaining
+        candidates.</li>
+      <li>Small models (0.4B–4B), short texts (64 tokens), one corpus. Article vectors are token averages, so they partly
+        reflect which words a text contains.</li>
+      <li>Our first Gemma token-level runs dropped the beginning-of-text token Gemma expects. Re-extracted, the turn is
+        unchanged.</li>
+      <li>Pre-registrations are self-dated in the project's version history, not externally timestamped.</li>
+    </ul>
+  </section>
+
+  <section class="prose" id="s-next" aria-labelledby="h-next">
+    <h2 id="h-next">Where this goes next</h2>
+    <p>If the arrangement is shared and a rotation carries it, a natural next question is what the rotated states are
+      good for, within one model and between models. That is the subject of ongoing work. A practical side result, a way
+      to pick an embedding layer without labels, is still being tested and will be written up separately.</p>
+  </section>
+
+  <section class="prose" id="s-prior" aria-labelledby="h-prior">
+    <h2 id="h-prior">Prior work, and what is new</h2>
+    <p>Most single measurements here have precedent. "Not found" means not found in searches of arXiv, OpenAlex,
+      OpenReview, LessWrong / Alignment Forum, GitHub and the web (October 2026).</p>
+  </section>
+  <div class="scroll prior-wrap">
+    <table class="methods prior">
+      <thead><tr><th>Claim</th><th>Closest prior work</th><th>What we add</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Gemma 4's turn: large orthogonal writes, then a whole-stream rescale</td><td>Overwriting by writing with a larger norm: <a class="cite" href="#r-heimersheim">Heimersheim &amp; Turner 2023</a>; orthogonal updates: <a class="cite" href="#r-lombardo">Lombardo et al. 2026</a>; residual scaling: <a class="cite" href="#r-layerscale">Touvron et al. 2021</a>; <a class="cite" href="#r-rezero">Bachlechner et al. 2020</a></td><td>A concrete, causally tested case with a dose-response, and its scalar used to predict geometry on a held-out model</td><td><span class="chip exp">idea known; case new</span></td></tr>
+        <tr><td>Rotations link layers and models</td><td>Rotations between layers: <a class="cite" href="#r-bhattacharya">Bhattacharya &amp; Kolli 2026</a>; shared geometry across models: <a class="cite" href="#r-huh">Huh et al. 2024</a>; similarity needs a reference: <a class="cite" href="#r-ding21">Ding et al. 2021</a>; <a class="cite" href="#r-groger">Gröger et al. 2026</a></td><td>Within- and cross-model fits side by side, with a second model as the reference</td><td><span class="chip exp">fits known; this comparison not found</span></td></tr>
+        <tr><td>Untrained and robust-scaling references for layer similarity</td><td><a class="cite" href="#r-veit">Veit et al. 2016</a>; <a class="cite" href="#r-massive">Sun et al. 2024</a>; <a class="cite" href="#r-davari">Davari et al. 2022</a></td><td>Shown to remove apparent turns in two model families</td><td><span class="chip exp">partly new</span></td></tr>
+        <tr><td>Flow maps of layer-wise clusters</td><td><a class="cite" href="#r-pathfinder">İrsoy &amp; Alpaydın 2022</a>; <a class="cite" href="#r-layerflow">Sevastjanova et al. 2025</a>; <a class="cite" href="#r-clusterpaths">Kroeger &amp; Bindschaedler 2025</a>; <a class="cite" href="#r-luxburg">von Luxburg 2010</a></td><td>Each layer's groups drawn with their repeatability, setting fixed in advance</td><td><span class="chip exp">partly new</span></td></tr>
+        <tr><td>Blocks of layers</td><td><a class="cite" href="#r-nguyen21">Nguyen et al. 2021</a>; <a class="cite" href="#r-lad">Lad et al. 2024</a>; <a class="cite" href="#r-gromov">Gromov et al. 2024</a></td><td>Tested against shuffles that keep the depth trend</td><td><span class="chip exp">reproduced; tests added</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="prose" id="s-repro" aria-labelledby="h-repro">
+    <h2 id="h-repro">Reproducing</h2>
+    <p>Every number on this page is listed in a claims ledger with the result file it comes from and the script that
+      produced it, and a checker re-derives each one from the results. Code, pre-registrations, results and the
+      scripts to re-extract every feature cache are in the repository, archived with a DOI.</p>
+    <p>No model was trained. The project used about 100 GPU-hours (two NVIDIA P100s and one RTX 3060) and about 330
+      CPU job-hours. It cached about 0.6 TB of hidden states: some 205 million per-layer vectors from frozen public
+      models.</p>
+    <p class="small">Repository and DOI links will be added on release.</p>
+  </section>
+
+  <section class="prose" id="refs-sec" aria-labelledby="refs-h">
+    <h2 id="refs-h">References</h2>
+    <ol class="refs" id="refs"></ol>
+  </section>
+</main>
+
+<script id="fdata" type="application/json">__FDATA__</script>
+<script>
+const F = JSON.parse(document.getElementById("fdata").textContent);
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const txt = (parent, x, y, s, attrs = {}) => { const t = el("text", { x, y, ...attrs }, parent); t.textContent = s; return t; };
+const tip = (node, s) => { el("title", {}, node).textContent = s; };
+const size = (svg, W, H, minW) => { svg.setAttribute("viewBox", `0 0 ${W} ${H}`); if (minW) svg.style.minWidth = minW + "px"; };
+
+/* ---------- flow map ---------- */
+function drawFlow(K, cols) {
+  const svg = document.getElementById("flow"), fl = F.flow, N = fl.l1.length;
+  svg.innerHTML = "";
+  const codes = fl.byK[K].codes, rep = fl.byK[K].repeat;
+  const classes = [...new Set(fl.l1)].sort(), base = {};
+  fl.l1.forEach(c => base[c] = (base[c] || 0) + 1);
+  const ccol = c => `var(--c${classes.indexOf(c) % 9})`;
+  const W = 1060, H = 446, top = 22, bot = 42, gap = 6, nodeW = 14;
+  size(svg, W, H, 720);
+  const x = i => 30 + i * (W - 60 - nodeW) / (cols.length - 1);
+  const avail = H - top - bot - gap * (K - 1);
+  const nodes = cols.map(l => {
+    const bins = Array.from({ length: K }, (_, b) => ({ b, n: 0, cls: {} }));
+    codes[l].forEach((c, i) => { bins[c].n++; bins[c].cls[fl.l1[i]] = (bins[c].cls[fl.l1[i]] || 0) + 1; });
+    bins.forEach(bn => {
+      const best = Object.entries(bn.cls).map(([c, n]) => [c, (n / bn.n) / (base[c] / N), n]).filter(r => r[2] >= 5).sort((a, b) => b[1] - a[1])[0];
+      bn.top = best ? best[0] : classes[0];
+    });
+    const order = bins.filter(b => b.n).sort((a, b) => classes.indexOf(a.top) - classes.indexOf(b.top));
+    let y = top; order.forEach(bn => { bn.y = y; bn.h = avail * bn.n / N; y += bn.h + gap; bn.out = bn.y; bn.in = bn.y; });
+    return bins;
+  });
+  for (let i = 0; i < cols.length - 1; i++) {
+    const a = codes[cols[i]], b = codes[cols[i + 1]], m = {}, faded = rep[cols[i]] < 0.8 || rep[cols[i + 1]] < 0.8;
+    for (let d = 0; d < N; d++) { const k = a[d] * K + b[d]; m[k] = (m[k] || 0) + 1; }
+    const links = Object.entries(m).map(([k, n]) => ({ s: nodes[i][Math.floor(k / K)], t: nodes[i + 1][k % K], n }))
+      .sort((p, q) => (p.s.y - q.s.y) || (p.t.y - q.t.y));
+    const x0 = x(i) + nodeW, x1 = x(i + 1), xm = (x0 + x1) / 2;
+    links.forEach(ln => {
+      const h = avail * ln.n / N, y0 = ln.s.out, y1 = ln.t.in; ln.s.out += h; ln.t.in += h;
+      const p = el("path", { d: `M${x0},${y0}C${xm},${y0} ${xm},${y1} ${x1},${y1}L${x1},${y1 + h}C${xm},${y1 + h} ${xm},${y0 + h} ${x0},${y0 + h}Z`,
+        fill: ccol(ln.s.top), "fill-opacity": faded ? 0.1 : 0.32 }, svg);
+      tip(p, `${ln.n} articles: layer ${cols[i]} group ${ln.s.b + 1} → layer ${cols[i + 1]} group ${ln.t.b + 1}`);
+    });
+  }
+  nodes.forEach((bins, i) => {
+    const ok = rep[cols[i]] >= 0.8;
+    bins.filter(b => b.n).forEach(bn => { const r = el("rect", { x: x(i), y: bn.y, width: nodeW, height: Math.max(bn.h, 1), fill: ccol(bn.top), "fill-opacity": ok ? 1 : 0.35 }, svg);
+      tip(r, `layer ${cols[i]}, group ${bn.b + 1}: ${bn.n} articles, most over-represented: ${bn.top}`); });
+    txt(svg, x(i) + nodeW / 2, H - 24, "layer " + cols[i], { "text-anchor": "middle" });
+    txt(svg, x(i) + nodeW / 2, H - 8, "repeat " + rep[cols[i]].toFixed(2), { "text-anchor": "middle", class: ok ? "muted" : "warn" });
+  });
+  document.getElementById("flowLegend").innerHTML = classes.map(c => `<span><i style="background:${ccol(c)}"></i>${c}</span>`).join("");
+}
+(function () {
+  const fl = F.flow, kbox = document.getElementById("flowK"), cbox = document.getElementById("flowCols");
+  document.getElementById("flowRep4").textContent = fl.byK[4].repeat_median.toFixed(2);
+  document.getElementById("flowRep8").textContent = fl.byK[8].repeat_median.toFixed(2);
+  const every5 = []; for (let l = 0; l < fl.n_layers; l += 5) every5.push(l); if (every5[every5.length - 1] !== fl.n_layers - 1) every5.push(fl.n_layers - 1);
+  const zoom = []; for (let l = 10; l <= 20; l++) zoom.push(l);
+  const views = { every5: ["every 5th layer", every5], zoom: ["layers 10–20 (the turn)", zoom] };
+  const st = { K: fl.default_K, v: "every5" };
+  const redraw = () => {
+    drawFlow(st.K, views[st.v][1]); drawFlowStats(st.K);
+    kbox.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.k == st.K));
+    cbox.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === st.v));
+  };
+  [4, 8].forEach(K => { const b = document.createElement("button"); b.dataset.k = K;
+    b.textContent = `${K} bins${K === fl.default_K ? " (pre-set)" : ""}`; b.onclick = () => { st.K = K; redraw(); }; kbox.appendChild(b); });
+  Object.entries(views).forEach(([v, [nm]]) => { const b = document.createElement("button"); b.dataset.v = v; b.textContent = nm;
+    b.onclick = () => { st.v = v; redraw(); }; cbox.appendChild(b); });
+  redraw();
+})();
+
+function drawFlowStats(K) {
+  const svg = document.getElementById("flowStats"), fl = F.flow, d = fl.byK[K], L = fl.n_layers;
+  svg.innerHTML = "";
+  const W = 1060, H = 190, ml = 44, mr = 16, top = 16, ph = H - top - 34; size(svg, W, H, 720);
+  const x = l => ml + (W - ml - mr) * l / (L - 1), y = v => top + ph * (1 - v);
+  [0, 0.5, 1].forEach(v => { el("line", { x1: ml, x2: W - mr, y1: y(v), y2: y(v), stroke: "var(--rule)" }, svg); txt(svg, ml - 6, y(v) + 4, v.toFixed(1), { "text-anchor": "end" }); });
+  el("rect", { x: x(12), y: top, width: x(16) - x(12), height: ph, fill: "var(--warm)", "fill-opacity": 0.08 }, svg);
+  for (let l = 0; l < L; l += 5) txt(svg, x(l), H - 16, l, { "text-anchor": "middle" });
+  txt(svg, W - mr, H - 2, "layer →", { "text-anchor": "end" });
+  const carry = d.codes.slice(0, -1).map((c, l) => ari(c, d.codes[l + 1]));
+  const line = (vals, c, w, dash, off) => el("path", { d: vals.map((v, l) => `${l ? "L" : "M"}${x(l + off).toFixed(1)},${y(Math.max(0, v)).toFixed(1)}`).join(""), fill: "none", stroke: c, "stroke-width": w, "stroke-dasharray": dash }, svg);
+  line(d.repeat, "var(--muted)", 1.3, "4 3", 0);
+  line(d.topic_ami, "var(--accent)", 2.4, "", 0);
+  line(carry, "var(--warm)", 2.4, "", 0.5);
+  d.topic_ami.forEach((v, l) => { const c = el("circle", { cx: x(l), cy: y(v), r: 6, fill: "transparent" }, svg);
+    tip(c, `layer ${l}: topic agreement ${v.toFixed(2)}, repeat ${d.repeat[l].toFixed(2)}${l < L - 1 ? `, carried to layer ${l + 1}: ${carry[l].toFixed(2)}` : ""}`); });
+}
+
+function ari(a, b) {
+  const n = a.length, t = {}, ra = {}, rb = {};
+  for (let i = 0; i < n; i++) { const k = a[i] + "," + b[i]; t[k] = (t[k] || 0) + 1; ra[a[i]] = (ra[a[i]] || 0) + 1; rb[b[i]] = (rb[b[i]] || 0) + 1; }
+  const c2 = v => v * (v - 1) / 2, sum = o => Object.values(o).reduce((s, v) => s + c2(v), 0);
+  const idx = sum(t), sa = sum(ra), sb = sum(rb), exp = sa * sb / c2(n), mx = (sa + sb) / 2;
+  return (idx - exp) / (mx - exp);
+}
+
+/* ---------- references (only those cited on this page) ---------- */
+(function () {
+  const used = [...new Set([...document.querySelectorAll("a.cite")].map(a => a.getAttribute("href").slice(3)))];
+  const strip = h => h.replace(/<[^>]+>/g, "");
+  used.sort((a, b) => strip(F.refs[a]).localeCompare(strip(F.refs[b])));
+  document.getElementById("refs").innerHTML = used.map(k => `<li id="r-${k}">${F.refs[k]}</li>`).join("");
+})();
+
+
+
+/* ---------- figure 2: heatmaps ---------- */
+(function () {
+  const sel = document.getElementById("heatSet"), keys = Object.keys(F.heat);
+  const label = k => `${F.heat[k].model}, ${F.heat[k].kind === "token" ? "tokens" : "articles"}`;
+  sel.innerHTML = keys.map(k => `<option value="${k}">${label(k)}</option>`).join("");
+  function draw(k) {
+    const svg = document.getElementById("heat"), d = F.heat[k]; svg.innerHTML = "";
+    const S = 400, W = 2 * S + 120, H = S + 56; size(svg, W, H, 600);
+    [[d.self_top1, "same place: nearest neighbour is itself", 34], [d.knn10, `same neighbours: share of 10 kept (chance ${d.chance_knn.toFixed(3)})`, S + 100]].forEach(([M, title, x0]) => {
+      const n = M.length, c = S / n, y0 = 24;
+      txt(svg, x0, y0 - 8, title);
+      M.forEach((row, i) => row.forEach((v, j) => { const r = el("rect", { x: x0 + j * c, y: y0 + i * c, width: c + 0.4, height: c + 0.4, fill: "var(--accent)", "fill-opacity": Math.max(0, Math.min(1, v)).toFixed(3) }, svg); tip(r, `layer ${i} vs ${j}: ${v.toFixed(3)}`); }));
+      el("rect", { x: x0, y: y0, width: S, height: S, fill: "none", stroke: "var(--rule)" }, svg);
+      for (let i = 0; i < n; i += 5) { txt(svg, x0 - 5, y0 + (i + 0.5) * c + 4, i, { "text-anchor": "end" }); txt(svg, x0 + (i + 0.5) * c, y0 + S + 14, i, { "text-anchor": "middle" }); }
+    });
+  }
+  sel.onchange = e => draw(e.target.value); sel.value = "gemma_doc"; draw("gemma_doc");
+})();
+
+/* ---------- worked example: one article's neighbours across the turn ---------- */
+(function () {
+  const E = F.example, esc = t => t.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const li = r => `<li>${r.kept ? `<b>${esc(r.title)}</b>` : esc(r.title)}</li>`;
+  document.getElementById("exCos").textContent = E.centered_cos_self.toFixed(3).replace("-", "\u2212");
+  document.getElementById("example").innerHTML = `<p class="small"><b>${esc(E.article.title)}</b> \u00b7 ${E.median_overlap} of 10 neighbours kept (median over ${E.n.toLocaleString()} articles)</p>
+    <div class="excols"><div><h4>layer ${E.layers[0]}</h4><ol>${E.before.map(li).join("")}</ol></div>
+    <div><h4>layer ${E.layers[1]}</h4><ol>${E.after.map(li).join("")}</ol></div></div>`;
+})();
+
+/* ---------- figure 3: rotation within vs across models ---------- */
+(function () {
+  const svg = document.getElementById("rot"), R = F.rotation, ml = 300, mr = 50, top = 20, gh = 30;
+  const W = 1000, H = top + R.length * gh + 30; size(svg, W, H, 600);
+  const x = v => ml + (W - ml - mr) * v, col = { none: "var(--muted)", within: "var(--accent)", cross: "var(--c2)", null: "var(--bad)" };
+  for (let v = 0; v <= 1.001; v += 0.25) { el("line", { x1: x(v), x2: x(v), y1: top - 4, y2: H - 24, stroke: "var(--rule)" }, svg); txt(svg, x(v), H - 8, v.toFixed(2), { "text-anchor": "middle" }); }
+  R.forEach((r, i) => {
+    const y = top + i * gh;
+    txt(svg, ml - 12, y + 17, r.label, { "text-anchor": "end", class: "ink" });
+    const b = el("rect", { x: x(0), y: y + 6, width: Math.max(2, x(r.v) - x(0)), height: 16, fill: col[r.kind] }, svg); tip(b, `${r.label}: ${r.v}`);
+    txt(svg, x(r.v) + 6, y + 18, r.v < 0.01 ? r.v.toFixed(3) : r.v.toFixed(2), { class: "ink" });
+  });
+})();
+
+
+
+/* ---------- E4B pre-registered test ---------- */
+(function () {
+  const svg = document.getElementById("e4b"), E = F.e4b, L = E.scalar.length, W = 1000, ml = 150, mr = 16, rh = 70;
+  const H = 2 * (rh + 14) + 40; size(svg, W, H, 640);
+  const cw = (W - ml - mr) / L, x = k => ml + k * cw;
+  el("rect", { x: x(22), y: 6, width: x(25) - x(22), height: H - 30, fill: "var(--good-soft)" }, svg);
+  txt(svg, x(22) + 2, H - 26, "predicted: 22–24");
+  let y = 10;
+  [[E.scalar, "var(--c3)", "layer scalar", v => v.toFixed(3)], [E.across_cos.slice(0, L).map(v => 1 - v), "var(--warm)", "coordinate turn", v => (1 - v).toFixed(3) + " centered cosine across the layer"]].forEach(([vals, c, nm, fmt]) => {
+    const mx = Math.max(...vals.slice(1));
+    txt(svg, ml - 10, y + rh / 2 + 4, nm, { "text-anchor": "end", class: "ink" });
+    vals.forEach((v, k) => { if (k === 0) return; const bh = rh * Math.min(1, v / mx); const r = el("rect", { x: x(k) + 2, y: y + rh - bh, width: cw - 4, height: Math.max(bh, 0.5), fill: c }, svg); tip(r, `layer ${k}: ${fmt(v)}`); });
+    el("line", { x1: ml, x2: W - mr, y1: y + rh, y2: y + rh, stroke: "var(--rule)" }, svg);
+    y += rh + 14;
+  });
+  for (let k = 0; k < L; k += 5) txt(svg, x(k) + cw / 2, H - 6, k, { "text-anchor": "middle" });
+})();
+
+/* ---------- figure 5: Gemma tracks ---------- */
+(function () {
+  const svg = document.getElementById("tracks"), T = F.tracks, L = T.n_layers, W = 1000, ml = 170, mr = 16;
+  const rows = [["blocks", 26], ["coordinate turn", 60], ["layer write", 60], ["layer scalar", 60], ["attention", 60], ["first-token attention", 50]];
+  const H = 16 + rows.reduce((s, r) => s + r[1] + 14, 0) + 38; size(svg, W, H, 680);
+  const cw = (W - ml - mr) / L, x = k => ml + k * cw;
+  let y = 16;
+  el("rect", { x: x(T.kv_shared_from), y: 8, width: x(L) - x(T.kv_shared_from), height: H - 30, fill: "var(--accent-soft)", "fill-opacity": 0.55 }, svg);
+  txt(svg, x(T.kv_shared_from) + 4, H - 26, "reuses earlier keys and values →");
+  const label = (s, yy) => txt(svg, ml - 10, yy, s, { "text-anchor": "end", class: "ink" });
+  // blocks
+  label("blocks", y + 17);
+  T.blocks.forEach(([a, b], i) => { const r = el("rect", { x: x(a) + 1, y: y + 3, width: x(b + 1) - x(a) - 2, height: 18, fill: i % 2 ? "var(--c5)" : "var(--c0)", "fill-opacity": 0.75, rx: 2 }, svg); tip(r, `block: layers ${a}–${b}`); });
+  y += rows[0][1] + 14;
+  const bars = (vals, h, color, fmt, name) => {
+    const mx = Math.max(...vals); label(name, y + h / 2 + 4);
+    vals.forEach((v, k) => { const bh = h * v / mx; const r = el("rect", { x: x(k) + 2, y: y + h - bh, width: cw - 4, height: Math.max(bh, 0.5), fill: color }, svg); tip(r, `layer ${k}: ${fmt(v)}`); });
+    el("line", { x1: ml, x2: W - mr, y1: y + h, y2: y + h, stroke: "var(--rule)" }, svg); y += h + 14;
+  };
+  bars(T.turn, rows[1][1], "var(--warm)", v => (1 - v).toFixed(2) + " centered cosine (input to output)", "coordinate turn");
+  const wl = T.write_free.map(v => Math.log10(1 + v));
+  bars(wl, rows[2][1], "var(--c5)", v => (10 ** v - 1).toFixed(1) + "× the residual (scalar removed; log scale)", "layer write (log)");
+  bars(T.layer_scalar, rows[3][1], "var(--c3)", v => v.toFixed(3), "layer scalar");
+  label("attention", y + rows[4][1] / 2 + 4);
+  T.full_attention.forEach((f, k) => {
+    const cy = y + rows[4][1] / 2;
+    if (f) { const r = 3 + 12 * T.induction_max[k]; const c = el("circle", { cx: x(k) + cw / 2, cy, r, fill: "var(--accent)", "fill-opacity": 0.85 }, svg); tip(c, `layer ${k}: full attention; strongest induction head ${T.induction_max[k].toFixed(2)}`); }
+    else { const c = el("circle", { cx: x(k) + cw / 2, cy, r: 2, fill: "var(--muted)" }, svg); tip(c, `layer ${k}: sliding attention; strongest induction head ${T.induction_max[k].toFixed(2)}`); }
+  });
+  y += rows[4][1] + 14;
+  bars(T.sink_mean, rows[5][1], "var(--c7)", v => v.toFixed(2) + " of attention on the first token", "first-token attention");
+  for (let k = 0; k < L; k += 5) txt(svg, x(k) + cw / 2, H - 6, k, { "text-anchor": "middle" });
+})();
+</script>

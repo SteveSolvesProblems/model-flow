@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: software
+title: "Model Flow: following texts through a language model's layers"
+abstract: >-
+  Follows thousands of texts through the layers of frozen language models and
+  measures where the population keeps its shape, where it reorganizes, and
+  which of those readings survive controls (an untrained model, robust scaling,
+  a second model). Includes a causally tested account of Gemma 4's layer-14
+  turn and a pre-registered prediction on Gemma 4 E4B.
+authors:
+  - given-names: Steve
+    family-names: Ball
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/SteveSolvesProblems/model-flow"
+url: "https://stevesolvesproblems.github.io/model-flow/"
+keywords:
+  - interpretability
+  - representation geometry
+  - residual stream
+  - language models
+  - Gemma 4
