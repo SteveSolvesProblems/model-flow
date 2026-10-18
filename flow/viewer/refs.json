@@ -93,5 +93,6 @@
  "laurel": "Menghani, Kumar &amp; Kumar (2025). <i>LAuReL: Learned Augmented Residual Layer.</i> ICML. Learned scalings of the residual connection. <a href=\"https://arxiv.org/abs/2411.07501\">arxiv.org</a>",
  "gemma4report": "Gemma Team (2026). <i>Gemma 4 Technical Report.</i> §2.5: \"to enable stable inference in fp16, we introduce a scalar scale at each block in order to bound the activation ranges to fit fp16.\" <a href=\"https://arxiv.org/abs/2607.02770\">arxiv.org</a>",
  "mccann": "McCann (2026). <i>Polymorphism Is Rotation: Operational Mechanistic Interpretability from a Two-Layer Transformer to Pythia-70m.</i> Procrustes fits across training seeds come close to the within-seed ceiling. <a href=\"https://arxiv.org/abs/2605.24577\">arxiv.org</a>",
- "docs": "Min &amp; Wang (2025). <i>DOCS: Quantifying Weight Similarity for Deeper Insights into Large Language Models.</i> ICLR. Weight-space clusters of layers. <a href=\"https://arxiv.org/abs/2501.16650\">arxiv.org</a>"
+ "docs": "Min &amp; Wang (2025). <i>DOCS: Quantifying Weight Similarity for Deeper Insights into Large Language Models.</i> ICLR. Weight-space clusters of layers. <a href=\"https://arxiv.org/abs/2501.16650\">arxiv.org</a>",
+ "cammarata": "Cammarata (2026). <i>Neural Networks Are Already Clean.</i> Goodfire. <a href=\"https://already-clean.goodfire.com/\">already-clean.goodfire.com</a>"
 }

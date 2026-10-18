@@ -560,6 +560,62 @@ def _():
     got = (s["A1"]["n_pos"], s["A2"]["n_halved"], round(m["knn_margin"], 2), round(m["silhouette"], 2), round(m["part_ratio"], 2))
     return got, got[:2] == (11, 2) and close(1.80, got[2], 0.01) and close(2.49, got[3], 0.01) and close(3.78, got[4], 0.01)
 
+
+# ── addendum 2026-10-18: neurons and the turn ──
+@claim("NT1", "Two blind raters find turn neurons more readable than random ones (both p < 0.05); one main job: about a third to a half of turn neurons vs 2-3 of 16 random",
+       "exploratory", "blind_labels.json", "neuron_cells.py (test D poles); raters were agent sessions",
+       "LM raters; 6 strongest tokens per pole (where neurons look cleanest); 16 units per kind")
+def _():
+    s = j("blind_labels.json")["summary"]
+    got = [(s[r]["turn_var"]["one_job"], s[r]["random"]["one_job"], round(s[r]["mannwhitney_p_turn_greater"], 3)) for r in ("r1", "r2")]
+    return got, all(p < 0.05 and 5 <= t <= 9 and 2 <= q <= 3 for t, q, p in got)
+
+
+@claim("NT2", "Half of a token's MLP write takes 1-2% of the neurons at the turn layers (E2B 13-14), ordinary for middle layers in E2B and Qwen3-1.7B",
+       "exploratory", "conc_baseline_{e2b,qwen3_17b}.json", "conc_baseline.py",
+       "80 tokens per layer; neurons added largest first (greedy, not the optimal subset)")
+def _():
+    e, q = j("conc_baseline_e2b.json")["layers"], j("conc_baseline_qwen3_17b.json")["layers"]
+    turn = [100 * e[L]["k50_frac"] for L in ("13", "14")]
+    mid = max(100 * q[str(L)]["k50_frac"] for L in range(3, 16))
+    return (turn, mid), all(1 <= t <= 2 for t in turn) and 1 <= mid <= 2.5
+
+
+@claim("NT3", "Every change to layers 13-14 (random/top 1,024 to mean, all to mean, resample, noise) keeps the turn (cos <= 0.03); neighbours kept fall to <= 0.01 under resample and noise",
+       "exploratory (S2 stated before running)", "turn_company_e2b.json", "turn_company.py",
+       "E2B only for neighbours; 2,000 tokens of 100 texts")
+def _():
+    c = j("turn_company_e2b.json")["conds"]
+    got = (max(v["turn"] for v in c.values()), c["resample"]["company_vs_clean"]["15"], c["noise"]["company_vs_clean"]["15"],
+           round(c["rand1024"]["company_vs_clean"]["15"], 2), round(c["clean"]["company_across_turn"], 2))
+    return got, got[0] <= 0.03 and got[1] <= 0.01 and got[2] <= 0.01 and got[3] >= 0.6 and close(0.31, got[4], 0.02)
+
+
+@claim("NT4", "E4B: resampling the whole MLP write at layers 22-23 keeps the turn (cos 0.009) while top-1 agreement falls to 0.19",
+       "exploratory", "neuron_cells_e4b.json", "neuron_cells.py", "one dataset; tokens of 100 texts")
+def _():
+    r = j("neuron_cells_e4b.json")["C"]["resample:all"]
+    return (round(r["turn"], 4), round(r["top1"], 2)), r["turn"] < 0.02 and close(0.19, r["top1"], 0.01)
+
+
+@claim("NT5", "Layer 12's scalar sets part of layer 13's turn: centered cosine across 13 rises monotonically 0.049 (x0.5), 0.081, 0.147 (x2), 0.227 (set to 1), 0.277 (x4)",
+       "exploratory (E stated before running)", "block_ablation_gemma4_e2b_l12.json", "block_ablation.py", "one model; 100 texts")
+def _():
+    r = j("block_ablation_gemma4_e2b_l12.json")["results"]
+    got = [round(r[k]["adj_cos"][13], 3) for k in ("scalex0.5_12", "clean", "scalex2_12", "scalar1_12", "scalex4_12")]
+    return got, got == sorted(got) and all(close(s, g, 0.002) for s, g in zip((0.049, 0.081, 0.147, 0.227, 0.277), got))
+
+
+@claim("NT6", "Qwen3-1.7B layer 2: 3 massive coordinates switch on, almost all on the first token; blocking them breaks the model (KL > 5), on the other tokens only it barely matters; without them the cosine across layer 2 is ordinary (0.77)",
+       "exploratory (Q2 stated before running; first-token rerun post hoc)", "qwen3_l2{,_from1}.json", "qwen3_l2.py",
+       "first run's mean condition put first-token values on every token (design flaw, rerun)")
+def _():
+    a, b = j("qwen3_l2.json"), j("qwen3_l2_from1.json")
+    got = (len(a["massive_dims"]), round(a["conds"]["hold"]["kl"], 1), round(b["conds"]["hold"]["kl"], 3),
+           round(a["conds"]["clean"]["adj_cos_without_massive"][2], 2), round(a["conds"]["clean"]["adj_cos"][2], 2))
+    return got, got[0] == 3 and got[1] > 5 and got[2] < 0.05 and close(0.77, got[3], 0.01)
+
+
 REPL = []
 
 

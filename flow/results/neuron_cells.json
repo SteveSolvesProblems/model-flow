@@ -1,0 +1,1513 @@
+{
+ "model": "google/gemma-4-E2B",
+ "post_hoc": [
+  "vtop*: variance-ranked ablations, added after the first run"
+ ],
+ "n_articles": 6000,
+ "max_len": 64,
+ "sanity": {
+  "cache_cos_L13": 0.9999868273735046,
+  "cache_cos_L14": 0.9999890923500061,
+  "cache_cos_L15": 0.9999936819076538
+ },
+ "B": {
+  "13": {
+   "k50_median": 124.0,
+   "k90_median": 933.0,
+   "global_top64_share_median": 0.13732695579528809,
+   "n_tokens": 5783,
+   "energy_share_top": {
+    "16": 0.19229380786418915,
+    "64": 0.26768431067466736,
+    "256": 0.403674453496933,
+    "1024": 0.6636003255844116
+   }
+  },
+  "14": {
+   "k50_median": 68.0,
+   "k90_median": 868.0,
+   "global_top64_share_median": 0.2334280014038086,
+   "n_tokens": 5783,
+   "energy_share_top": {
+    "16": 0.20279386639595032,
+    "64": 0.30512481927871704,
+    "256": 0.47849178314208984,
+    "1024": 0.728066086769104
+   }
+  }
+ },
+ "C": {
+  "clean": {
+   "turn_13_15": 0.0066311173141002655,
+   "turn_12_16": 0.004044412635266781,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08082989603281021,
+    0.042628731578588486,
+    0.2913142740726471,
+    0.5908423662185669,
+    0.711678683757782,
+    0.6978527307510376,
+    0.6212548017501831,
+    0.6595659255981445,
+    0.7384526133537292,
+    0.7219311594963074,
+    0.5536870956420898,
+    0.6779401898384094,
+    0.8320693969726562,
+    0.9066017866134644,
+    0.9204151630401611,
+    0.9193002581596375,
+    0.9359586238861084,
+    0.9553734064102173,
+    0.9511801600456238,
+    0.9268322587013245,
+    0.8835707902908325,
+    0.6478986740112305
+   ],
+   "kl": 0.0,
+   "top1": 1.0
+  },
+  "top16": {
+   "turn_13_15": 0.0032178282272070646,
+   "turn_12_16": 0.0036756996996700764,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08023295551538467,
+    0.04316791519522667,
+    0.28392624855041504,
+    0.5826298594474792,
+    0.7100646495819092,
+    0.6960539817810059,
+    0.6132484078407288,
+    0.6599822044372559,
+    0.7360440492630005,
+    0.7200449109077454,
+    0.5521069765090942,
+    0.6726845502853394,
+    0.8324395418167114,
+    0.906006932258606,
+    0.9201435446739197,
+    0.9186355471611023,
+    0.9306547045707703,
+    0.9555509090423584,
+    0.9509221911430359,
+    0.9263052940368652,
+    0.8833256959915161,
+    0.6379677653312683
+   ],
+   "kl": 0.1626097708940506,
+   "top1": 0.8577256501784803
+  },
+  "top64": {
+   "turn_13_15": 0.003906110767275095,
+   "turn_12_16": 0.004097687546163797,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08128378540277481,
+    0.045287519693374634,
+    0.274050235748291,
+    0.578585684299469,
+    0.7106672525405884,
+    0.695374608039856,
+    0.606656014919281,
+    0.6579011082649231,
+    0.7367225289344788,
+    0.7198197841644287,
+    0.5517999529838562,
+    0.6679277420043945,
+    0.835559070110321,
+    0.9067687392234802,
+    0.9206669330596924,
+    0.9189730882644653,
+    0.9262410402297974,
+    0.9552330374717712,
+    0.9507219195365906,
+    0.9253473281860352,
+    0.8797741532325745,
+    0.6479068994522095
+   ],
+   "kl": 0.24163256585597992,
+   "top1": 0.8172701002889682
+  },
+  "top256": {
+   "turn_13_15": 0.0031167706474661827,
+   "turn_12_16": 0.005513982847332954,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08332297950983047,
+    0.05460840463638306,
+    0.25446033477783203,
+    0.5523689985275269,
+    0.7009978294372559,
+    0.6935729384422302,
+    0.6067073941230774,
+    0.6534768342971802,
+    0.7318768501281738,
+    0.7162360548973083,
+    0.5506201386451721,
+    0.6675692200660706,
+    0.8331741690635681,
+    0.9056546688079834,
+    0.9202298521995544,
+    0.9189609289169312,
+    0.9191523790359497,
+    0.9585407972335815,
+    0.9538304209709167,
+    0.9285987019538879,
+    0.8807882070541382,
+    0.6401268243789673
+   ],
+   "kl": 0.3384159803390503,
+   "top1": 0.7837837837837838
+  },
+  "top1024": {
+   "turn_13_15": 0.005416583269834518,
+   "turn_12_16": 0.005569917615503073,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.1073761135339737,
+    0.06561563163995743,
+    0.2050061672925949,
+    0.49984848499298096,
+    0.6834927201271057,
+    0.6825010180473328,
+    0.609277606010437,
+    0.641703724861145,
+    0.7175525426864624,
+    0.7028564810752869,
+    0.5413352251052856,
+    0.6679574251174927,
+    0.8226534128189087,
+    0.9009268879890442,
+    0.9182075262069702,
+    0.918109655380249,
+    0.9269481301307678,
+    0.9591937065124512,
+    0.955285906791687,
+    0.926874041557312,
+    0.8795871734619141,
+    0.6502364277839661
+   ],
+   "kl": 0.46903377771377563,
+   "top1": 0.7281998980112188
+  },
+  "rand16": {
+   "turn_13_15": 0.006629196926951408,
+   "turn_12_16": 0.0039954474195837975,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.0807090476155281,
+    0.04258318990468979,
+    0.2908197045326233,
+    0.5905073285102844,
+    0.7115353345870972,
+    0.6977163553237915,
+    0.6211428046226501,
+    0.6596068143844604,
+    0.7384217977523804,
+    0.721868097782135,
+    0.5536292791366577,
+    0.6778691411018372,
+    0.832023561000824,
+    0.9065833687782288,
+    0.9203824996948242,
+    0.9192928075790405,
+    0.9359309077262878,
+    0.955371081829071,
+    0.9511650204658508,
+    0.9268181324005127,
+    0.8835793733596802,
+    0.6477808356285095
+   ],
+   "kl": 0.0011073979549109936,
+   "top1": 0.9833418323984362
+  },
+  "rand64": {
+   "turn_13_15": 0.006473850458860397,
+   "turn_12_16": 0.004145891405642033,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08115817606449127,
+    0.04299556091427803,
+    0.29080671072006226,
+    0.5905073285102844,
+    0.7116313576698303,
+    0.6977414488792419,
+    0.6209391951560974,
+    0.6594139337539673,
+    0.7382856011390686,
+    0.7218562960624695,
+    0.5535719990730286,
+    0.6778416633605957,
+    0.8318778276443481,
+    0.9065483808517456,
+    0.9203735589981079,
+    0.919259786605835,
+    0.935897171497345,
+    0.9553097486495972,
+    0.9511629343032837,
+    0.9267778992652893,
+    0.8835456371307373,
+    0.6482502818107605
+   ],
+   "kl": 0.0018138425657525659,
+   "top1": 0.9777324494305626
+  },
+  "rand256": {
+   "turn_13_15": 0.00695459172129631,
+   "turn_12_16": 0.00455680163577199,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08058590441942215,
+    0.04280418902635574,
+    0.28701111674308777,
+    0.5871036648750305,
+    0.7106447219848633,
+    0.6973388195037842,
+    0.6212962865829468,
+    0.6598132252693176,
+    0.7381895184516907,
+    0.7217240929603577,
+    0.5539533495903015,
+    0.6779057383537292,
+    0.831733763217926,
+    0.9064064621925354,
+    0.9203124046325684,
+    0.9192776083946228,
+    0.9359135627746582,
+    0.9554166793823242,
+    0.951289176940918,
+    0.9268109202384949,
+    0.8837557435035706,
+    0.6444869637489319
+   ],
+   "kl": 0.006099032238125801,
+   "top1": 0.9609043005269421
+  },
+  "rand1024": {
+   "turn_13_15": 0.007788284216076136,
+   "turn_12_16": 0.0046465834602713585,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08367467671632767,
+    0.04801638051867485,
+    0.2672467529773712,
+    0.5764720439910889,
+    0.7058427929878235,
+    0.6950136423110962,
+    0.6216508150100708,
+    0.6572519540786743,
+    0.7357609868049622,
+    0.7201122641563416,
+    0.5534180998802185,
+    0.6785452961921692,
+    0.8296906352043152,
+    0.9055323600769043,
+    0.9198777079582214,
+    0.9190227389335632,
+    0.9366714358329773,
+    0.9552331566810608,
+    0.951199471950531,
+    0.9267350435256958,
+    0.8834976553916931,
+    0.6496104598045349
+   ],
+   "kl": 0.030670467764139175,
+   "top1": 0.9265680775114737
+  },
+  "vtop16": {
+   "turn_13_15": 0.003153387224301696,
+   "turn_12_16": 0.003841729136183858,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.07975509017705917,
+    0.04251738637685776,
+    0.2822074592113495,
+    0.5841670632362366,
+    0.7117264270782471,
+    0.6961758136749268,
+    0.6069405674934387,
+    0.6600453853607178,
+    0.7384606003761292,
+    0.7213174104690552,
+    0.5527139902114868,
+    0.6667208075523376,
+    0.8367194533348083,
+    0.9070426225662231,
+    0.9207662343978882,
+    0.9191324710845947,
+    0.9245152473449707,
+    0.9558207988739014,
+    0.9510741233825684,
+    0.9255721569061279,
+    0.8802089691162109,
+    0.636681318283081
+   ],
+   "kl": 0.18606619536876678,
+   "top1": 0.8393676695563488
+  },
+  "vtop64": {
+   "turn_13_15": 0.0033356237690895796,
+   "turn_12_16": 0.004080277401953936,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08020037412643433,
+    0.04505534470081329,
+    0.27179643511772156,
+    0.5778980851173401,
+    0.7101098895072937,
+    0.6951736807823181,
+    0.6069668531417847,
+    0.6575520038604736,
+    0.7364227175712585,
+    0.7192023992538452,
+    0.5517045855522156,
+    0.6685489416122437,
+    0.8353038430213928,
+    0.9066921472549438,
+    0.9206653833389282,
+    0.9190759062767029,
+    0.9269413948059082,
+    0.9556196331977844,
+    0.9510718584060669,
+    0.9257871508598328,
+    0.8804273009300232,
+    0.6461445689201355
+   ],
+   "kl": 0.26693102717399597,
+   "top1": 0.8230494645588985
+  },
+  "vtop256": {
+   "turn_13_15": 0.003930842969566584,
+   "turn_12_16": 0.0053869085386395454,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.08312998712062836,
+    0.053712837398052216,
+    0.25131410360336304,
+    0.5576959252357483,
+    0.7040805220603943,
+    0.6943495869636536,
+    0.6066465377807617,
+    0.6524914503097534,
+    0.7315824627876282,
+    0.7152345776557922,
+    0.5496609210968018,
+    0.6678022742271423,
+    0.8334750533103943,
+    0.9056974053382874,
+    0.9202399849891663,
+    0.9188165068626404,
+    0.9183498620986938,
+    0.9580608606338501,
+    0.9530825018882751,
+    0.9280599355697632,
+    0.8807536363601685,
+    0.6410140991210938
+   ],
+   "kl": 0.32887008786201477,
+   "top1": 0.7844637089920109
+  },
+  "vtop1024": {
+   "turn_13_15": 0.005972542800009251,
+   "turn_12_16": 0.005235601682215929,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.10625683516263962,
+    0.06738177686929703,
+    0.20601169764995575,
+    0.4950174391269684,
+    0.6830769181251526,
+    0.6833060383796692,
+    0.6094106435775757,
+    0.64109206199646,
+    0.7179065346717834,
+    0.7031365036964417,
+    0.5416591763496399,
+    0.6676015853881836,
+    0.8225529789924622,
+    0.9011303782463074,
+    0.9186193943023682,
+    0.9185085296630859,
+    0.925742506980896,
+    0.9593212604522705,
+    0.9552683234214783,
+    0.9272260665893555,
+    0.8799195289611816,
+    0.6474161148071289
+   ],
+   "kl": 0.4858674108982086,
+   "top1": 0.7237803841577426
+  },
+  "all": {
+   "turn_13_15": 0.028879832476377487,
+   "turn_12_16": 0.0034146630205214024,
+   "adj_cos": [
+    0.06549888849258423,
+    0.3599351942539215,
+    0.40827178955078125,
+    0.25385433435440063,
+    0.6272594332695007,
+    0.6457008123397827,
+    0.6644957065582275,
+    0.687957763671875,
+    0.6296617388725281,
+    0.5023548603057861,
+    0.5253044366836548,
+    0.41365334391593933,
+    0.41109123826026917,
+    0.3092503547668457,
+    0.05033162981271744,
+    0.05735796317458153,
+    0.44289931654930115,
+    0.655958354473114,
+    0.6674110293388367,
+    0.6402661204338074,
+    0.621658444404602,
+    0.6850982904434204,
+    0.6821482181549072,
+    0.5269034504890442,
+    0.6723066568374634,
+    0.8068373203277588,
+    0.8948101997375488,
+    0.9166942834854126,
+    0.9179245829582214,
+    0.9396367073059082,
+    0.9594765901565552,
+    0.9559719562530518,
+    0.9254031181335449,
+    0.8846487998962402,
+    0.6765155792236328
+   ],
+   "kl": 1.0183912515640259,
+   "top1": 0.5996940336562978
+  }
+ },
+ "D": {
+  "13": [
+   {
+    "neuron": 5156,
+    "energy_share": 0.037648674100637436,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.52,
+     "texts": [
+      "The Journal of Physical Chemistry Letters is a peer-reviewed scientific journal published ",
+      "The Chung Wah Chinese Broadcasting Company (CWCB or \u4e2d\u83ef\u96fb\u53f0) (simplified Chinese: \u4e2d\u534e\u5546\u4e1a\u5e7f\u64ad\u7535\u53f0; t",
+      "The Socialist Union of Popular Forces, USFP, (Arabic: \u0627\u0644\u0627\u062a\u062d\u0627\u062f \u0627\u0644\u0627\u0634\u062a\u0631\u0627\u0643\u064a \u0644\u0644\u0642\u0648\u0627\u062a \u0627\u0644\u0634\u0639\u0628\u064a\u0629 Al-",
+      "The College of Foreign Languages and Literature (simplified Chinese: \u5916\u56fd\u8bed\u6587\u5b66\u9662; traditional C",
+      "The Devil Within (Japanese: \u5929\u4f7f\u306e\u4e2d\u306b\u60aa\u9b54\u30a2\u30ea Hepburn: Tenshi no Naka ni Akuma Ari) is a Japanese "
+     ]
+    },
+    "neg": {
+     "topic": "Place",
+     "purity": 0.34,
+     "texts": [
+      "Sam Egan is a journalist, and a screenwriter and producer for television.",
+      "The Buckskin Range is a mountain range in Douglas County, Nevada.",
+      "The Fish Creek Mountains are a mountain range in Lander County, Nevada.",
+      "Shed Cave is a cave in the British Overseas Territory of Gibraltar.",
+      "Eresus sedilloti is a spider species found in Portugal and Spain."
+     ]
+    },
+    "frac_negative": 1.0
+   },
+   {
+    "neuron": 3246,
+    "energy_share": 0.0334845669567585,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.48,
+     "texts": [
+      "The Kirengellids are a group of problematic Cambrian fossil shells of marine organisms. Th",
+      "(This article is about the historical St Dyfan. For the possibly legendary figure often mi",
+      "Keizan J\u014dkin Chinese: \u7469\u5c71\u7d39\u747e, 1268\u20131325), also known as Taiso J\u014dsai Daishi, is considered to",
+      "(\\\"Kyly\\\" redirects here. For more about the given name, see Kylie (name).) Kyly Clarke (n",
+      "(For the former football player, see Charlie Nicholas.) \\\"Charles Nicholas\\\" is the pseudo"
+     ]
+    },
+    "neg": {
+     "topic": "Species",
+     "purity": 0.6,
+     "texts": [
+      "Nerita senegalensis is a species of sea snail, a marine gastropod mollusk in the family Ne",
+      "Imperial Royale Hotel is a hotel in Kampala, Uganda's capital city.",
+      "Commatica pterygota is a moth in the Gelechiidae family. It was described by Meyrick in 19",
+      "Stenoma trirecta is a moth in the Depressariidae family. It was described by Meyrick in 19",
+      "Phoenix Gala\u021bi is a professional basketball team from Galati, Romania. The team plays in t"
+     ]
+    },
+    "frac_negative": 0.0
+   },
+   {
+    "neuron": 2502,
+    "energy_share": 0.025539016351103783,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.9,
+     "texts": [
+      "The following is a discography of Japanese noise group Hij\u014dkaidan (\u975e\u5e38\u968e\u6bb5).",
+      "Pavel Kondr (born 25 March 1942) is a former Czech cyclist. He competed in the team pursui",
+      "Miguel P\u00e9rez (born 22 January 1934) is a former Mexican cyclist. He competed in the team p",
+      "The 2015 United Kingdom general election in Northern Ireland was held on 7 May 2015 and al",
+      "The Members of the Iraqi Kurdistan Parliament for Fourth Term were elected on 21 September"
+     ]
+    },
+    "neg": {
+     "topic": "Place",
+     "purity": 0.54,
+     "texts": [
+      "Kostrzyna [k\u0254s\u02c8t\u0282\u0268na] (German: Trattlau) is a village in the administrative district of Gm",
+      "Marshfield is a town in Fond du Lac County, Wisconsin, United States. The population was 1",
+      "Korvpalliklubi HITO is an Estonian basketball team, based in J\u00f5hvi. The team is currently ",
+      "Russograptis albulata is a species of moth of the Tortricidae family. It is found in Ethio",
+      "Machn\u00f3wek [max\u02c8nuv\u025bk] is a village in the administrative district of Gmina Ulh\u00f3wek, within"
+     ]
+    },
+    "frac_negative": 0.4171666666666667
+   },
+   {
+    "neuron": 4289,
+    "energy_share": 0.021396396681666374,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.38,
+     "texts": [
+      "Sam Egan is a journalist, and a screenwriter and producer for television.",
+      "Shed Cave is a cave in the British Overseas Territory of Gibraltar.",
+      "The Buckskin Range is a mountain range in Douglas County, Nevada.",
+      "STS-83 was a mission of the United States Space Shuttle Columbia.",
+      "The Fish Creek Mountains are a mountain range in Lander County, Nevada."
+     ]
+    },
+    "neg": {
+     "topic": "Place",
+     "purity": 0.34,
+     "texts": [
+      "The Our Mother of Perpetual Help Cathedral (Russian: \u0421\u043e\u0431\u043e\u0440 \u0411\u043e\u0436\u0438\u0435\u0439 \u041c\u0430\u0442\u0435\u0440\u0438 \u041d\u0435\u0443\u0441\u0442\u0430\u043d\u043d\u043e\u0439 \u041f\u043e\u043c\u043e\u0449\u0438",
+      "Mahasantisukha Buddha Sasana Center (Burmese: \u1019\u101f\u102c\u101e\u1014\u1039\u1010\u102d\u101e\u102f\u1001 \u1017\u102f\u1012\u1039\u1013\u101e\u102c\u101e\u1014\u102c\u1015\u103c\u102f\u1000\u103b\u1031\u102c\u1004\u103a\u1038\u1010\u1031\u102c\u103a\u1000\u103c\u102e\u1038) is",
+      "Acanthogonatus mulchen is a mygalomorph spider of Chile, named after its type locality: Al",
+      "Sultana rehendhi dhaain kabaidhi kilage was the Sultana (queen) of the Maldives from 1383 ",
+      "Aspidotis carlotta-halliae is a species of perennial fern known by the common names tufted"
+     ]
+    },
+    "frac_negative": 0.0
+   },
+   {
+    "neuron": 2186,
+    "energy_share": 0.01353380735963583,
+    "pos": {
+     "topic": "Place",
+     "purity": 0.36,
+     "texts": [
+      "Imperial Royale Hotel is a hotel in Kampala, Uganda's capital city.",
+      "The Buckskin Range is a mountain range in Douglas County, Nevada.",
+      "Sam Egan is a journalist, and a screenwriter and producer for television.",
+      "The Fish Creek Mountains are a mountain range in Lander County, Nevada.",
+      "Shed Cave is a cave in the British Overseas Territory of Gibraltar."
+     ]
+    },
+    "neg": {
+     "topic": "Agent",
+     "purity": 0.38,
+     "texts": [
+      "Victoria Kate Russell (born 1962) is the winner of the National Portrait Gallery's 2000 BP",
+      "Nicothoe is a genus of copepods, containing the following species: \\n* Nicothoe analata Ka",
+      "Kimberly \\\"Kim\\\" Payne Greenwood is the franchise holder and executive director of the Mis",
+      "The Balanomorpha are a suborder of barnacles, containing familiar acorn barnacles of the s",
+      "Saint Sophia Cathedral is a Greek Orthodox church on Moscow Road in the Bayswater area of "
+     ]
+    },
+    "frac_negative": 0.0
+   },
+   {
+    "neuron": 4823,
+    "energy_share": 0.012273287400603294,
+    "pos": {
+     "topic": "Event",
+     "purity": 0.26,
+     "texts": [
+      "The 1921 Columbus Panhandles season was their second in the newly formed American Professi",
+      "The genus Lonomia is a moderate-sized group of fairly cryptic saturniid moths from South A",
+      "'Winesap' is an old apple cultivar of unknown origin. The apples are sweet with a tangy fi",
+      "Psylla pyri is one of the most important pear phytophagics; because of the numerous chemic",
+      "The Blue Ridge League (BRL) was the name of two minor league baseball organizations that o"
+     ]
+    },
+    "neg": {
+     "topic": "Agent",
+     "purity": 1.0,
+     "texts": [
+      "(For the NASCAR driver, see Clifford Allison.) Henry Clifford \\\"Cliff\\\" Allison (8 Februar",
+      "For the FC Barcelona goalkeeper, see Jos\u00e9 Manuel Pinto; For the Portuguese racewalker see ",
+      "Not to be confused with teammate Mark Dwyer. Mark \\\"Mick\\\" Dwyer (born 16 November 1968) i",
+      "Rex Noel Hartwig (born 2 September 1929) is an Australian former tennis player.",
+      "Patrick Calvin Lynn (born April 18, 1965) is an American professional bodybuilder."
+     ]
+    },
+    "frac_negative": 0.0
+   },
+   {
+    "neuron": 5367,
+    "energy_share": 0.008370649069547653,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.64,
+     "texts": [
+      "The 2015 United Kingdom general election in Northern Ireland was held on 7 May 2015 and al",
+      "The discography of Scottish rock band The View consists of 5 studio albums, 3 EPs, 1 compi",
+      "The Leduc Community Hospital located 20 kilometres south of Edmonton. There are a total of",
+      "Wilfred Rhodes (29 October 1877 \u2013 8 July 1973) was an English professional cricketer who p",
+      "Robert Lord (May 1, 1900 \u2013 April 5, 1976) was an American screenwriter and film producer. "
+     ]
+    },
+    "neg": {
+     "topic": "Species",
+     "purity": 0.52,
+     "texts": [
+      "The Seychelles wolf snake, Lycognathophis seychellensis, is a species of snake in the Colu",
+      "The Vaga (Russian: \u0412\u0430\u0433\u0430) is a river in Totemsky, Syamzhensky, and Verkhovazhsky Districts ",
+      "The Bouchot is a river in the French region of Lorraine which flows in the Vosges departme",
+      "Trachelipus rucneri is a species of woodlouse in the genus Trachelipus belonging to the fa",
+      "Pachyphloeus is a genus of Ascomycete fungi (Pezizales, Pezizaceae) that forms hypogeous f"
+     ]
+    },
+    "frac_negative": 0.269
+   },
+   {
+    "neuron": 4431,
+    "energy_share": 0.005879384931176901,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.7,
+     "texts": [
+      "Eresus sedilloti is a spider species found in Portugal and Spain.",
+      "Sam Egan is a journalist, and a screenwriter and producer for television.",
+      "Roger Ruud (born 1 October 1958) is a Norwegian former ski jumper.",
+      "Imperial Royale Hotel is a hotel in Kampala, Uganda's capital city.",
+      "Patrick Calvin Lynn (born April 18, 1965) is an American professional bodybuilder."
+     ]
+    },
+    "neg": {
+     "topic": "Place",
+     "purity": 0.62,
+     "texts": [
+      "The Sweet Grass Hills (Blackfoot: k\u00e1toyissiksi, Cheyenne: v\u00e9'ho'\u00f4hts\u00e9v\u00f3se, Salish: \u010d\u010da\u026balq",
+      "The Democratic List for Israeli Arabs (Arabic: \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u062f\u064a\u0645\u0648\u0642\u0631\u0627\u0637\u064a\u0629 \u0644\u0639\u0631\u0628 \u0625\u0633\u0631\u0627\u0626\u064a\u0644\u200e\u200e al-Q\u0101'i",
+      "The Six-Day War (Hebrew: \u05de\u05dc\u05d7\u05de\u05ea \u05e9\u05e9\u05ea \u05d4\u05d9\u05de\u05d9\u05dd, Milhemet Sheshet Ha Yamim; Arabic: \u0627\u0644\u0646\u0643\u0633\u0629, an-Na",
+      "Greater Caucasus (Azerbaijani: B\u00f6y\u00fck Qafqaz, \u0411\u04e9\u0458\u04af\u043a \u0413\u0430\u0444\u0433\u0430\u0437, \u0628\u064a\u0648\u06a9 \u0642\u0627\u0641\u0642\u0627\u0632; Georgian: \u10d3\u10d8\u10d3\u10d8 \u10d9\u10d0\u10d5",
+      "The Dybbuk, or Between Two Worlds (Russian: \u041c\u0435\u0436 \u0434\u0432\u0443\u0445 \u043c\u0438\u0440\u043e\u0432 [\u0414\u0438\u0431\u0443\u043a], trans. Mezh dvukh Miro"
+     ]
+    },
+    "frac_negative": 0.9998333333333334
+   }
+  ],
+  "14": [
+   {
+    "neuron": 4505,
+    "energy_share": 0.05644650012254715,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.44,
+     "texts": [
+      "Colin Fournier is co-architect with Peter Cook of the Kunsthaus Graz in Austria. He is als",
+      "James A. Henderson was Chairman of the Board from 1995 and Chief Executive Officer from 19",
+      "at Kingdome, Seattle, Washington \\n*  Game time: 4:00 PM EDT \\n*  Game weather: Dome \\n*  ",
+      "The SIUC [Southern Illinois University Carbondale] College of Liberal Arts', aka COLA, off",
+      "Ria Money Transfer, a subsidiary of Euronet Worldwide, Inc., specializes in money remittan"
+     ]
+    },
+    "neg": {
+     "topic": "Agent",
+     "purity": 0.72,
+     "texts": [
+      "David Charles Harris (born January 21, 1984) is an American football linebacker for the Ne",
+      "The discography of American country music singer Toby Keith consists of seventeen studio a",
+      "Aaron Davey (born 10 June 1983) is a professional Australian rules football player of Indi",
+      "Michael \\\"Mick\\\" Carter is a fictional character from the BBC soap opera EastEnders, playe",
+      "(For the American sprinter, see Aaron Payne (athlete).) Aaron Payne (born 18 November 1982"
+     ]
+    },
+    "frac_negative": 0.995
+   },
+   {
+    "neuron": 2804,
+    "energy_share": 0.054259978234767914,
+    "pos": {
+     "topic": "Place",
+     "purity": 0.56,
+     "texts": [
+      "Beacon Reservoir supplies water to the city of the same name in Dutchess County, New York,",
+      "Salle Gaston M\u00e9decin, or Salle Omnisports, is an indoor sports arena that is located in Fo",
+      "Ausangate  or Auzangate (in hispanicized spellings) is a mountain of the Willkanuta mounta",
+      "Blessed Antonio Rosmini-Serbati (Italian pronunciation: [an\u02c8t\u0254njo roz\u02c8mini ser\u02c8bati]; Rove",
+      "(\\\"D-Will\\\" redirects here. D-Will may also refer to Derrick Williams.) Deron Michael Will"
+     ]
+    },
+    "neg": {
+     "topic": "Agent",
+     "purity": 0.26,
+     "texts": [
+      "The 1910 Penn Quakers football team represented the University of Pennsylvania in the 1910",
+      "Dudley Ward's Cave is a cave in the British Overseas Territory of Gibraltar.",
+      "The following is a discography of Japanese noise group Hij\u014dkaidan (\u975e\u5e38\u968e\u6bb5).",
+      "The 1896 Greensburg Athletic Association season was their seventh season in existence. The",
+      "The 1930 Chicago Bears season was the team's 11th regular season completed as a member the"
+     ]
+    },
+    "frac_negative": 1.0
+   },
+   {
+    "neuron": 260,
+    "energy_share": 0.0241367407143116,
+    "pos": {
+     "topic": "Place",
+     "purity": 0.94,
+     "texts": [
+      "Louisiana Highway 17 (LA 17) is a state highway located in northeastern Louisiana. It runs",
+      "Zandspruit Bush & Aero Estate is a 1 000 ha secure living wildlife estate situated 2 kilom",
+      "Indian River in the Lower Peninsula of Michigan is a 3.9-mile-long (6.3 km) waterway in Ch",
+      "Wolf Rock Lighthouse is on the Wolf Rock, Cornwall, a single rock located 18 nautical mile",
+      "Wyevale (Boker Field) Airport, (TC LID: CNL8), is located 2 nautical miles (3.7 km; 2.3 mi"
+     ]
+    },
+    "neg": {
+     "topic": "Agent",
+     "purity": 0.98,
+     "texts": [
+      "Patricio Escobar (March 17, 1843 \u2013 April 19, 1912) was the President of Paraguay between N",
+      "Edwin Yates Webb (May 23, 1872 \u2013 February 7, 1955) was a Democratic U.S. Congressman from ",
+      "William Vincent (2 November 1739 \u2013 21 December 1815) was Dean of Westminster from 1803 to ",
+      "John Walter Heselton (March 17, 1900 \u2013 August 19, 1962) was a Republican member of the Uni",
+      "Charles Memorial Hamilton (November 1, 1840 \u2013 October 22, 1875) was a US Representative fr"
+     ]
+    },
+    "frac_negative": 0.6675
+   },
+   {
+    "neuron": 598,
+    "energy_share": 0.010951695032417774,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.64,
+     "texts": [
+      "The Faculty of Civil Engineering (Croatian: Gra\u0111evinski fakultet) is a faculty of the Univ",
+      "Palazzo baronale (Italian for Baronial Palace) is a fortified palace in Archi, Province of",
+      "Gandhi Market (Tamil: \u0b95\u0bbe\u0ba8\u0bcd\u0ba4\u0bbf \u0bae\u0bbe\u0bb0\u0bcd\u0b95\u0bcd\u0b95\u0bc6\u0b9f\u0bcd) officially called as Mahatma Gandhi Market, is a ",
+      "Kaneyama Dam (\u517c\u5c71\u30c0\u30e0 Kaneyama damu) is a dam near Kani, in the Gifu Prefecture of Japan.",
+      "Hashiru Shimono (\u4e0b\u8fb2\u8d70 Shimono Hashiru, born 21 March 1997) is a Japanese male badminton pla"
+     ]
+    },
+    "neg": {
+     "topic": "Agent",
+     "purity": 0.32,
+     "texts": [
+      "1/16 finals 1/8 finals First matches Second matches 1/4 finals First matches Second matche",
+      "Substantial political violence existed in Germany from the fall of the House of Hohenzolle",
+      "The teams played each other according to a round-robin format with Vanuatu winning the tou",
+      "Cell and Tissue Research presents regular articles and reviews in the areas of molecular, ",
+      "Striking southern Italy on September 8, the 1905 Calabria earthquake had a moment magnitud"
+     ]
+    },
+    "frac_negative": 0.0013333333333333333
+   },
+   {
+    "neuron": 3600,
+    "energy_share": 0.007624601945281029,
+    "pos": {
+     "topic": "Event",
+     "purity": 0.62,
+     "texts": [
+      "This is a list of Mexican football transfers in the Mexican Primera Division during the wi",
+      "At the 1928 Summer Olympics in Amsterdam, 27 athletics events were contested. The competit",
+      "Local bus routes in Sydney, Australia, are set by Transport for New South Wales. The netwo",
+      "The Elections for the Members of the National Assembly were held on September 16, 1935, pu",
+      "General elections were held in Dominica on 8 December 2014 to elect the 21 members of the "
+     ]
+    },
+    "neg": {
+     "topic": "Agent",
+     "purity": 1.0,
+     "texts": [
+      "Valery Salov (born May 26, 1964 in Wroc\u0142aw, Poland) is a Russian chess grandmaster who was",
+      "Gustave Diamond (born January 29, 1928) is a Senior United States District Judge for the U",
+      "John Light Napier (born May 16, 1947) is a politician, lawyer, former member of the United",
+      "John Edward Sparks is a United States Circuit Judge of the United States Court of Appeals ",
+      "Wylan Cyprien (born 28 January 1995) is a French footballer who currently plays as an offe"
+     ]
+    },
+    "frac_negative": 0.9893333333333333
+   },
+   {
+    "neuron": 206,
+    "energy_share": 0.006812290288507938,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.74,
+     "texts": [
+      "Dieter Thoma (born 19 October 1969) is a West German/German former ski jumper.",
+      "Andreas M\u00fcller (19 February 1811 \u2013 29 March 1890) was a German historical painter.",
+      "Shani O. Hilton (born 1986) is executive editor for news at Buzzfeed.",
+      "The following is a discography of Japanese noise group Hij\u014dkaidan (\u975e\u5e38\u968e\u6bb5).",
+      "Take You to the Sky is the fourth album by the progressive bluegrass band Northern Lights."
+     ]
+    },
+    "neg": {
+     "topic": "Place",
+     "purity": 0.5,
+     "texts": [
+      "Sipalay Airport (Filipino: Paliparan ng Sipalay, Hiligaynon: Hulugpaan sang Sipalay), also",
+      "Abilene Reporter-News is a daily newspaper based in Abilene, Texas, US. The newspaper star",
+      "Tampa International Airport (IATA: TPA, ICAO: KTPA, FAA LID: TPA) is a public airport six ",
+      "Point Pedro Lighthouse is a lighthouse in Point Pedro in northern Sri Lanka. Built in 1916",
+      "Xlibris is a self-publishing and on-demand printing services provider, founded in 1997 and"
+     ]
+    },
+    "frac_negative": 0.0
+   },
+   {
+    "neuron": 3046,
+    "energy_share": 0.006176901515573263,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.9,
+     "texts": [
+      "Prince Akram Shammaa Al Zengi (Mohammad Akram Bin Mostafa Bin Mohammad Shammaa Al Zengi II",
+      "Ambrosius (in this world Vasiliy Gudko, in Russian \u0412\u0430\u0441\u0438\u043b\u0438\u0439 \u0413\u0443\u0434\u043a\u043e) (December 28, 1867 \u2013 Aug",
+      "Pope Valentine (in Latin: Valentinus; 800 \u2013 10 October 827) was Pope for two months in 827",
+      "Ren\u00e9-Jean-Marie-Joseph Gu\u00e9non (November 15, 1886 \u2013 January 7, 1951), also known as \u02bfAbd al",
+      "Martin Emond (1969 in New Zealand \u2013 March 5, 2004 in Los Angeles, California, United State"
+     ]
+    },
+    "neg": {
+     "topic": "Species",
+     "purity": 0.44,
+     "texts": [
+      "Imperial Royale Hotel is a hotel in Kampala, Uganda's capital city.",
+      "Lankan Cricket Club is a former first-class cricket team in Sri Lanka.",
+      "Leikung is a spider genus of the Salticidae family (jumping spiders).",
+      "Sigytes is a spider genus of the Salticidae family (jumping spiders).",
+      "WXNY-LD is a low-power television station in New York, New York, broadcasting locally on c"
+     ]
+    },
+    "frac_negative": 0.788
+   },
+   {
+    "neuron": 404,
+    "energy_share": 0.005384295713156462,
+    "pos": {
+     "topic": "Agent",
+     "purity": 0.78,
+     "texts": [
+      "Monika Zguro (born c. 1971) won the title of Miss Albania 1993. and Miss Europe 1995, wher",
+      "Leisure International Airways was a British charter airline which was established in 1987 ",
+      "The Moroccan Golf Classic was a golf tournament on the Challenge Tour. It ran annually fro",
+      "Oddset Hockey Games (OHG), formerly named LG Hockey Games between 2006\u20132011 and Sweden Hoc",
+      "Ilir Rexhep Meta (born March 24, 1969) is an Albanian politician, Prime Minister from 1999"
+     ]
+    },
+    "neg": {
+     "topic": "Agent",
+     "purity": 0.76,
+     "texts": [
+      "O Shopping (Korean: \uc624\uc1fc\ud551) is a TV home shopping channel in the Philippines owned and operat",
+      "Yoopa (stylized YOOPA) is a Canadian French language Category B specialty channel owned by",
+      "John Alcock (c. 1430 \u2013 1 October 1500) was an English churchman.",
+      "Andrew Pickens Butler (November 18, 1796 \u2013 May 25, 1857) was a United States Senator from ",
+      "Freehold Raceway is a half-mile racetrack in Freehold Borough, New Jersey, and is the olde"
+     ]
+    },
+    "frac_negative": 0.2941666666666667
+   }
+  ]
+ },
+ "A": {
+  "13": {
+   "topics": {
+    "neurons_per_group": [
+     0.8936826043733924,
+     0.9948472963951935,
+     0.9433902750864628,
+     0.9161002327565795,
+     0.9366265397950922,
+     0.9471526084836666,
+     0.9679315724952635,
+     0.9959242790385359,
+     0.8983067617465611
+    ],
+    "rotations": [
+     0.9204156634723566,
+     0.916557083460721,
+     0.9140060283198103,
+     0.9151029020353272,
+     0.9182544681488495
+    ],
+    "neurons": 0.9437735744634165
+   },
+   "cells8_out": {
+    "neurons_per_group": [
+     0.9583999554461188,
+     0.9510745658669228,
+     0.9083802099133076,
+     0.8414248809573681,
+     0.9540822979746546,
+     0.9083361777733134,
+     0.92900305998357,
+     0.9517703179899284
+    ],
+    "rotations": [
+     0.8868263190558037,
+     0.8856053254987315,
+     0.880879099495594,
+     0.8865379447105055,
+     0.8874154484481867
+    ],
+    "neurons": 0.9253089332381479
+   },
+   "cells64_out": {
+    "neurons_per_group": [
+     0.9275099391437878,
+     0.9984543798874832,
+     0.9594585449168902,
+     0.9613553633168076,
+     0.9091692216763326,
+     0.948332827887823,
+     0.9994988306047444,
+     0.9049174427196339,
+     0.9038738363694727,
+     0.9551992741883222,
+     0.9673655631040092,
+     0.9613906467047384,
+     0.9188165549407379,
+     0.9696972782120539,
+     0.9580168067226891,
+     0.9605728943000731,
+     0.9447318381277425,
+     0.967871358401084,
+     0.9032859651002728,
+     0.9390862575488519,
+     0.9304982139499905,
+     0.9946970280694916,
+     0.9635945325815363,
+     0.9244124218211645,
+     0.9781313131313132,
+     0.9915769402101283,
+     0.9953838428060056,
+     0.9399810741086772,
+     0.9911038068980396,
+     0.8884920325654512,
+     0.9884648103257483,
+     0.9839001145136862,
+     0.9752926165295985,
+     0.8709352673316519,
+     0.8996518437739812,
+     0.9786914132668287,
+     0.9956081498614029,
+     0.9448969037821512,
+     0.9131557401059387,
+     0.9550146606421842,
+     0.9989968232737001,
+     0.9613369893949895,
+     0.935065080574425,
+     0.905846207755314,
+     0.919631093544137,
+     0.8849870196040373,
+     0.9433031921061286,
+     0.9796846720776192,
+     0.9441427113288466,
+     0.9375355378655958,
+     0.8972381485497072,
+     0.9789265395285992,
+     0.9399903379821462,
+     0.9800605520264497,
+     0.9167902470626343,
+     0.9691314488291818,
+     0.9912470372352626,
+     0.9972862391449566,
+     0.9560347729198343,
+     0.9063773777173914,
+     0.9748997529560965,
+     0.9013887115681473,
+     0.9805657769745438,
+     0.8784308060196282
+    ],
+    "rotations": [
+     0.9305771992456031,
+     0.9346544348588229,
+     0.9326396954570897,
+     0.9323974416739276,
+     0.9316713143287705
+    ],
+    "neurons": 0.9490778847841859
+   },
+   "cells8_in": {
+    "neurons_per_group": [
+     0.9047646151187351,
+     0.9162645084384214,
+     0.9687256638160587,
+     0.9626945547805065,
+     0.7657659311243434,
+     0.9789394954881449,
+     0.9821463627160778,
+     0.9650841076139676
+    ],
+    "rotations": [
+     0.894150072996216,
+     0.8922116137618488,
+     0.8885136203544926,
+     0.8871775721697429,
+     0.89363944601547
+    ],
+    "neurons": 0.9305481548870319
+   },
+   "cells64_in": {
+    "neurons_per_group": [
+     0.9207752986606476,
+     0.9981522494913857,
+     0.9619235734286169,
+     0.9632498509877384,
+     0.8764204545454546,
+     0.9664314558516413,
+     0.9992902471609887,
+     0.9827724712653825,
+     0.9471351831657175,
+     0.9805762063457633,
+     0.9363566845959432,
+     0.9737765229295003,
+     0.9515408538309301,
+     0.9458617431982649,
+     0.9393741866953115,
+     0.9180704059065135,
+     0.9945238493723849,
+     0.9472254237288136,
+     0.8917284328040722,
+     0.9589667314437549,
+     0.9303117116565044,
+     0.9958567836187283,
+     0.9457811362574561,
+     0.8695576353843167,
+     0.9471351831657175,
+     0.9867151432987732,
+     0.9943298992435333,
+     0.8541173004482417,
+     0.9967909553349391,
+     0.9704219794458023,
+     0.9881057634612593,
+     0.9789750946234472,
+     0.9820007379550825,
+     0.9934810951760105,
+     0.9182669784674719,
+     0.9790297654914947,
+     0.9916204637096774,
+     0.872822385580296,
+     0.8912799303867668,
+     0.9342866732655064,
+     0.9991017713903744,
+     0.9390731296769685,
+     0.9107134133218197,
+     0.9086162484959223,
+     0.8998826019204852,
+     0.9103351853649069,
+     0.9160925459000675,
+     0.9784803145830336,
+     0.8965264248283116,
+     0.945974462879425,
+     0.9199537745452683,
+     0.9859053014585099,
+     0.9666119954893027,
+     0.9815886287625418,
+     0.8846983863173771,
+     0.9681947942905121,
+     0.989012136181101,
+     0.9964900551562761,
+     0.98722298419115,
+     0.9744641505500133,
+     0.974530470396147,
+     0.9756948933419521,
+     0.9844771177576268,
+     0.9144994005712543
+    ],
+    "rotations": [
+     0.9308520936749538,
+     0.9332412026533788,
+     0.9332714246659082,
+     0.9314090238649388,
+     0.9332620739746498
+    ],
+    "neurons": 0.9512996660742219
+   }
+  },
+  "14": {
+   "topics": {
+    "neurons_per_group": [
+     0.9104370777175064,
+     0.9927194592790387,
+     0.9120793372415316,
+     0.9225277096484527,
+     0.9331940790051373,
+     0.9750195026816187,
+     0.982428767784836,
+     1.0,
+     0.8623386589989943
+    ],
+    "rotations": [
+     0.9135953266205177,
+     0.9131165833876518,
+     0.9167213654991863,
+     0.9122517632752891,
+     0.9131648136659756
+    ],
+    "neurons": 0.9434160658174573
+   },
+   "cells8_out": {
+    "neurons_per_group": [
+     0.9838908161378787,
+     0.9722798249403378,
+     0.8151314250035698,
+     0.8182708583394411,
+     0.9929746218685414,
+     1.0,
+     0.9579019766611098,
+     0.9704616457024469
+    ],
+    "rotations": [
+     0.9075873210009757,
+     0.9145927617818557,
+     0.9028757031143877,
+     0.9159280346883019,
+     0.9086009513209861
+    ],
+    "neurons": 0.9388638960816658
+   },
+   "cells64_out": {
+    "neurons_per_group": [
+     0.9047286891928616,
+     0.9593130614364184,
+     0.9521676760896103,
+     0.9917729484669014,
+     0.9973799544964674,
+     0.9386739800661823,
+     0.9979657742541513,
+     0.9984773489932885,
+     0.9801133986691135,
+     0.8564185932087315,
+     0.9615632965165676,
+     0.957885985189612,
+     0.961906716580517,
+     0.90639800405954,
+     0.9927876766266942,
+     0.9981344644993035,
+     0.9848253432907733,
+     0.9630481358815358,
+     0.9910937694215814,
+     0.9928977272727273,
+     0.9866962811613503,
+     0.9892401061397867,
+     0.939595644571733,
+     0.940096691244851,
+     0.9653017484489566,
+     0.9479794651501469,
+     0.9828629520259476,
+     0.9487102838879489,
+     0.9806718690730172,
+     0.9653008403361345,
+     0.9894921566454961,
+     0.9920756192032977,
+     0.9026331410393098,
+     0.9631087428930943,
+     0.9788861188746978,
+     0.9725497501325846,
+     0.9999472012249316,
+     0.9775803351725996,
+     1.0,
+     0.9468488613468465,
+     0.9904740693140162,
+     0.9220307519817925,
+     0.9282612922040049,
+     0.9755405151344237,
+     0.9687286834924966,
+     0.9507499484044423,
+     0.9250103727643963,
+     0.9678456035804983,
+     0.9950879762200517,
+     0.999888442659527,
+     0.9925326305220884,
+     0.8897034893617022,
+     0.948680170212766,
+     0.9972006745362563,
+     0.9622945098376928,
+     0.8236831453341649,
+     1.0,
+     0.9858424969740671,
+     0.944241721354756,
+     0.9762940969526398,
+     0.9727004656543322,
+     0.984116967413382,
+     0.9439357084336246,
+     0.9907798210192413
+    ],
+    "rotations": [
+     0.9425524470999072,
+     0.9408790547104682,
+     0.9381227183219862,
+     0.9380707379872661,
+     0.9380926464559306
+    ],
+    "neurons": 0.9639492797835574
+   },
+   "cells8_in": {
+    "neurons_per_group": [
+     0.9723531962796191,
+     0.9610117966962738,
+     0.8825955542213064,
+     0.8388287042855348,
+     0.9806059642621175,
+     0.8696682251407571,
+     0.9216454676011235,
+     0.9504824278039844
+    ],
+    "rotations": [
+     0.8791284715914872,
+     0.8838478884138264,
+     0.8863214816745156,
+     0.8883304981548219,
+     0.887191409655846
+    ],
+    "neurons": 0.9221489170363396
+   },
+   "cells64_in": {
+    "neurons_per_group": [
+     0.8942865932800693,
+     0.999373105129189,
+     0.971206665756671,
+     0.9410376564611294,
+     0.8876613350079421,
+     0.9375628481588483,
+     0.999797145720968,
+     0.8951833854800686,
+     0.891440042933954,
+     0.9338370812001815,
+     0.9869689503396805,
+     0.9576246334310851,
+     0.9302552282719537,
+     0.9584208050725803,
+     0.9486857142857142,
+     0.9373454891537738,
+     0.9301194539249147,
+     0.960229999435411,
+     0.8898049769615641,
+     0.9323584132552332,
+     0.8996766309456665,
+     0.9983139268733768,
+     0.9510738504863483,
+     0.9145314277130411,
+     0.9855808080808081,
+     0.9871087256489097,
+     0.9899049728309856,
+     0.9325385488491325,
+     0.9638124185017973,
+     0.8425084445492027,
+     0.9926100222820939,
+     0.9890776107273466,
+     0.9813472001290258,
+     0.8839822121406432,
+     0.9071174118502363,
+     0.99259997072683,
+     0.9966630766786136,
+     0.8872937361790153,
+     0.893388336460243,
+     0.9467920832532205,
+     0.9974392594091817,
+     0.9641329567314936,
+     0.9412962334577536,
+     0.8978180748750102,
+     0.934397054467833,
+     0.909718009996118,
+     0.9424991303587484,
+     0.9397742326709582,
+     0.8985540361167774,
+     0.9177431678453392,
+     0.8760690992879181,
+     0.9858915839903429,
+     0.9482476928708394,
+     0.9802648686801144,
+     0.944469507347095,
+     0.9477413937867338,
+     0.9915314626500497,
+     0.9982047428189713,
+     0.9664254459777852,
+     0.8603940217391305,
+     0.9563946740168948,
+     0.887147599206119,
+     0.9530245302624495,
+     0.8859886062739627
+    ],
+    "rotations": [
+     0.927004782226047,
+     0.9260058666529107,
+     0.925536301775427,
+     0.9265070980117698,
+     0.9264840502394837
+    ],
+    "neurons": 0.9413170050469546
+   }
+  }
+ }
+}

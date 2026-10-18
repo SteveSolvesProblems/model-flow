@@ -94,7 +94,7 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
 
 <main class="wrap">
   <header class="prose">
-    <span class="eyebrow">Model Flow · an exploration · October 2026</span>
+    <span class="eyebrow">Model Flow · an exploration · October 2026 · updated 18 October: <a href="#s-neurons">neurons and the turn</a></span>
     <h1>Model Flow</h1>
     <p class="lede">What does a language model look like if you study it the way you would study a fluid: not
       molecule by molecule, but by how the whole body of it moves? Here, the molecules are the model's weights and
@@ -115,6 +115,9 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
       few thousand numbers. The vectors then pass through a stack of <b>layers</b>. Each layer reads the current vector,
       computes something nonlinear from it, and <em>adds</em> its result, its <b>write</b>, back on. The running total
       is called the <b>residual stream</b> (<a class="cite" href="#r-elhage">Elhage et al. 2021</a>).</p>
+    <p>Each layer writes in two steps. <b>Attention</b> lets each token read from the tokens before it, through several
+      parallel readers called <b>heads</b>. The <b>MLP</b>, a small two-stage network, then transforms each token's
+      vector on its own. Both steps add their results to the residual stream.</p>
     <p>Because every layer adds to the same running total, the vector after layer 9 and the vector after layer 18 live
       in the same space, with the same axes. That is what makes the fluid picture possible: one space, and a flow through
       it, layer by layer.</p>
@@ -123,9 +126,10 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
   <section class="prose" id="s-cloud" aria-labelledby="h-cloud">
     <h2 id="h-cloud">A cloud of texts</h2>
     <p>One text gives one point per layer. We send thousands of short encyclopedia articles (DBpedia summaries, at most
-      64 tokens) through a frozen, already-trained model, and represent each article at each layer by the average of its
+      64 tokens) through an already-trained model, without changing its weights (a <b>frozen</b> model), and represent each article at each layer by the average of its
       token vectors. That gives a cloud of points at every layer. The question is how the cloud changes from one layer to
-      the next.</p>
+      the next. Where something is fitted to articles (a grouping, a map between layers), it is tested on
+      <b>held-out</b> articles that the fit never saw.</p>
     <p>We compare two layers in two ways:</p>
     <ul>
       <li><b>Place.</b> Does an article keep its coordinates? We take the cosine between its vectors at the two layers,
@@ -148,8 +152,8 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
   <figure>
     <div class="controls"><label class="ctl" for="heatSet">model <select id="heatSet"></select></label></div>
     <div class="scroll"><svg id="heat" role="img" aria-label="Layer by layer heatmaps of same place and same company"></svg></div>
-    <figcaption><b>Every pair of layers, compared.</b> Left: share of 3,000 held-out articles whose nearest point at the
-      other layer is themselves (same place). Right: share of 10 neighbours kept (same company). Darker is more similar.
+    <figcaption><b>Every pair of layers, compared.</b> Left: same place, as a share: of 3,000 held-out articles, how many
+      have their own vector as the nearest point at the other layer (after centering). Right: share of 10 neighbours kept (same company). Darker is more similar.
       Switch models to compare; hover a cell for its value.</figcaption>
   </figure>
   <section class="prose">
@@ -164,13 +168,18 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
       away, and keeps 68% of its neighbours at that distance. Each layer adds a small random write to a large running total,
       so nothing moves far quickly. So blocks of shared coordinates are not, by themselves, something the model learned
       (<a class="cite" href="#r-veit">Veit et al. 2016</a>). Training shows up as departures from this.</p>
-    <h3 class="tsub">Robust scaling: a few huge coordinates can fake a turn</h3>
+    <h3 class="tsub">Robust scaling: a change in a few huge coordinates can look like a turn of the whole cloud</h3>
     <p>Language models carry a handful of coordinates with values hundreds of times larger than the rest
       (<a class="cite" href="#r-kovaleva">Kovaleva et al. 2021</a>; <a class="cite" href="#r-massive">Sun et al. 2024</a>).
       When one switches on, it dominates every cosine. Rescale each coordinate by its typical spread, and the Qwen3 and
       SmolLM2 breaks become ordinary layers (0.69 and 0.85). Qwen3, Qwen3.5 and SmolLM2 then keep their coordinates all
       the way through. Gemma's turn stays (0.05).</p>
-    <h3 class="tsub">A second model: rotations link layers, and they link models</h3>
+    <p>The huge coordinates are not noise. <span class="small">(Added 18 October.)</span> In Qwen3, three coordinates switch
+      on at layer 2, almost entirely on the first token of each text, which becomes the token every other token can
+      attend to by default (an attention sink, <a class="cite" href="#r-massive">Sun et al. 2024</a>). Blocking that switch
+      breaks the model. But the other 2,045 coordinates keep their arrangement across layer 2. So the event is real and
+      needed, and it is a change in a few coordinates of one token, not a turn of the whole cloud like Gemma's.</p>
+    <h3 class="tsub">A second model as reference: rotations link layers, and they link models</h3>
     <p>To ask whether information survives a layer, fit a <b>rotation</b> from one layer's cloud to another's on some
       articles, then check whether it carries new articles to themselves. It does, very well. The same procedure works
       almost as well between two <em>different</em> models.</p>
@@ -182,18 +191,19 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
       article</b> (chance 1 in 3,000; maps fit on 10,000 other articles). Fitting on shuffled pairs falls to chance.</figcaption>
   </figure>
   <section class="prose">
-    <p>Both results say the same thing: the arrangement of articles is shared, between layers of one model and between
-      models (<a class="cite" href="#r-huh">Huh et al. 2024</a>), and a rotation carries one onto the other. What the
-      cross-model result rules out is a narrower reading: a good fit alone cannot tell "this layer rotated the last one"
-      apart from "these are two good encodings of the same articles"
-      (<a class="cite" href="#r-ding21">Ding et al. 2021</a>). A rotation also carries the arrangement, not everything:
+    <p>Both results point the same way: the arrangement of articles is shared, between layers of one model and between
+      different models (<a class="cite" href="#r-huh">Huh et al. 2024</a>), and a rotation carries one onto the other.</p>
+    <p>The second model also sets a limit on what a good fit means. Two different models were never rotations of each
+      other, yet one fits onto the other almost as well as one layer onto the next. So a good fit between two layers does
+      not show that one layer rotated the other. It shows only that both arrange the articles in a similar way
+      (<a class="cite" href="#r-ding21">Ding et al. 2021</a>). And the rotation carries the arrangement, not everything:
       about half of each vector's length is left unexplained.</p>
   </section>
 
   <section class="prose" id="s-turn" aria-labelledby="h-turn">
     <h2 id="h-turn">What survives: Gemma 4's turn, up close</h2>
     <p>Across layers 13 to 15 of Gemma 4 E2B, articles' coordinates become unrelated (centered cosine 0.004), yet each
-      article keeps about half of its 10 neighbours (0.49, against 0.81 between neighbouring layers elsewhere). The turn
+      article keeps about half of its 10 neighbours, where neighbouring layers elsewhere keep about four in five. The turn
       holds on a second sample, at 1,000 to 6,000 articles, with the huge coordinates removed, in 32-bit and 16-bit
       arithmetic, and for single tokens as well as whole articles.</p>
     <p>Here is one article, chosen by a fixed rule (the first in the sample with the median number of neighbours kept):</p>
@@ -206,7 +216,7 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
   </figure>
   <section class="prose">
     <p>To see the turn as a flow, we need one more idea. At each layer we sort the articles into a few <b>groups</b> with
-      k-means, using no labels. k-means starts from random points, so we run it twice and score how well the two runs
+      k-means, a standard method that splits points into a chosen number of groups by distance, using no labels. k-means starts from random points, so we run it twice and score how well the two runs
       agree: the <b>repeatability</b> (1 = identical, 0 = chance). Then we follow the same articles from one layer's
       groups to the next.</p>
   </section>
@@ -225,7 +235,7 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
   </figure>
   <section class="prose">
     <p>Most of the depth is steady flow: groups carry over from layer to layer. At layers 12–16 the carry-over drops and
-      topic agreement falls from 0.50 to 0.26 (eight groups), then the groups re-form by layer 17. The map shows who moves
+      topic agreement roughly halves (lower panel), then the groups re-form by layer 17. The map shows who moves
       with whom, not why. Its groups are our choice of resolution, not the model's concepts.</p>
   </section>
 
@@ -242,11 +252,12 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
         small remainder next to the new write, so the coordinates turn. Nothing can be deleted from a running total;
         writing something much larger is the way to overwrite it, an idea proposed for GPT-2 by
         <a class="cite" href="#r-heimersheim">Heimersheim &amp; Turner 2023</a>.</li>
-      <li><b>The scalar sets the turn.</b> Multiply the scalars of layers 13–14 by a factor and the turn changes
-        smoothly: centered cosine across layer 14 goes from 0.02 (×0.5) to 0.04 (as trained), 0.08 (×2), 0.17 (×4) and
-        0.48 (scalars set to 1).</li>
-      <li><b>The MLPs make the write.</b> Replacing the MLP output of layer 13 or 14 with its average moves the turn to
-        the next layers rather than removing it. Attention heads barely matter.</li>
+      <li><b>The scalar sets how sharp the turn is.</b> Multiply the scalars of layers 13–14 by a factor and the turn
+        changes smoothly: smaller scalars give a sharper turn, and with both scalars set to 1 the turn across layer 14
+        is about that of an ordinary layer.</li>
+      <li><b>The MLPs make most of the write.</b> Replacing the MLP output of layer 13 or 14 with its average moves the
+        turn to the next layers rather than removing it. Removing single attention heads barely matters. (The section on
+        neurons below adds a qualification.)</li>
     </ul>
   </section>
   <figure>
@@ -257,6 +268,660 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
       (circles; size = strongest induction head) and mean attention to the first token. Shaded: layers that reuse earlier
       layers' attention keys and values.</figcaption>
   </figure>
+
+  <section class="prose" id="s-neurons" aria-labelledby="h-neurons">
+    <span class="eyebrow">Added 18 October 2026</span>
+    <h2 id="h-neurons">Neurons and the turn</h2>
+    <p>Everything above is measured on whole clouds of texts, never on single units of the model. A recent essay argues
+      that single units are more meaningful than usually assumed: most neurons in modern language models do one main
+      job (<a class="cite" href="#r-cammarata">Cammarata 2026</a>). So it is fair to ask whether Gemma's turn is
+      something a few neurons do.</p>
+    <p>A <b>neuron</b> here is one of the MLP's inner units. At every token, each MLP layer computes a few thousand
+      values, one per neuron (6,144 in Gemma 4 E2B at layers 13 and 14). It then adds to the running total a fixed
+      direction per neuron, scaled by that neuron's value. The sum of those scaled directions is the MLP's
+      write. We asked four questions, and wrote down what we expected before each test
+      (<a href="https://github.com/SteveSolvesProblems/model-flow/blob/main/docs/notes/neurons_and_the_turn.md">notes, with every result and the tests that failed</a>).</p>
+
+    <h3 class="tsub">Can people read what the turn's neurons do?</h3>
+    <p>If the turn is a few interpretable units, its neurons should be easier to label than random ones. Two
+      independent raters (language models, not told which neurons were which) saw the six tokens where each neuron is
+      most positive and the six where it is most negative, for the 16 turn neurons whose writes vary most, mixed with 16
+      random ones. Both rated the turn's neurons as more readable, and judged between a third and a half of them to do one nameable
+      job, against two or three of the random ones. One example: a layer-14 neuron that fires strongly negative on the first
+      digit of a year in a date ("on October 31, <b>1</b>899"). So the neurons are partly readable. That is weaker than
+      "clean", and it was judged on each neuron's strongest examples, where neurons look their best.</p>
+
+    <h3 class="tsub">Does a small set of neurons make the write?</h3>
+    <p>If so, a handful of neurons should account for most of each token's write. We counted how many neurons, taken
+      largest first, it takes to make up half of the write, and compared the turn layers with every other layer of
+      Gemma and of Qwen3-1.7B. At the turn it takes around 1–2% of a layer's neurons, which is ordinary for a middle
+      layer in both models. The turn's write is not unusually concentrated, and no small set of neurons is shared
+      across tokens.</p>
+
+    <h3 class="tsub">Does the turn need the right content, or only a large write?</h3>
+    <p>The coordinate turn is measured with a cosine, and a cosine only sees whether the axes changed, not what was
+      written. So we also track company, as defined above: for each token, which 10 others are closest after
+      layer 14, and whether they are the same ones as in the unchanged model. We then changed the writes
+      of layers 13 and 14 in six ways, from setting 1,024 random neurons to their average value up to replacing the
+      whole write with noise of the same size.</p>
+  </section>
+  <figure>
+    <div class="scroll" style="background:#fff;border-radius:4px"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" style="max-width:900px;height:auto;display:block" role="img" aria-label="Gemma 4 E2B: changes at layers 13-14 and their effect on the turn, company and predictions; layer 12 scalar dose-response" viewBox="0 0 685.7175 279.106329" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M -0 279.106329 
+L 685.7175 279.106329 
+L 685.7175 0 
+L -0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 88.6375 216.492038 
+L 427.217113 216.492038 
+L 427.217113 20.798437 
+L 88.6375 20.798437 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 88.6375 216.492038 
+L 88.6375 20.798437 
+" clip-path="url(#pfd0e00b4ee)" style="fill: none; stroke: #d0d7de; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m5189f5f647" d="M 0 0 
+L 0 3.5 
+" style="stroke: #57606a; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m5189f5f647" x="88.6375" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="88.6375" y="230.330631" transform="rotate(-0 88.6375 230.330631)">0.0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 155.025659 216.492038 
+L 155.025659 20.798437 
+" clip-path="url(#pfd0e00b4ee)" style="fill: none; stroke: #d0d7de; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m5189f5f647" x="155.025659" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="155.025659" y="230.330631" transform="rotate(-0 155.025659 230.330631)">0.2</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 221.413819 216.492038 
+L 221.413819 20.798437 
+" clip-path="url(#pfd0e00b4ee)" style="fill: none; stroke: #d0d7de; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m5189f5f647" x="221.413819" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="221.413819" y="230.330631" transform="rotate(-0 221.413819 230.330631)">0.4</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 287.801978 216.492038 
+L 287.801978 20.798437 
+" clip-path="url(#pfd0e00b4ee)" style="fill: none; stroke: #d0d7de; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m5189f5f647" x="287.801978" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="287.801978" y="230.330631" transform="rotate(-0 287.801978 230.330631)">0.6</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 354.190137 216.492038 
+L 354.190137 20.798437 
+" clip-path="url(#pfd0e00b4ee)" style="fill: none; stroke: #d0d7de; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m5189f5f647" x="354.190137" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="354.190137" y="230.330631" transform="rotate(-0 354.190137 230.330631)">0.8</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 420.578297 216.492038 
+L 420.578297 20.798437 
+" clip-path="url(#pfd0e00b4ee)" style="fill: none; stroke: #d0d7de; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m5189f5f647" x="420.578297" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="420.578297" y="230.330631" transform="rotate(-0 420.578297 230.330631)">1.0</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2328" x="257.927306" y="243.040944" transform="rotate(-0 257.927306 243.040944)">fraction (1 = full turn / all kept)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_13">
+      <defs>
+       <path id="m33064d2c3c" d="M 0 0 
+L -3.5 0 
+" style="stroke: #57606a; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m33064d2c3c" x="88.6375" y="41.697455" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #57606a" x="81.6375" y="44.73683" transform="rotate(-0 81.6375 44.73683)">no change</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="88.6375" y="72.476568" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(25.165 71.644693)">1,024 random</text>
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(13.53 80.602943)">neurons to mean</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="88.6375" y="103.255681" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(28.61375 102.423806)">1,024 largest</text>
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(13.53 111.382056)">neurons to mean</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="88.6375" y="134.034794" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(28.355 133.202919)">every neuron</text>
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(36.3075 142.161169)">to its mean</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="88.6375" y="164.813907" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(7.2 163.982032)">every neuron from</text>
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(32.02 172.940282)">another text</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="88.6375" y="195.59302" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(24.3475 194.761145)">write replaced</text>
+      <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; fill: #57606a" transform="translate(48.00375 203.719395)">by noise</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 88.6375 37.69617 
+L 418.377158 37.69617 
+L 418.377158 29.693601 
+L 88.6375 29.693601 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #0969da"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 88.6375 68.475283 
+L 418.233669 68.475283 
+L 418.233669 60.472714 
+L 88.6375 60.472714 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #0969da"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 88.6375 99.254396 
+L 418.780312 99.254396 
+L 418.780312 91.251827 
+L 88.6375 91.251827 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #0969da"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 88.6375 130.033509 
+L 410.991902 130.033509 
+L 410.991902 122.03094 
+L 88.6375 122.03094 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #0969da"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 88.6375 160.812622 
+L 418.969475 160.812622 
+L 418.969475 152.810053 
+L 88.6375 152.810053 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #0969da"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 88.6375 191.591735 
+L 419.527239 191.591735 
+L 419.527239 183.589166 
+L 88.6375 183.589166 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #0969da"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 88.6375 45.69874 
+L 420.578297 45.69874 
+L 420.578297 37.69617 
+L 88.6375 37.69617 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #d1700f"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 88.6375 76.477853 
+L 349.211026 76.477853 
+L 349.211026 68.475283 
+L 88.6375 68.475283 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #d1700f"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 88.6375 107.256966 
+L 236.799275 107.256966 
+L 236.799275 99.254396 
+L 88.6375 99.254396 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #d1700f"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 88.6375 138.036079 
+L 162.726686 138.036079 
+L 162.726686 130.033509 
+L 88.6375 130.033509 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #d1700f"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 88.6375 168.815192 
+L 91.309623 168.815192 
+L 91.309623 160.812622 
+L 88.6375 160.812622 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #d1700f"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 88.6375 199.594305 
+L 91.376012 199.594305 
+L 91.376012 191.591735 
+L 88.6375 191.591735 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #d1700f"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 88.6375 53.701309 
+L 420.578297 53.701309 
+L 420.578297 45.69874 
+L 88.6375 45.69874 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #1a7f37"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 88.6375 84.480422 
+L 395.35689 84.480422 
+L 395.35689 76.477853 
+L 88.6375 76.477853 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #1a7f37"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 88.6375 115.259535 
+L 330.356754 115.259535 
+L 330.356754 107.256966 
+L 88.6375 107.256966 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #1a7f37"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 88.6375 146.038648 
+L 287.700415 146.038648 
+L 287.700415 138.036079 
+L 88.6375 138.036079 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #1a7f37"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 88.6375 176.817761 
+L 229.527551 176.817761 
+L 229.527551 168.815192 
+L 88.6375 168.815192 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #1a7f37"/>
+   </g>
+   <g id="patch_20">
+    <path d="M 88.6375 207.596874 
+L 187.435449 207.596874 
+L 187.435449 199.594305 
+L 88.6375 199.594305 
+z
+" clip-path="url(#pfd0e00b4ee)" style="fill: #1a7f37"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 88.6375 216.492038 
+L 88.6375 20.798437 
+" style="fill: none; stroke: #57606a; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 88.6375 216.492038 
+L 427.217113 216.492038 
+" style="fill: none; stroke: #57606a; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 600; font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start" x="88.6375" y="14.798437" transform="rotate(-0 88.6375 14.798437)">Content changes, the turn does not</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_23">
+     <path d="M 100.405627 256.33797 
+L 115.405627 256.33797 
+L 115.405627 251.08797 
+L 100.405627 251.08797 
+z
+" style="fill: #0969da"/>
+    </g>
+    <g id="text_15">
+     <text style="font-size: 7.5px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start" x="121.405627" y="256.33797" transform="rotate(-0 121.405627 256.33797)">coordinate turn across layers 13-14</text>
+    </g>
+    <g id="patch_24">
+     <path d="M 100.405627 267.346563 
+L 115.405627 267.346563 
+L 115.405627 262.096563 
+L 100.405627 262.096563 
+z
+" style="fill: #d1700f"/>
+    </g>
+    <g id="text_16">
+     <text style="font-size: 7.5px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start" x="121.405627" y="267.346563" transform="rotate(-0 121.405627 267.346563)">company kept after layer 14</text>
+    </g>
+    <g id="patch_25">
+     <path d="M 269.896252 256.33797 
+L 284.896252 256.33797 
+L 284.896252 251.08797 
+L 269.896252 251.08797 
+z
+" style="fill: #1a7f37"/>
+    </g>
+    <g id="text_17">
+     <text style="font-size: 7.5px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start" x="290.896252" y="256.33797" transform="rotate(-0 290.896252 256.33797)">next-token prediction unchanged</text>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_26">
+    <path d="M 479.353022 216.492038 
+L 678.5175 216.492038 
+L 678.5175 20.798437 
+L 479.353022 20.798437 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_27">
+    <path d="M 479.353022 158.935096 
+L 678.5175 158.935096 
+L 678.5175 101.378155 
+L 479.353022 101.378155 
+z
+" clip-path="url(#p46e5bb720b)" style="fill: #57606a; opacity: 0.12"/>
+   </g>
+   <g id="matplotlib.axis_3">
+    <g id="xtick_7">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m5189f5f647" x="488.405953" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="488.405953" y="230.330631" transform="rotate(-0 488.405953 230.330631)">x0.5</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m5189f5f647" x="548.758825" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="548.758825" y="230.330631" transform="rotate(-0 548.758825 230.330631)">x1</text>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_21">
+      <g>
+       <use xlink:href="#m5189f5f647" x="609.111697" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="609.111697" y="230.330631" transform="rotate(-0 609.111697 230.330631)">x2</text>
+     </g>
+    </g>
+    <g id="xtick_10">
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#m5189f5f647" x="669.464569" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #57606a" x="669.464569" y="230.330631" transform="rotate(-0 669.464569 230.330631)">x4</text>
+     </g>
+    </g>
+    <g id="text_22">
+     <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2328" x="578.935261" y="243.040944" transform="rotate(-0 578.935261 243.040944)">layer 12's scalar, multiplied by</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_7">
+     <g id="line2d_23">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="479.353022" y="216.492038" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_23">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #57606a" x="472.353022" y="219.911334" transform="rotate(-0 472.353022 219.911334)">0.0</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_24">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="479.353022" y="178.120743" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_24">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #57606a" x="472.353022" y="181.54004" transform="rotate(-0 472.353022 181.54004)">0.2</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_25">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="479.353022" y="139.749449" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_25">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #57606a" x="472.353022" y="143.168746" transform="rotate(-0 472.353022 143.168746)">0.4</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_26">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="479.353022" y="101.378155" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_26">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #57606a" x="472.353022" y="104.797452" transform="rotate(-0 472.353022 104.797452)">0.6</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_27">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="479.353022" y="63.006861" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_27">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #57606a" x="472.353022" y="66.426158" transform="rotate(-0 472.353022 66.426158)">0.8</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_28">
+      <g>
+       <use xlink:href="#m33064d2c3c" x="479.353022" y="24.635567" style="fill: #57606a; stroke: #57606a; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_28">
+      <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #57606a" x="472.353022" y="28.054864" transform="rotate(-0 472.353022 28.054864)">1.0</text>
+     </g>
+    </g>
+    <g id="text_29">
+     <text style="font-size: 9px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2328" x="452.168491" y="118.645238" transform="rotate(-90 452.168491 118.645238)">coordinate turn across layer 13</text>
+    </g>
+   </g>
+   <g id="line2d_29">
+    <path d="M 488.405953 34.052663 
+L 548.758825 40.149048 
+L 609.111697 52.836067 
+L 650.594328 68.259901 
+L 669.464569 77.691952 
+" clip-path="url(#p46e5bb720b)" style="fill: none; stroke: #0969da; stroke-width: 1.5; stroke-linecap: square"/>
+    <defs>
+     <path id="me0651e2874" d="M 0 2.5 
+C 0.663008 2.5 1.29895 2.236584 1.767767 1.767767 
+C 2.236584 1.29895 2.5 0.663008 2.5 0 
+C 2.5 -0.663008 2.236584 -1.29895 1.767767 -1.767767 
+C 1.29895 -2.236584 0.663008 -2.5 0 -2.5 
+C -0.663008 -2.5 -1.29895 -2.236584 -1.767767 -1.767767 
+C -2.236584 -1.29895 -2.5 -0.663008 -2.5 0 
+C -2.5 0.663008 -2.236584 1.29895 -1.767767 1.767767 
+C -1.29895 2.236584 -0.663008 2.5 0 2.5 
+z
+" style="stroke: #0969da"/>
+    </defs>
+    <g clip-path="url(#p46e5bb720b)">
+     <use xlink:href="#me0651e2874" x="488.405953" y="34.052663" style="fill: #0969da; stroke: #0969da"/>
+     <use xlink:href="#me0651e2874" x="548.758825" y="40.149048" style="fill: #0969da; stroke: #0969da"/>
+     <use xlink:href="#me0651e2874" x="609.111697" y="52.836067" style="fill: #0969da; stroke: #0969da"/>
+     <use xlink:href="#me0651e2874" x="650.594328" y="68.259901" style="fill: #0969da; stroke: #0969da"/>
+     <use xlink:href="#me0651e2874" x="669.464569" y="77.691952" style="fill: #0969da; stroke: #0969da"/>
+    </g>
+   </g>
+   <g id="patch_28">
+    <path d="M 479.353022 216.492038 
+L 479.353022 20.798437 
+" style="fill: none; stroke: #57606a; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_29">
+    <path d="M 479.353022 216.492038 
+L 678.5175 216.492038 
+" style="fill: none; stroke: #57606a; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #57606a" x="496.704685" y="132.364126" transform="rotate(-0 496.704685 132.364126)">ordinary layers</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2328" x="560.928008" y="30.391261" transform="rotate(-0 560.928008 30.391261)">as trained</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 8px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2328" x="621.28088" y="89.866767" transform="rotate(-0 621.28088 89.866767)">set to 1</text>
+   </g>
+   <g id="text_33">
+    <text style="font-weight: 600; font-size: 10px; font-family: 'IBM Plex Sans', 'DejaVu Sans', sans-serif; text-anchor: start" x="479.353022" y="14.798437" transform="rotate(-0 479.353022 14.798437)">The previous scalar sets part of it</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pfd0e00b4ee">
+   <rect x="88.6375" y="20.798437" width="338.579613" height="195.6936"/>
+  </clipPath>
+  <clipPath id="p46e5bb720b">
+   <rect x="479.353022" y="20.798437" width="199.164478" height="195.6936"/>
+  </clipPath>
+ </defs>
+</svg></div>
+    <figcaption><b>Gemma 4 E2B, 2,000 tokens.</b> Left: each row changes the writes of layers 13 and 14 in one way.
+      Blue: coordinate turn across the two layers (1 − centered cosine, as in the track figure). Orange: company kept, the share of
+      each token's 10 nearest neighbours after layer 14 that match the unchanged model. Green: share of tokens whose
+      predicted next token is unchanged. Right: coordinate turn across layer 13 when layer 12's scalar is multiplied by
+      a factor; the band is the range of ordinary layers.</figcaption>
+  </figure>
+  <section class="prose" aria-label="Neurons and the turn, continued">
+    <p>Read the left panel down the rows. The blue bars do not move: every change, even noise, leaves the turn as it
+      was. The orange and green bars fall as more of the content is replaced, down to almost no company kept when
+      the write is another text's or noise. So the size of the write sets the turn, and its content sets the
+      company. The neuron swaps on Gemma 4 E4B, the larger model, also leave its turn in place. In the unchanged model, about a third of
+      each token's neighbours survive the turn although the axes change completely, the token-level version of the
+      article example above.</p>
+
+    <h3 class="tsub">Where does the size come from?</h3>
+    <p>A layer's own scalar cannot turn it: multiplying everything by one number leaves a cosine unchanged. But the
+      scalar shrinks the running total that the next layer writes onto. If that is part of the turn, changing layer
+      12's scalar should change the turn at layer 13. It does, smoothly (right panel): a smaller scalar gives a larger
+      turn, and a larger scalar a smaller one. Even at four times the trained value, layer 13 turns more than ordinary
+      layers, so the size of its own write does the rest.</p>
+    <p>One result we did not expect: with every neuron at layers 13 and 14 set to its average value, the MLPs add the
+      same vector to every token, which cannot turn anything by itself, and the turn still happens. Whatever else
+      writes at those layers is then large enough against the shrunken total. We have not yet separated attention
+      from Gemma's per-layer embedding inputs there.</p>
+
+    <h3 class="tsub">Does the map tell us anything about neurons?</h3>
+    <ul>
+      <li><b>Partly.</b> Where the map splits a group of articles at a layer, that layer's neurons separate the two
+        halves somewhat better than neurons two layers earlier, and pairs of groups that were already apart show no
+        such gain. The effect is small.</li>
+      <li><b>No:</b> neurons in neighbouring layers that fire together do not read the same direction of the running
+        total, so a label does not carry from one layer to the next.</li>
+      <li><b>No:</b> dividing a neuron's write by the size of the running total did not predict how much removing it
+        hurts the model better than its plain activation size.</li>
+    </ul>
+    <p><b>What this means.</b> Neurons at the turn are somewhat more readable than random ones, and the arrangement of
+      tokens lives in what they write. The turn itself is not a circuit of a few neurons. It is a size event: a large
+      write landing on a running total that the previous layer's scalar has made small. This does not contradict the
+      essay, which is about what neurons mean, not about where large-scale events in the flow come from. It does say
+      where not to look for them.</p>
+  </section>
 
   <section class="prose" id="s-predict" aria-labelledby="h-predict">
     <h2 id="h-predict">A prediction on a second model</h2>
@@ -297,8 +962,9 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
   <section class="prose" id="s-fail" aria-labelledby="h-fail">
     <h2 id="h-fail">What did not hold</h2>
     <ul>
-      <li>An attention head was expected to drive the turn. Knocking out Gemma's layer-14 induction head, or any single
-        head tried, leaves it unchanged.</li>
+      <li>An attention head was expected to drive the turn. Knocking out Gemma's layer-14 induction head (a head that
+        looks back for an earlier copy of the current token and reads what followed it), or any single head tried, leaves
+        it unchanged.</li>
       <li>Blocks were expected to predict which layers can be skipped. Skip damage follows how much a layer writes
         instead.</li>
       <li>Layers were expected to settle bottom-up during training <span class="chip fail">pre-registered</span>. In
@@ -309,8 +975,8 @@ h3.tsub { font: 600 18px/1.3 var(--display); margin: 8px 0 0; }
   <section class="prose" id="s-cav" aria-labelledby="h-cav">
     <h2 id="h-cav">Limits</h2>
     <ul>
-      <li>One family turns. Why the others do not is open; Gemma's scalars and its key-value sharing are the remaining
-        candidates.</li>
+      <li>One family turns. Why the others do not is open; Gemma's scalars and its reuse of earlier layers' attention
+        inputs (the shaded layers in the track figure) are the remaining candidates.</li>
       <li>Small models (0.4B–4B), short texts (64 tokens), one corpus. Article vectors are token averages, so they partly
         reflect which words a text contains.</li>
       <li>Our first Gemma token-level runs dropped the beginning-of-text token Gemma expects. Re-extracted, the turn is

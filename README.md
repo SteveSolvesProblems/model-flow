@@ -17,6 +17,9 @@ moves through its layers, rather than weight by weight?
 - One large event survives every control. Gemma 4 E2B re-expresses its whole space at layer 14.
 - The mechanism has been tested causally, and the model's stored per-layer scalars predicted where Gemma 4 E4B does
   the same. That prediction was pre-registered and passed.
+- Added in v0.2 (18 October 2026): the turn is not carried by a few MLP neurons. Its neurons are somewhat readable,
+  but any write of the right size turns the stream, and the previous layer's scalar sets part of that size. Notes,
+  including the tests that failed: `docs/notes/neurons_and_the_turn.md`.
 - A side result, a label-free way to pick an embedding layer, is still being tested. Its first registration and the
   registered follow-up are in docs/preregistrations/ (`PREREG_layer_selection.md`, `PREREG_stability_v2.md`).
 
@@ -27,6 +30,7 @@ This is exploratory research. Claims are narrow on purpose, and failures are rep
 ```
 docs/                 the write-up (GitHub Pages root), pre-registrations
 docs/archive/         earlier drafts, kept for the record and marked superseded
+docs/notes/           working notes behind later additions to the write-up
 research/CLAIMS.md    every number in the write-up, with its source file, producing script and known threats
 flow/                 code: extraction (GPU) and analyses (CPU); flow/viewer/ builds the pages
 flow/results/         result JSONs behind every claim

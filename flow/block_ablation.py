@@ -59,6 +59,10 @@ def main():
     conds["scalar1_13_14"] = [("scalar", 13), ("scalar", 14)]
     for f in (0.5, 2.0, 4.0):
         conds[f"scalex{f:g}_13_14"] = [(f"scale:{f}", 13), (f"scale:{f}", 14)]
+    # 2026-10-17 (after the neuron follow-up): does layer 12's scalar set layer 13's turn?  --only ... --tag l12
+    conds["scalar1_12"] = [("scalar", 12)]
+    for f in (0.5, 2.0, 4.0):
+        conds[f"scalex{f:g}_12"] = [(f"scale:{f}", 12)]
     if a.only is not None:
         conds = {k: v for k, v in conds.items() if k in a.only}
         assert len(conds) == len(a.only), f"unknown condition in {a.only}"
@@ -96,7 +100,8 @@ def main():
             return (new,) + tuple(out[1:]) if isinstance(out, tuple) else new
         return f
     hooks = [module(*t).register_forward_hook(repl(t)) for t in targets]
-    scal0 = {L: layers[L].layer_scalar.detach().clone() for L in (13, 14)}
+    scal0 = {L: layers[L].layer_scalar.detach().clone() for L in (12, 13, 14)}
+    log("scalars 10-16:", [round(float(layers[L].layer_scalar.float().mean()), 4) for L in range(10, 17)])
 
     def set_cond(name):
         active.clear()

@@ -1,0 +1,738 @@
+{
+ "design": "32 E2B units (layers 13-14: 8 turn neurons by write variance + 8 random each), 6 strongest tokens per pole, shuffled; two blind LM raters (r1 Opus, r2 Sonnet); scores 1-5 per pole, one_job yes/no",
+ "units": [
+  {
+   "id": 0,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 2663,
+   "r1": {
+    "id": 0,
+    "pos_label": "function words in clauses about a person's career events (after/because of/when)",
+    "neg_label": "mid-token in names and year digits / 'the' before numbers",
+    "pos_score": 2,
+    "neg_score": 2,
+    "one_job": false
+   },
+   "r2": {
+    "id": 0,
+    "pos_label": "function words/tokens after a verb/clause start about a person (his, he, when, by)",
+    "neg_label": "year/number fragments and misc",
+    "pos_score": 2,
+    "neg_score": 1,
+    "one_job": false
+   }
+  },
+  {
+   "id": 1,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 1112,
+   "r1": {
+    "id": 1,
+    "pos_label": "prepositions/complements after a participle or verb (dating to, relegated to, brought in by)",
+    "neg_label": "temporal/sequence conjunctions joining a later clause ('before', 'while')",
+    "pos_score": 3,
+    "neg_score": 5,
+    "one_job": false
+   },
+   "r2": {
+    "id": 1,
+    "pos_label": "prepositions/particles after participle (to, of, in, by)",
+    "neg_label": "'before' after biography clause (before turning pro)",
+    "pos_score": 2,
+    "neg_score": 4,
+    "one_job": false
+   }
+  },
+  {
+   "id": 2,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 598,
+   "r1": {
+    "id": 2,
+    "pos_label": "alternate-name / gloss markers after a title (also known as, 'or', parentheses)",
+    "neg_label": "subword pieces inside names or compounds",
+    "pos_score": 5,
+    "neg_score": 3,
+    "one_job": true
+   },
+   "r2": {
+    "id": 2,
+    "pos_label": "alternate-name/parenthetical connectors (also known as, or, '(')",
+    "neg_label": "mid-name word pieces / hyphen in names",
+    "pos_score": 4,
+    "neg_score": 3,
+    "one_job": true
+   }
+  },
+  {
+   "id": 3,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 1732,
+   "r1": {
+    "id": 3,
+    "pos_label": "punctuation/clause boundaries (commas, periods)",
+    "neg_label": "commas/conjunctions at clause or list boundaries",
+    "pos_score": 2,
+    "neg_score": 3,
+    "one_job": false
+   },
+   "r2": {
+    "id": 3,
+    "pos_label": "punctuation (comma/period/paren) ending a noun phrase",
+    "neg_label": "comma/'and'/'of' after a noun phrase",
+    "pos_score": 2,
+    "neg_score": 2,
+    "one_job": false
+   }
+  },
+  {
+   "id": 4,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 1990,
+   "r1": {
+    "id": 4,
+    "pos_label": "first token inside a parenthetical after a name (native-script name or birth date)",
+    "neg_label": "tokens in lists / coordinated items (and, ranges, upstream/downstream)",
+    "pos_score": 5,
+    "neg_score": 2,
+    "one_job": false
+   },
+   "r2": {
+    "id": 4,
+    "pos_label": "first token inside birth/name parentheses",
+    "neg_label": "none",
+    "pos_score": 4,
+    "neg_score": 1,
+    "one_job": false
+   }
+  },
+  {
+   "id": 5,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 5401,
+   "r1": {
+    "id": 5,
+    "pos_label": "space token before a number (dates/years after 'Month day,')",
+    "neg_label": "'the' following a verb/preposition",
+    "pos_score": 5,
+    "neg_score": 5,
+    "one_job": true
+   },
+   "r2": {
+    "id": 5,
+    "pos_label": "space token before a year digits after a date",
+    "neg_label": "'the' (and 'to') after is/at/on",
+    "pos_score": 4,
+    "neg_score": 4,
+    "one_job": true
+   }
+  },
+  {
+   "id": 6,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 3159,
+   "r1": {
+    "id": 6,
+    "pos_label": "subword continuation in rare proper names",
+    "neg_label": "tokens just after an entity name (head noun, 'is', ')')",
+    "pos_score": 4,
+    "neg_score": 2,
+    "one_job": false
+   },
+   "r2": {
+    "id": 6,
+    "pos_label": "mid-word pieces of rare foreign names/nouns",
+    "neg_label": "none",
+    "pos_score": 3,
+    "neg_score": 1,
+    "one_job": false
+   }
+  },
+  {
+   "id": 7,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 404,
+   "r1": {
+    "id": 7,
+    "pos_label": "third digit of a year after '19' (decade digit)",
+    "neg_label": "first digit of a year after a space token",
+    "pos_score": 4,
+    "neg_score": 5,
+    "one_job": true
+   },
+   "r2": {
+    "id": 7,
+    "pos_label": "third digit of a year (19x)",
+    "neg_label": "first digit of a year",
+    "pos_score": 4,
+    "neg_score": 5,
+    "one_job": true
+   }
+  },
+  {
+   "id": 8,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 5156,
+   "r1": {
+    "id": 8,
+    "pos_label": "nationality/descriptor words in biographical lede ('South Korean', 'mixed martial')",
+    "neg_label": "none (dates, plurals, misc)",
+    "pos_score": 4,
+    "neg_score": 1,
+    "one_job": false
+   },
+   "r2": {
+    "id": 8,
+    "pos_label": "nationality/modifier before occupation noun (Korean, martial)",
+    "neg_label": "none",
+    "pos_score": 3,
+    "neg_score": 1,
+    "one_job": false
+   }
+  },
+  {
+   "id": 9,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 2321,
+   "r1": {
+    "id": 9,
+    "pos_label": "first token of a surname after a comma/sentence start, or century digit",
+    "neg_label": "none",
+    "pos_score": 3,
+    "neg_score": 1,
+    "one_job": false
+   },
+   "r2": {
+    "id": 9,
+    "pos_label": "first letter of surname after comma; year digit",
+    "neg_label": "none",
+    "pos_score": 2,
+    "neg_score": 1,
+    "one_job": false
+   }
+  },
+  {
+   "id": 10,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 3109,
+   "r1": {
+    "id": 10,
+    "pos_label": "formatting artifacts: RTL marks, list bullets, '\\n' escapes",
+    "neg_label": "sentence-initial or function tokens after a sentence/name boundary",
+    "pos_score": 5,
+    "neg_score": 2,
+    "one_job": true
+   },
+   "r2": {
+    "id": 10,
+    "pos_label": "newline/bullet/RTL-mark formatting tokens",
+    "neg_label": "sentence-start words (The, He) after sentence",
+    "pos_score": 4,
+    "neg_score": 2,
+    "one_job": false
+   }
+  },
+  {
+   "id": 11,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 3236,
+   "r1": {
+    "id": 11,
+    "pos_label": "subword continuation pieces in mid-word",
+    "neg_label": "second subword of a first name at document start",
+    "pos_score": 2,
+    "neg_score": 3,
+    "one_job": false
+   },
+   "r2": {
+    "id": 11,
+    "pos_label": "mid-word subword pieces",
+    "neg_label": "name subword pieces",
+    "pos_score": 2,
+    "neg_score": 3,
+    "one_job": false
+   }
+  },
+  {
+   "id": 12,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 3600,
+   "r1": {
+    "id": 12,
+    "pos_label": "verbs/auxiliaries in general descriptive sentences",
+    "neg_label": "nationality/'former' descriptors in athlete biography lede",
+    "pos_score": 2,
+    "neg_score": 4,
+    "one_job": false
+   },
+   "r2": {
+    "id": 12,
+    "pos_label": "auxiliary/linking words after a subject noun phrase",
+    "neg_label": "nationality/former in bio opening",
+    "pos_score": 3,
+    "neg_score": 3,
+    "one_job": false
+   }
+  },
+  {
+   "id": 13,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 5731,
+   "r1": {
+    "id": 13,
+    "pos_label": "sports league/competition names",
+    "neg_label": "'also' and tokens adjacent to 'also'",
+    "pos_score": 2,
+    "neg_score": 5,
+    "one_job": false
+   },
+   "r2": {
+    "id": 13,
+    "pos_label": "league/season/be-verbs in sports context",
+    "neg_label": "'also'",
+    "pos_score": 2,
+    "neg_score": 5,
+    "one_job": false
+   }
+  },
+  {
+   "id": 14,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 206,
+   "r1": {
+    "id": 14,
+    "pos_label": "title tokens at the start of an article (The 2012 [X])",
+    "neg_label": "'pay-per-view' pieces / multi-token compounds",
+    "pos_score": 4,
+    "neg_score": 3,
+    "one_job": false
+   },
+   "r2": {
+    "id": 14,
+    "pos_label": "event title words after year (Northern, Australian)",
+    "neg_label": "pay-per-view fragments",
+    "pos_score": 3,
+    "neg_score": 3,
+    "one_job": false
+   }
+  },
+  {
+   "id": 15,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 2636,
+   "r1": {
+    "id": 15,
+    "pos_label": "content words (nouns/participles) in descriptive phrases",
+    "neg_label": "prepositions/articles after verbs of motion or naming",
+    "pos_score": 2,
+    "neg_score": 3,
+    "one_job": false
+   },
+   "r2": {
+    "id": 15,
+    "pos_label": "none",
+    "neg_label": "preposition/the before noun (to, from, by, the)",
+    "pos_score": 1,
+    "neg_score": 3,
+    "one_job": false
+   }
+  },
+  {
+   "id": 16,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 1250,
+   "r1": {
+    "id": 16,
+    "pos_label": "sport/category noun completing a descriptor phrase (football, hockey, Grade II)",
+    "neg_label": "first digit of a number after 'in'/space",
+    "pos_score": 4,
+    "neg_score": 4,
+    "one_job": false
+   },
+   "r2": {
+    "id": 16,
+    "pos_label": "sport/role words after American/former (football, hockey, defensive)",
+    "neg_label": "first digit of number/year",
+    "pos_score": 4,
+    "neg_score": 4,
+    "one_job": true
+   }
+  },
+  {
+   "id": 17,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 4630,
+   "r1": {
+    "id": 17,
+    "pos_label": "none (end-of-name / punctuation tokens)",
+    "neg_label": "head noun / article right after 'is a' in definition",
+    "pos_score": 1,
+    "neg_score": 3,
+    "one_job": false
+   },
+   "r2": {
+    "id": 17,
+    "pos_label": "none",
+    "neg_label": "generic noun after 'is a' (list, asteroid, race)",
+    "pos_score": 1,
+    "neg_score": 3,
+    "one_job": false
+   }
+  },
+  {
+   "id": 18,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 3022,
+   "r1": {
+    "id": 18,
+    "pos_label": "third digit of a 20xx year",
+    "neg_label": "'the' after a preposition",
+    "pos_score": 5,
+    "neg_score": 5,
+    "one_job": true
+   },
+   "r2": {
+    "id": 18,
+    "pos_label": "third digit of 20xx year (1)",
+    "neg_label": "'the' after 'of/in/for'",
+    "pos_score": 5,
+    "neg_score": 5,
+    "one_job": true
+   }
+  },
+  {
+   "id": 19,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 2804,
+   "r1": {
+    "id": 19,
+    "pos_label": "token right after the subject/parenthetical in a lede ('was', 'a')",
+    "neg_label": "first token of the document (start of a name)",
+    "pos_score": 3,
+    "neg_score": 5,
+    "one_job": true
+   },
+   "r2": {
+    "id": 19,
+    "pos_label": "copula/aux after subject (was, is a)",
+    "neg_label": "first token of a person name at text start",
+    "pos_score": 3,
+    "neg_score": 4,
+    "one_job": false
+   }
+  },
+  {
+   "id": 20,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 2056,
+   "r1": {
+    "id": 20,
+    "pos_label": "none",
+    "neg_label": "tokens in alternate/foreign-name glosses",
+    "pos_score": 1,
+    "neg_score": 3,
+    "one_job": false
+   },
+   "r2": {
+    "id": 20,
+    "pos_label": "none",
+    "neg_label": "parenthetical/foreign-name markers (name, ':', ';')",
+    "pos_score": 1,
+    "neg_score": 2,
+    "one_job": false
+   }
+  },
+  {
+   "id": 21,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 4505,
+   "r1": {
+    "id": 21,
+    "pos_label": "subword/internal pieces of proper names (institutions, places)",
+    "neg_label": "function words in sports/college biography (drafted by, graduated from)",
+    "pos_score": 4,
+    "neg_score": 3,
+    "one_job": false
+   },
+   "r2": {
+    "id": 21,
+    "pos_label": "apostrophe/mid-word in proper names (institution names)",
+    "neg_label": "preposition/verb after player bio (was drafted by, graduated from)",
+    "pos_score": 2,
+    "neg_score": 4,
+    "one_job": false
+   }
+  },
+  {
+   "id": 22,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 1928,
+   "r1": {
+    "id": 22,
+    "pos_label": "none",
+    "neg_label": "last digit of a year in birth/death date",
+    "pos_score": 1,
+    "neg_score": 5,
+    "one_job": false
+   },
+   "r2": {
+    "id": 22,
+    "pos_label": "none",
+    "neg_label": "last digit of year (19x)",
+    "pos_score": 1,
+    "neg_score": 5,
+    "one_job": false
+   }
+  },
+  {
+   "id": 23,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 2186,
+   "r1": {
+    "id": 23,
+    "pos_label": "tokens in dates/biographical lede",
+    "neg_label": "function words/punctuation mid-sentence",
+    "pos_score": 2,
+    "neg_score": 2,
+    "one_job": false
+   },
+   "r2": {
+    "id": 23,
+    "pos_label": "none",
+    "neg_label": "function words (at, is, The, in)",
+    "pos_score": 1,
+    "neg_score": 2,
+    "one_job": false
+   }
+  },
+  {
+   "id": 24,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 260,
+   "r1": {
+    "id": 24,
+    "pos_label": "taxonomic species description (genus/family, 'is found in')",
+    "neg_label": "first digit of a year after a day/month",
+    "pos_score": 5,
+    "neg_score": 5,
+    "one_job": true
+   },
+   "r2": {
+    "id": 24,
+    "pos_label": "taxonomy-stub sentence words (genus of fungi, found in)",
+    "neg_label": "first digit of year after date",
+    "pos_score": 4,
+    "neg_score": 5,
+    "one_job": true
+   }
+  },
+  {
+   "id": 25,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 4289,
+   "r1": {
+    "id": 25,
+    "pos_label": "none",
+    "neg_label": "pronouns / articles at start of second sentence of a biography",
+    "pos_score": 1,
+    "neg_score": 4,
+    "one_job": false
+   },
+   "r2": {
+    "id": 25,
+    "pos_label": "none",
+    "neg_label": "sentence-start pronoun/the in athlete bio (He, Her, the)",
+    "pos_score": 1,
+    "neg_score": 4,
+    "one_job": false
+   }
+  },
+  {
+   "id": 26,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 2502,
+   "r1": {
+    "id": 26,
+    "pos_label": "space token before a number (years/channel numbers)",
+    "neg_label": "mixed; some space-before-number tokens",
+    "pos_score": 5,
+    "neg_score": 2,
+    "one_job": true
+   },
+   "r2": {
+    "id": 26,
+    "pos_label": "space token before year/number digits",
+    "neg_label": "space before year or none",
+    "pos_score": 4,
+    "neg_score": 2,
+    "one_job": false
+   }
+  },
+  {
+   "id": 27,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 1476,
+   "r1": {
+    "id": 27,
+    "pos_label": "none (sentence boundaries in sports text)",
+    "neg_label": "racehorse lede tokens (foaling date, 'champion Australia')",
+    "pos_score": 2,
+    "neg_score": 4,
+    "one_job": false
+   },
+   "r2": {
+    "id": 27,
+    "pos_label": "none",
+    "neg_label": "tokens around thoroughbred birth date parentheses",
+    "pos_score": 1,
+    "neg_score": 3,
+    "one_job": false
+   }
+  },
+  {
+   "id": 28,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 67,
+   "r1": {
+    "id": 28,
+    "pos_label": "adjectives/adverb modifiers before a noun (celebrated, much, heavily)",
+    "neg_label": "preposition after verb 'played/plays' in career description",
+    "pos_score": 5,
+    "neg_score": 4,
+    "one_job": true
+   },
+   "r2": {
+    "id": 28,
+    "pos_label": "adjectives/adverbs modifying a noun (celebrated, much, rather, heavily)",
+    "neg_label": "prepositions after 'played' (as, on, of)",
+    "pos_score": 4,
+    "neg_score": 4,
+    "one_job": true
+   }
+  },
+  {
+   "id": 29,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 5367,
+   "r1": {
+    "id": 29,
+    "pos_label": "space token before a number",
+    "neg_label": "article/function token after 'is'",
+    "pos_score": 5,
+    "neg_score": 3,
+    "one_job": true
+   },
+   "r2": {
+    "id": 29,
+    "pos_label": "space token before number",
+    "neg_label": "article/is an/the",
+    "pos_score": 4,
+    "neg_score": 2,
+    "one_job": false
+   }
+  },
+  {
+   "id": 30,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 708,
+   "r1": {
+    "id": 30,
+    "pos_label": "geographic locations (coasts, regions, states)",
+    "neg_label": "none",
+    "pos_score": 5,
+    "neg_score": 1,
+    "one_job": true
+   },
+   "r2": {
+    "id": 30,
+    "pos_label": "geographic place words (Africa, coast, Arkansas)",
+    "neg_label": "none",
+    "pos_score": 4,
+    "neg_score": 1,
+    "one_job": false
+   }
+  },
+  {
+   "id": 31,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 3046,
+   "r1": {
+    "id": 31,
+    "pos_label": "last token of a name/date inside a lede parenthetical, before ')'",
+    "neg_label": "category noun or article after 'is a' in definition sentence",
+    "pos_score": 5,
+    "neg_score": 5,
+    "one_job": true
+   },
+   "r2": {
+    "id": 31,
+    "pos_label": "last token inside a parenthetical name/date before close paren",
+    "neg_label": "'is a' and noun after (a, radio, restaurant)",
+    "pos_score": 4,
+    "neg_score": 3,
+    "one_job": false
+   }
+  }
+ ],
+ "summary": {
+  "r1": {
+   "turn_var": {
+    "mean_pole_score": 3.75,
+    "one_job": 9,
+    "n": 16
+   },
+   "random": {
+    "mean_pole_score": 2.96875,
+    "one_job": 3,
+    "n": 16
+   },
+   "mannwhitney_p_turn_greater": 0.014168891663454248
+  },
+  "r2": {
+   "turn_var": {
+    "mean_pole_score": 3.21875,
+    "one_job": 5,
+    "n": 16
+   },
+   "random": {
+    "mean_pole_score": 2.53125,
+    "one_job": 2,
+    "n": 16
+   },
+   "mannwhitney_p_turn_greater": 0.02236427321768686
+  },
+  "agree_one_job": 25
+ }
+}
