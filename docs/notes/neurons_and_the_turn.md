@@ -182,3 +182,198 @@ company; size sets the turn. Also: in the clean model hidden 13 and 15 share 0.3
 centered cosine is 0.007 (chance overlap 0.005): the turn changes the axes, and a third of the company survives it.
 After resample or noise the company partly recovers by layer 20 (0.37 / 0.34): later layers rebuild some of it from
 the context.
+
+## B: does the turn matter for behaviour? Dose control on ordinary layers (stated 2026-10-18, before running)
+Prompted by a reviewer's "macro locates, component explains, intervention changes behaviour". The scalar doses already
+record behaviour: KL(clean || dosed) and top-1 agreement are U-shaped around the trained value, while the turn moves
+monotonically, so they show the model depends on its trained magnitudes, not that the turn drives behaviour.
+Control: the same multipliers (x0.5, x2, x4, and x16, about the change of setting layers 13-14's scalars to 1) on the
+scalars of two ordinary pairs, layers 8-9 and 24-25, and again on 13-14 in the same run (GPU, bf16, 100 texts).
+`DIAG_DEVICE=cuda block_ablation.py --only ... --tag ctrl`.
+- B1: at x16, KL at 13-14 is >= 3x KL at either control pair.
+- B2: at x0.5-x4, KL at 13-14 is within 2x of the control pairs (small doses are not special).
+Reading if B1 holds: removing the turn (x16 brings layer 14 near an ordinary layer) costs more than the same-size
+change elsewhere, so the turn's size matters for behaviour beyond a generic magnitude effect. If KL is as large at
+the control pairs, the behaviour effect is generic and the turn is not shown to matter.
+Result B (results/block_ablation_gemma4_e2b_ctrl.json): B1 and B2 both fail, in the opposite direction. The turn
+layers are the least sensitive to their scalars, not the most. KL (top-1) per dose, layers 13-14 / 8-9 / 24-25:
+x0.5 0.03 (0.92) / 1.08 (0.55) / 0.73 (0.67); x2 0.04 (0.91) / 0.55 (0.70) / 1.01 (0.67); x4 0.59 (0.71) / 4.3 (0.18)
+/ 5.7 (0.38); x16 3.4 (0.26) / 6.5 (0.09) / 9.5 (0.18). Layers 13-14 at x0.5 and x2 changed the 13-14 run's own values
+little from the CPU run (KL 0.030 / 0.035 both), so GPU vs CPU does not matter here.
+At the control pairs, growing the scalar makes the stream stop changing (adjacent centered cosine -> 0.99-1.0): later
+writes become small next to the enlarged stream.
+Reading: the behaviour cost of a scalar dose is generic and is smallest at the turn. One hypothesis (untested): after
+a large overwrite the old stream is a small remainder, so rescaling it matters little downstream; the turn may
+insulate later layers from the scale of what came before. The "intervention changes behaviour" step for the turn is
+therefore not shown by scalar doses. A test that targets the turn itself, not the scale, is still needed (e.g. keep
+every norm fixed and rotate the stream back to its pre-turn axes).
+
+## B2 and U: reviewer follow-ups on B (stated 2026-10-18, before running)
+Reviewer: report B as it came out; before reading it as "the turn protects later layers", check dose matching,
+downstream position, and test the axes directly.
+- Dose matching. The scalar multiplies the whole stream, so a multiplier is already the same relative change of the
+  stream's norm at every layer. Absolute norms are similar too (mean token norm entering layers 10 / 15 / 20 / 26:
+  48 / 58 / 61 / 71), so matching the absolute change moves control doses by at most ~20%: 8-9 x0.40, x2.19, x4.58;
+  24-25 x0.59, x1.81, x3.44. Added: these matched doses, and the middle pair 18-19 at x0.5, x2, x4, x16.
+- Before vs after: single-layer doses (x0.5, x2, x4) at layer 12 (before the turn), 15 (just after), and 8, 18
+  (ordinary).
+- B3 (protection idea): with matched doses, KL at 13-14 stays below every control pair, and layer 15 is less
+  sensitive than layer 12.
+- U (`turn_undo.py`): at layer 15's input, rotate every token but the first back to the pre-turn axes (Procrustes
+  15 -> 13 fit on tokens of eval texts 300-599), mean and norms unchanged, vs 3 random rotations and the identity.
+  Both rotations take the stream off its new axes; the undo one puts it on the old axes. Reading of the ratio
+  undo KL / mean random KL: >= 0.5, the old axes are about as useless to later layers as random ones (later layers
+  read the new axes); <= 0.2, later layers can largely read the old axes too. In between: partial.
+  Caveat: the Procrustes map also moves content, not only axes, and its fit is imperfect (fit cosine reported).
+Result B2 (results/block_ablation_gemma4_e2b_ctrl2.json; same GPU setup as B). Matched doses do not change the
+picture: KL at 13-14 (x0.5 / x2 / x4: 0.03 / 0.04 / 0.59) stays far below 8-9 matched (2.77 / 0.78 / 4.89), 24-25
+matched (0.35 / 0.67 / 4.62) and the middle pair 18-19 (0.21 / 0.31 / 2.45; x16 12.3 vs 3.4 at 13-14). So the turn
+pair is the least sensitive pair, at matched doses and away from the output. B3's second part fails: single-layer
+doses at layer 15, just after the turn (0.055 / 0.074 / 0.37), are no gentler than at layer 12 before it
+(0.19 / 0.022 / 0.36) or at ordinary layer 18 (0.057 / 0.060 / 0.33); layer 8 is the most sensitive (0.19 / 0.12 /
+1.58). Reading: the insensitivity belongs to the turn pair's own scalars, not to the layers after it. "The turn
+protects later layers" is not supported; why scaling 13-14 costs so little stays open.
+
+Result U (results/turn_undo.json): later layers read the new axes. Identity hook KL 0. Undo rotation KL 0.74
+(top-1 0.61); three random rotations 0.66 / 0.75 / 0.70 (top-1 0.64 / 0.62 / 0.64); ratio 1.05. Putting the stream
+back on its pre-turn axes, with sizes and the mean unchanged, hurts as much as a random rotation. Caveats: the undo
+map fits only partly (mean cosine 0.57 on held-out tokens, vs 0.006 unmapped), so "the old axes" are approximate;
+layers 15-34 reuse earlier layers' attention keys and values, so a rotation at layer 15 reaches their attention only
+through queries, which may be why even a random rotation leaves top-1 at ~0.6. This is the end-to-end case the
+reviewer asked for, on one model: the macro view locates the turn, the components explain its size, and changing
+only the axes after it (sizes fixed) changes behaviour, no less than scrambling them.
+
+## U2: is the axis dependence special to the turn? (stated 2026-10-18, before running)
+Reviewer: any layer reads its input in a basis-specific way (norm gains, elementwise nonlinearities, massive
+coordinates), so U may show something true of every layer; undo and random are indistinguishable at n = 3 (state it);
+the undo map is partial (cos 0.57); layers 15-34 reuse earlier attention inputs, which dilutes a rotation there.
+Agreed wording until this runs: "later layers depend on the axes the turn creates; comparison to ordinary layers
+pending". Also: "turn pair least sensitive" (B, B2) holds on one model until E4B reproduces it; a testable
+hypothesis for it: norm layers rescale the stream before every read, so a scalar mainly changes how later writes
+compare with the stream, and at 13-14 that comparison may already be saturated by the huge writes.
+Design (`turn_undo.py --layer L`, L = 15 turn; 8, 12 ordinary with their own attention inputs; 20, 25 ordinary
+reusing them, like 15): at layer L's input, mix t of a map into the centered state (t = 0.25 ... 1), norm kept per
+token; maps: Procrustes L -> L-2, a one-hidden-layer nonlinear map L -> L-2 (fit check), random rotations (3 at t = 1).
+Each condition reports displacement (cosine to the original state), KL and top-1.
+- U2a (turn-specific damage): at t = 1, random-rotation KL at layer 15 differs from all four ordinary sites by >= 2x.
+  If not, the damage is generic basis dependence and U says nothing special about the turn.
+- U2b (old axes useless): at layer 15, at matched displacement the undo map hurts as much as random (KL within 30%);
+  at ordinary sites, where L-2 shares axes with L, the undo map hurts much less than random at the same displacement.
+Result U2 (results/turn_undo_L{8,12,15,20,25}.json). Identity hook KL 0 at every site.
+- U2a holds, in the unexpected direction: a random rotation at layer 15's input costs KL 0.66-0.75 (top-1 0.62-0.64);
+  at the ordinary sites it costs 5.7-5.8 (layer 8), 6.2-6.4 (12), 4.7-5.1 (20) and 5.7-6.0 (25), top-1 0.02-0.12.
+  So the stream just after the turn is about 8x less sensitive to its basis than any ordinary site, including 20
+  and 25, which reuse attention inputs like 15. Basis dependence is generic; its weakness at 15 is turn-specific.
+- U2b holds: at layer 15 the undo map hurts as much as a random rotation at every dose with matched displacement
+  (e.g. t = 0.5: 0.15 vs 0.11; t = 1: 0.74 vs 0.70), and the better-fitting nonlinear map (cos 0.76 vs 0.57) also
+  hurts as much (0.70). At ordinary sites, where layer L-2 shares much of L's axes (unmapped cos 0.27-0.46), the
+  undo map hurts far less than random (ratios 0.16-0.59). Later layers get nothing from the pre-turn axes.
+Reading: right after the turn, the old axes are useless to later layers, and the stream's axes matter much less
+for the output than anywhere else tested. This fits B and B2 (scaling 13-14 is also cheap): the state entering
+layer 15 carries less of what the output depends on than states elsewhere. Where that information travels instead
+is open; layers 15-34 attend to keys and values computed at layers 13-14, which a rotation at 15 does not touch,
+but layers 20 and 25 share the same inputs and are sensitive, so that alone does not explain it. One model; E4B
+not tested. Wording for v0.3: "later layers do not read the pre-turn axes, and the stream right after the turn is
+unusually insensitive to rotation"; "depend on the new axes" is withdrawn as too strong.
+
+## U3: where does the rotation tolerance start and end, and does E4B show it? (stated 2026-10-18, before running)
+`turn_undo.py --random-only` (identity + 3 random rotations at t = 1; layer mean from 40 texts).
+E2B sites 13, 14 (inside the turn), 16, 17, 18, 22 (after it), with 8, 12, 15, 20, 25 from U2.
+E4B (turn at layers 22-23): sites 12, 18, 24 (just after the turn), 26, 30, 36.
+- U3a: in E2B the low sensitivity is confined to the turn: KL at 16-18 and 22 is >= 3x KL at 15. (Alternative: it
+  fades gradually over several layers.) Sites 13 and 14 descriptive.
+- U3b: in E4B, random-rotation KL at layer 24's input is <= 1/3 of the median of the other E4B sites.
+Result U3a (results/turn_undo_rand_L*.json, with U2): random-rotation KL at the input of layer 8 5.7, 12 6.2, 13 6.4,
+14 1.45, 15 0.70, 16 1.39, 17 2.09, 18 2.62, 20 4.9, 22 6.2, 25 5.9 (spread over 3 rotations <= 0.4). Not confined:
+the tolerance starts after layer 13's write (input of 14), is deepest after 14 (input of 15), and fades over about
+five layers (16-20). U3a fails as stated; the gradual alternative holds. The low-sensitivity window matches the
+turn's own span (13-14) plus a recovery. Reading: for a few layers after the big writes, the output depends much
+less on the stream's axes; later layers then build up a state the output depends on again.
+Result U3b (results/turn_undo_e4b_rand_L*.json; E4B bf16, low-VRAM mode): random-rotation KL at the input of layer
+12 4.9, 18 6.4, 24 (just after the turn) 2.9, 26 2.6, 30 5.6, 36 7.9 (spread over 3 rotations <= 0.3; identity 0).
+Layer 24 is 0.52x the median of the other sites, not <= 1/3: U3b fails as stated. Qualitatively the same pattern,
+weaker: the two sites after E4B's turn (24, 26) are about half as sensitive as the rest, against about one eighth in
+E2B. Coarse sampling (24 and 26 only; the minimum may lie elsewhere). Reported as a partial replication.
+
+## U4: is the rotation window a massive-coordinate artifact? (stated 2026-10-18, before running)
+Reviewer: a norm-keeping random rotation spreads huge coordinates over all channels; inside the window the old
+stream (with its huge coordinates and first-token sink) has just been overwritten, so rotation could hurt less there
+because less of what norms depend on remains. Control 2 (exclude the first token) is already in every rotation run:
+the hook leaves position 0 untouched. Control 1: `turn_undo.py --random-only --keep-massive` holds coordinates with
+mean |x| > 20x the median (per site, non-first tokens) fixed and rotates only the rest; E2B sites 8, 12, 13, 14, 15,
+16, 18, 20, 22, 25.
+- U4: the window survives: KL at 15 stays <= 1/3 of the median of sites 8, 12, 20, 22, 25. If it shrinks toward the
+  other sites, the post says the window is at least partly a huge-coordinate effect.
+Result U4 (results/turn_undo_rand_keepmass_L*.json): the window survives. Coordinates held fixed per site (mean |x|
+> 20x median on non-first tokens): none at 8, 12, 13, 14, 22; one at 15, 18, 20, 25; three at 16, so on tokens other
+than the first Gemma 4 E2B has few huge coordinates anywhere. KL with them held: 8 5.7, 12 6.3, 13 6.4, 14 1.45,
+15 0.69, 16 1.42, 18 2.6, 20 4.8, 22 6.2, 25 5.8, unchanged from U2/U3 (identical where nothing was held). With the
+first token always untouched, the window is not an effect of huge coordinates or of the first-token sink.
+Why predictions depend less on axes there stays open.
+
+## KV1: does attention-input sharing make the window? (stated 2026-10-19, before running)
+Outside review (NotebookLM, forwarded by Steve) asked for a control for Gemma 4's key/value sharing. From the model
+configs: in E2B, layers 15-34 reuse the keys and values of layer 13 (sliding attention) or 14 (full attention); in
+E4B, layers 24-41 reuse those of 22 and 23. So in both models the turn sits on the last two layers that compute their
+own keys and values, and the rotation window starts exactly where sharing starts. A rotation at layer 15 or later
+cannot reach any attention keys or values. Layers 20 and 25 also share and are sensitive, so sharing alone does not
+make the window, but it may decide where it starts.
+Design (`turn_undo.py --random-only --clean-kv`): at sites 8, 12, 13 and 14 (E2B), 3 random rotations at t = 1 as
+before, and the same rotations with every key and value projection at or after the site computed from the unrotated
+run (cached output of k_proj and v_proj in a clean pass). Only queries, MLPs and the stream see the rotation. Site 15
+(nothing to clean) as reference. Run on a P100 in float16 with eager attention (no bf16 there), so both arms are
+rerun in float16 and compared within this run, not against the bf16 numbers above.
+- KV1a (sharing sets the start): with clean keys and values, KL at 13 and at 14 is <= 2x KL at 15.
+- KV1b (sharing explains the window generally): with clean keys and values, KL at 8 and 12 is also <= 2x KL at 15.
+Expectation, stated so it can fail: KV1a fails at 13 and KV1b fails, because a rotation before the turn also feeds
+the turn's large MLP writes; clean keys and values lower damage somewhat at every site. Site 14 descriptive beyond
+KV1a (only its own full-attention keys and values are rotated in the plain arm).
+
+## N2: are turn neurons more readable than equally active ones? (stated 2026-10-19, before running)
+Outside review: the 16 random neurons in the blind labelling were not matched on activation size (the post says so),
+so the turn neurons' advantage may be salience. Turn neurons were chosen by write variance, var(a) |w|^2.
+Design (`blind_matched.py`): same token sample, same 16 turn neurons. For each, a control from the same layer with the
+nearest activation spread (std of a on eval texts 100-129), outside the top 64 by write variance, without reuse. So
+controls match var(a) and differ in write size |w|. 48 units (16 turn, 16 matched, the old 16 random), reshuffled
+with new ids; two fresh blind agent raters (Opus, Sonnet) with the same rubric (label and 1-5 score per pole, "one main
+job"). Unblinded after both finish.
+- N2 (holds if): for both raters, mean pole score of turn neurons > matched controls, one-sided Mann-Whitney p < 0.05.
+  If it fails, the post says the turn neurons are no more readable than equally active neurons.
+- Descriptive: the matched controls against the old random neurons (does activation spread alone buy readability?).
+Deviation (2026-10-19, before any rating): the planned controls (outside the top 64 by write variance) could not be
+matched: their activation spread was 0.12-0.75x that of their turn neuron. Excluding only the 8 selected neurons per
+layer (`blind_matched.py --exclude 8 --tag blind2x8`) brings 9 of 16 controls within 0.75-1.02x; the other 7 turn
+neurons (mostly spread 0.9-1.6) are the most active in their layer; their best controls reach only 0.23-0.42x. So
+selection by write variance is close to selection by activation size, and for the most active turn neurons a
+size-matched control does not exist. Raters see the blind2x8 set (48 units, run in float16 on a P100; the 16 turn
+neurons are the same as before, 8 of 8 per layer reproduced). N2 is tested on all 16 vs 16 as stated, and
+descriptively on the 9 pairs matched within 0.75x.
+(Counts in this paragraph corrected after unblinding: it first said 10 well-matched pairs, a miscount of the
+same ratios; the threshold 0.75x is unchanged.)
+Result KV1 (results/turn_undo_kv1_bf16_rand_cleankv_L*.json; bf16 on a P100 with eager attention; the float16 runs,
+_fp16_, overflowed to NaN KL on some tokens and are kept only as a record). Identity and identity with replayed keys
+and values both give KL 0. Random-rotation KL, plain -> with clean keys and values (top-1 in brackets):
+layer 8 5.70 (0.12) -> 0.19 (0.82); 12 6.06 (0.09) -> 0.26 (0.79); 13 6.33 (0.09) -> 0.30 (0.77);
+14 1.59 (0.46) -> 0.42 (0.74); 15 0.70 (0.64), nothing to clean. Plain-arm values match the bf16 3060 runs.
+KV1a holds and KV1b holds; the stated expectation failed. With keys and values protected, a rotation at any of these
+layers costs less than the in-window rotation at 15. So the window is mostly attention-input sharing: from layer 15
+on, a rotation cannot reach the keys and values later layers attend to (computed at 13 and 14), and those carry
+enough to rebuild most predictions. At 14 only the full-attention keys and values are reachable, which is why 14 is
+partly protected. Caveats: clean keys and values include each token's own, so the unrotated state reaches every
+position through attention; this test says the damage travels through what attention reads, not that other tokens
+supply the information. Why the damage still rises from 16 to 20, where keys and values are equally out of reach,
+is open (fewer layers left after the rotation is one candidate, untested). The turn sits on the last two layers
+that compute their own keys and values in both E2B and E4B (configs), so turn and window start are confounded by
+design; the undo test (U) at 15 sits inside this protected region.
+
+Result N2 (results/blind2x8_key.json, blind2x8_units.md, blind2_raters/; raters Opus and Sonnet, fresh, blind).
+N2 fails. Mean pole score, turn vs matched vs old random: rater 1 3.47 / 3.47 / 2.81, rater 2 3.12 / 3.03 / 2.31;
+turn > matched one-sided Mann-Whitney p 0.48 and 0.40. Matched > random p 0.018 and 0.009. On the 9 well-matched
+pairs the mean pair difference is 0.00 and 0.17; on the 7 poorly matched pairs 0.00 and 0.00. "One main job": rater 1
+9 / 7 / 7 of 16, rater 2 3 / 2 / 0. Raters agree closely (Spearman 0.83 on unit scores; one_job agreement 26/48).
+Reading: the turn neurons are more readable than random neurons because they are more active; neurons of the same
+activation spread are as readable. The earlier turn > random result replicates (same random neurons, new raters).
+Post wording: "as readable as other neurons of the same activation size, and more readable than random ones".
+Fix (2026-10-19): the summary field random_cleankv_kl_at_1 in the KV1 files first also averaged in the identity
+check (KL 0); recomputed from the per-rotation values (turn_undo.py filter fixed). The numbers above were read from
+the per-rotation values and are unchanged.

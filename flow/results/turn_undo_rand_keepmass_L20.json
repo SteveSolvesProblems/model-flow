@@ -1,0 +1,42 @@
+{
+ "model": "google/gemma-4-E2B",
+ "layer_input": 20,
+ "reference_layer": 18,
+ "fit": {
+  "n_fit_tokens": 2389,
+  "d": 1536,
+  "cos_mapped_eval": 0.5775480270385742,
+  "cos_mlp_eval": null,
+  "cos_unmapped_eval": 0.45125648379325867,
+  "massive_dims_held": [
+   221
+  ]
+ },
+ "conds": {
+  "identity": {
+   "kl": 0.0,
+   "top1": 1.0,
+   "cos_to_original": 1.0
+  },
+  "random0@1": {
+   "kl": 4.866050077725627,
+   "top1": 0.130900916479336,
+   "cos_to_original": -0.004446627962229554
+  },
+  "random1@1": {
+   "kl": 4.638588150211752,
+   "top1": 0.13487809095625108,
+   "cos_to_original": 0.0004260824007980143
+  },
+  "random2@1": {
+   "kl": 4.800172271807672,
+   "top1": 0.13003631333218052,
+   "cos_to_original": -0.003292970116469721
+  }
+ },
+ "random_kl_at_1": {
+  "mean": 4.768270166581684,
+  "min": 4.638588150211752,
+  "max": 4.866050077725627
+ }
+}

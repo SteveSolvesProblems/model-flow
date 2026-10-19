@@ -17,6 +17,7 @@ python block_ablation.py --name gemma4_e2b --model google/gemma-4-E2B
 """
 import argparse
 import json
+import os
 import re
 
 import numpy as np
@@ -45,7 +46,8 @@ def main():
     torch.set_num_threads(a.threads)
     from transformers import AutoModelForCausalLM, AutoTokenizer
     tok = AutoTokenizer.from_pretrained(a.model)
-    model = AutoModelForCausalLM.from_pretrained(a.model, dtype=torch.bfloat16).eval()
+    dev = os.environ.get("DIAG_DEVICE", "cpu")                       # cuda added 2026-10-18 for the control run
+    model = AutoModelForCausalLM.from_pretrained(a.model, dtype=torch.bfloat16).eval().to(dev)
     layers = {}
     for n, m in model.named_modules():
         r = re.search(r"language_model\.layers\.(\d+)$", n)
@@ -63,14 +65,24 @@ def main():
     conds["scalar1_12"] = [("scalar", 12)]
     for f in (0.5, 2.0, 4.0):
         conds[f"scalex{f:g}_12"] = [(f"scale:{f}", 12)]
+    # 2026-10-18 (behaviour control, Steve's go): the same doses on two pairs of ordinary layers, plus x16 (about the
+    # change that setting the turn layers' scalars to 1 makes: x13.6 and x20.4)  --only ... --tag ctrl
+    for f in (0.5, 2.0, 4.0, 16.0):
+        conds[f"scalex{f:g}_13_14"] = [(f"scale:{f}", 13), (f"scale:{f}", 14)]
+        for L0 in (8, 24):
+            conds[f"scalex{f:g}_{L0}_{L0 + 1}"] = [(f"scale:{f}", L0), (f"scale:{f}", L0 + 1)]
     if a.only is not None:
+        for k in a.only:                                              # any scalex<f>_<L>[_<L2>] (2026-10-18 dose matching)
+            r = re.fullmatch(r"scalex([0-9.]+)_(\d+)(?:_(\d+))?", k)
+            if k not in conds and r:
+                conds[k] = [(f"scale:{r.group(1)}", int(L)) for L in r.groups()[1:] if L is not None]
         conds = {k: v for k, v in conds.items() if k in a.only}
         assert len(conds) == len(a.only), f"unknown condition in {a.only}"
     module = lambda kind, L: {"attn": layers[L].self_attn, "mlp": layers[L].mlp,
                               "ple": layers[L].per_layer_projection}[kind]
 
     meta = np.load(next(d / "tok_meta.npz" for d in CACHE_DIRS if (d / "tok_meta.npz").exists()), allow_pickle=True)
-    encs = [tok(str(t), truncation=True, max_length=64, return_tensors="pt") for t in meta["eval_texts"][: a.n]]
+    encs = [tok(str(t), truncation=True, max_length=64, return_tensors="pt").to(dev) for t in meta["eval_texts"][: a.n]]
 
     # mean outputs of every targeted module
     targets = sorted({(k, L) for c in conds.values() for k, L in c if k != "scalar" and not k.startswith("scale:")})
@@ -100,8 +112,8 @@ def main():
             return (new,) + tuple(out[1:]) if isinstance(out, tuple) else new
         return f
     hooks = [module(*t).register_forward_hook(repl(t)) for t in targets]
-    scal0 = {L: layers[L].layer_scalar.detach().clone() for L in (12, 13, 14)}
-    log("scalars 10-16:", [round(float(layers[L].layer_scalar.float().mean()), 4) for L in range(10, 17)])
+    scal0 = {L: layers[L].layer_scalar.detach().clone() for L in layers}
+    log("scalars:", {L: round(float(layers[L].layer_scalar.float().mean()), 4) for L in sorted(layers)})
 
     def set_cond(name):
         active.clear()
@@ -134,10 +146,10 @@ def main():
                 if name == "clean":
                     clean_lp = lp
                 else:
-                    kl[name].append((clean_lp.exp() * (clean_lp - lp)).sum(-1).numpy())
-                    t1[name].append((clean_lp.argmax(-1) == lp.argmax(-1)).numpy())
+                    kl[name].append((clean_lp.exp() * (clean_lp - lp)).sum(-1).cpu().numpy())
+                    t1[name].append((clean_lp.argmax(-1) == lp.argmax(-1)).cpu().numpy())
                 if i in by_text:
-                    states[name].append(torch.stack([hs[0, by_text[i]] for hs in out.hidden_states], 0).float().numpy())
+                    states[name].append(torch.stack([hs[0, by_text[i]] for hs in out.hidden_states], 0).float().cpu().numpy())
             if i % 20 == 0:
                 log(a.name, "text", i)
     set_cond("clean")

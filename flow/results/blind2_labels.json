@@ -1,0 +1,41 @@
+{
+ "design": "48 E2B units (layers 13-14): 16 turn neurons by write variance, 16 controls matched on activation spread (outside the 8 selected per layer), the 16 random neurons of the first set; 6 strongest tokens per pole, shuffled; two fresh blind LM raters (r1 Opus, r2 Sonnet)",
+ "well_matched_threshold": 0.75,
+ "n_well_matched": 9,
+ "summary": {
+  "r1": {
+   "mean_score": {
+    "turn_var": 3.46875,
+    "matched": 3.46875,
+    "random": 2.8125
+   },
+   "one_job": {
+    "turn_var": 9,
+    "matched": 7,
+    "random": 7
+   },
+   "mannwhitney_p_turn_greater_matched": 0.4770992411509559,
+   "mannwhitney_p_matched_greater_random": 0.01772519609912112,
+   "pair_diff_well_matched": 0.0,
+   "pair_diff_poorly_matched": 0.0
+  },
+  "r2": {
+   "mean_score": {
+    "turn_var": 3.125,
+    "matched": 3.03125,
+    "random": 2.3125
+   },
+   "one_job": {
+    "turn_var": 3,
+    "matched": 2,
+    "random": 0
+   },
+   "mannwhitney_p_turn_greater_matched": 0.40172444691067494,
+   "mannwhitney_p_matched_greater_random": 0.009248553805928789,
+   "pair_diff_well_matched": 0.16666666666666666,
+   "pair_diff_poorly_matched": 0.0
+  }
+ },
+ "rater_spearman": 0.8314358751960512,
+ "n2_holds": false
+}

@@ -562,7 +562,7 @@ def _():
 
 
 # ── addendum 2026-10-18: neurons and the turn ──
-@claim("NT1", "Two blind raters find turn neurons more readable than random ones (both p < 0.05); one main job: about a third to a half of turn neurons vs 2-3 of 16 random",
+@claim("NT1", "Two blind raters find turn neurons more readable than random ones (both p < 0.05); one main job: about a third to a half of turn neurons vs 2-3 of 16 random (random neurons not size-matched; see NT13)",
        "exploratory", "blind_labels.json", "neuron_cells.py (test D poles); raters were agent sessions",
        "LM raters; 6 strongest tokens per pole (where neurons look cleanest); 16 units per kind")
 def _():
@@ -614,6 +614,111 @@ def _():
     got = (len(a["massive_dims"]), round(a["conds"]["hold"]["kl"], 1), round(b["conds"]["hold"]["kl"], 3),
            round(a["conds"]["clean"]["adj_cos_without_massive"][2], 2), round(a["conds"]["clean"]["adj_cos"][2], 2))
     return got, got[0] == 3 and got[1] > 5 and got[2] < 0.05 and close(0.77, got[3], 0.01)
+
+
+# ── v0.3: behaviour checks at the turn, and the stability pick's second test ──
+@claim("NT7", "Scalar doses: the turn pair (13-14) is the least sensitive pair; KL at x0.5/x2/x4 0.03/0.04/0.59 vs >= 0.2 at every control pair (8-9, 18-19, 24-25, plain and size-matched); prediction (turn more sensitive) failed",
+       "exploratory (B, B2 stated before running)", "block_ablation_gemma4_e2b_{ctrl,ctrl2}.json", "block_ablation.py",
+       "one model; bf16 on GPU; 100 texts")
+def _():
+    c = {**j("block_ablation_gemma4_e2b_ctrl.json")["results"], **j("block_ablation_gemma4_e2b_ctrl2.json")["results"]}
+    turn = [round(c[f"scalex{f}_13_14"]["kl"], 2) for f in ("0.5", "2", "4")]
+    ctrl = [v["kl"] for k, v in c.items() if k.startswith("scalex") and k.count("_") == 2 and not k.endswith("_13_14")
+            and not k.startswith("scalex16")]
+    return (turn, round(min(ctrl), 2)), turn == [0.03, 0.04, 0.59] and min(ctrl) >= 0.2
+
+
+@claim("NT8", "Just after the turn (layer 15 input), mapping back to pre-turn axes hurts as much as a random rotation (KL 0.74 vs 0.66-0.75); at ordinary sites the 2-layer map hurts much less than random (ratio <= 0.6)",
+       "exploratory (U, U2 stated before running)", "turn_undo_L{8,12,15,20,25}.json", "turn_undo.py",
+       "Procrustes fit partial (held-out cos 0.57 at layer 15); one model")
+def _():
+    r = {L: j(f"turn_undo_L{L}.json") for L in (8, 12, 15, 20, 25)}
+    t1 = [round(r[15]["conds"][k]["top1"], 2) for k in ("undo@1", "random0@1", "random1@1", "random2@1")]
+    got = (round(r[15]["conds"]["undo@1"]["kl"], 2), round(r[15]["undo_over_random_kl"], 2),
+           max(round(r[L]["undo_over_random_kl"], 2) for L in (8, 12, 20, 25)), t1)
+    return got, (close(0.74, got[0], 0.01) and 0.8 <= got[1] <= 1.25 and got[2] <= 0.6 and t1[0] == 0.61
+                 and 0.62 <= min(t1[1:]) and max(t1[1:]) <= 0.64)
+
+
+@claim("NT9", "Random rotation of the stream: E2B KL 0.70 at layer 15's input vs 4.7-6.4 at layers 8, 12, 13, 20, 22, 25 (window 14-18); E4B 2.6-2.9 just after its turn (24, 26) vs 4.9-7.9 elsewhere",
+       "exploratory (U2a, U3 stated before running; U3a and U3b failed as stated)", "turn_undo{,_rand,_e4b_rand}_L*.json", "turn_undo.py",
+       "3 rotations per site; E4B sampled coarsely")
+def _():
+    e2 = {L: j(f"turn_undo_L{L}.json")["random_kl_at_1"]["mean"] for L in (8, 12, 15, 20, 25)}
+    e2.update({L: j(f"turn_undo_rand_L{L}.json")["random_kl_at_1"]["mean"] for L in (13, 14, 16, 17, 18, 22)})
+    e4 = {L: j(f"turn_undo_e4b_rand_L{L}.json")["random_kl_at_1"]["mean"] for L in (12, 18, 24, 26, 30, 36)}
+    far = [e2[L] for L in (8, 12, 13, 20, 22, 25)]
+    got = (round(e2[15], 2), round(min(far), 1), round(max(far), 1), round(e4[24], 1), round(e4[26], 1),
+           round(min(e4[L] for L in (12, 18, 30, 36)), 1))
+    return got, close(0.70, got[0], 0.01) and got[1] >= 4.5 and got[3] < 3 and got[4] < 3 and got[5] >= 4.5
+
+
+@claim("NT10", "Map splits vs neurons (M1): best-neuron AUC gain over layer l-2 is about 0.02 for split pairs (K = 8: 0.018; K = 4: 0.016) vs 0.003 for pairs already apart",
+       "exploratory (M1 stated before running; control added in run 2)", "macro_micro.json", "macro_micro.py",
+       "control pairs are whole groups (easier); one model")
+def _():
+    m = j("macro_micro.json")["M1"]
+    got = [(round(m[k]["gain_vs_prev_splits"], 3), round(m[k]["gain_vs_prev_old"], 3)) for k in ("8", "4")]
+    return got, got == [(0.018, 0.003), (0.016, 0.003)]
+
+
+@claim("NT11", "The rotation window is not a huge-coordinate effect: holding coordinates with mean |x| > 20x median fixed (0-3 per site; first token never rotated) leaves KL at 15 at 0.69 vs 5.7-6.4 at layers 8, 12, 13, 22, 25",
+       "exploratory (U4 stated before running)", "turn_undo_rand_keepmass_L*.json", "turn_undo.py", "one model")
+def _():
+    k = {L: j(f"turn_undo_rand_keepmass_L{L}.json")["random_kl_at_1"]["mean"] for L in (8, 12, 13, 15, 22, 25)}
+    far = [k[L] for L in (8, 12, 13, 22, 25)]
+    got = (round(k[15], 2), round(min(far), 1), round(max(far), 1))
+    return got, close(0.69, got[0], 0.01) and got[1] >= 5.5 and got[2] <= 6.5
+
+
+@claim("NT12", "The rotation window is mostly key/value reuse: with every attention layer's keys and values from the unrotated model, a random rotation at layers 8, 12, 13, 14 costs KL 0.19-0.42 (plain 1.6-6.3), below layer 15's 0.70 where nothing can be cleaned",
+       "exploratory (KV1 stated before running)", "turn_undo_kv1_bf16_rand_cleankv_L*.json", "turn_undo.py --clean-kv",
+       "one model (E2B); clean keys and values include each token's own; bf16 on a different GPU than U2-U4")
+def _():
+    f = {L: j(f"turn_undo_kv1_bf16_rand_cleankv_L{L}.json") for L in (8, 12, 13, 14, 15)}
+    cl = [f[L]["random_cleankv_kl_at_1"]["mean"] for L in (8, 12, 13, 14)]
+    pl = [f[L]["random_kl_at_1"]["mean"] for L in (8, 12, 13, 14)]
+    ref = f[15]["random_kl_at_1"]["mean"]
+    ident = [f[L]["conds"][c]["kl"] for L in f for c in ("identity", "identity_cleankv")]
+    got = (round(min(cl), 2), round(max(cl), 2), round(min(pl), 1), round(max(pl), 1), round(ref, 2))
+    return got, got == (0.19, 0.42, 1.6, 6.3) + (got[4],) and close(0.70, ref, 0.01) and max(ident) == 0 and max(cl) < ref
+
+
+@claim("NT13", "Turn neurons are no more readable than neurons of the same activation spread (both raters p >= 0.4), while those controls beat random neurons (p < 0.02); prediction failed",
+       "exploratory (N2 stated before running; control set changed before rating, see note)", "blind2_labels.json",
+       "blind_matched.py, blind2_score.py; raters were agent sessions",
+       "LM raters; 7 of 16 controls only 0.23-0.42x the spread (no closer neuron exists); 6 strongest tokens per pole")
+def _():
+    s = j("blind2_labels.json")
+    got = [(round(s["summary"][r]["mannwhitney_p_turn_greater_matched"], 2), round(s["summary"][r]["mannwhitney_p_matched_greater_random"], 3)) for r in ("r1", "r2")]
+    return got, (not s["n2_holds"]) and all(a >= 0.4 and b < 0.02 for a, b in got) and s["n_well_matched"] == 9
+
+
+@claim("SV1", "Stability pick, second test (fresh models): P1 passed (topic shortfall 0.98, beats last 5/6); P2 failed (second-to-last 1.13, difference CI [-0.52, 0.43]); P3 passed (FEPoID 10.6, ID-min 3.4); P4 failed as predicted (ratings 2.21); P5 passed (probe 0.35)",
+       "pre-registered", "stabv2_score.json", "stab_v2.py, score_stability_v2.py",
+       "6 topic pairs from 3 models; intrinsic-dimension rules adapted to mean-pooled texts")
+def _():
+    s = j("stabv2_score.json")["summary"]
+    got = (round(s["P1"]["S10_mean"], 2), s["P1"]["beats_last"], round(s["P2"]["second_last_mean"], 2),
+           [round(x, 2) for x in s["P2"]["ci95"]], round(s["P3"]["fepoid"]["mean"], 1), round(s["P3"]["id_min"]["mean"], 1),
+           round(s["P4"]["S10_mean"], 2), round(s["P5_topic"]["S10_mean"], 2))
+    ok = (s["P1"]["pass"] and not s["P2"]["pass"] and s["P3"]["pass"] and s["P4"]["failed_as_predicted"] and s["P5_topic"]["pass"]
+          and got[:3] == (0.98, 5, 1.13) and got[3] == [-0.52, 0.43])
+    return got, ok
+
+
+@claim("SV2", "Post hoc: the second-to-last layer loses several points on 3 of 4 Gemma 4 pairs (7.8, 5.4, 5.5) where the pick loses 0.2, 0, 2.6; topic pairs: stability tracks quality beyond depth in 5 of 6 (partial rho >= 0.5)",
+       "post hoc", "robust_b1.json, stabv2_score.json, stabv2_posthoc.json", "score_stability_v2.py, stabv2_posthoc.py",
+       "found after seeing results; two models of one family")
+def _():
+    b = j("robust_b1.json")
+    sh = lambda v, l: 100 * (max(v["p10"]) - v["p10"][l])
+    g = [(round(sh(b[k], len(b[k]["p10"]) - 2), 1), round(sh(b[k], b[k]["S10"]), 1)) for k in ("gemma4_e4b", "gemma4_e4b_20ng")]
+    y = j("stabv2_score.json")["pairs"]["gemma4_e2b_yelp"]["p10"]["shortfall"]
+    g.append((round(y["second_last"], 1), round(y["S10"], 1)))
+    pc = j("stabv2_posthoc.json")["pairs"]
+    n = sum(v["partial_spearman_stability_p10_given_depth"] >= 0.5 for k, v in pc.items() if not k.endswith("_yelp"))
+    return (g, n), g == [(7.8, 0.2), (5.4, 0.0), (5.5, 2.6)] and n == 5
 
 
 REPL = []

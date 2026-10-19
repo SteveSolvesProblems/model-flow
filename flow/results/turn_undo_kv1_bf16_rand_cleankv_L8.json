@@ -1,0 +1,83 @@
+{
+ "model": "google/gemma-4-E2B",
+ "dtype": "bfloat16",
+ "layer_input": 8,
+ "reference_layer": 6,
+ "fit": {
+  "n_fit_tokens": 2389,
+  "d": 1536,
+  "cos_mapped_eval": 0.6155860424041748,
+  "cos_mlp_eval": null,
+  "cos_unmapped_eval": 0.4600408971309662,
+  "massive_dims_held": []
+ },
+ "clean_kv_projections": [
+  "8.k_proj",
+  "8.v_proj",
+  "9.k_proj",
+  "9.v_proj",
+  "10.k_proj",
+  "10.v_proj",
+  "11.k_proj",
+  "11.v_proj",
+  "12.k_proj",
+  "12.v_proj",
+  "13.k_proj",
+  "13.v_proj",
+  "14.k_proj",
+  "14.v_proj"
+ ],
+ "conds": {
+  "identity": {
+   "kl": 0.0,
+   "top1": 1.0,
+   "cos_to_original": 1.0
+  },
+  "random0@1": {
+   "kl": 5.72487025860373,
+   "top1": 0.1189693930485907,
+   "cos_to_original": -0.012854796759082066
+  },
+  "random1@1": {
+   "kl": 5.675481449623906,
+   "top1": 0.11585682171883106,
+   "cos_to_original": -0.015015188538242784
+  },
+  "random2@1": {
+   "kl": 5.685843284167613,
+   "top1": 0.11810478990143525,
+   "cos_to_original": -0.01480947999139053
+  },
+  "identity_cleankv": {
+   "kl": 0.0,
+   "top1": 1.0,
+   "cos_to_original": 1.0
+  },
+  "random0_cleankv@1": {
+   "kl": 0.20345537454925688,
+   "top1": 0.8154936883970257,
+   "cos_to_original": -0.012854796759082066
+  },
+  "random1_cleankv@1": {
+   "kl": 0.18026541350478636,
+   "top1": 0.8300190212692374,
+   "cos_to_original": -0.015015188538242784
+  },
+  "random2_cleankv@1": {
+   "kl": 0.18901269423102046,
+   "top1": 0.8281168943454954,
+   "cos_to_original": -0.01480947999139053
+  }
+ },
+ "random_kl_at_1": {
+  "mean": 5.695398330798416,
+  "min": 5.675481449623906,
+  "max": 5.72487025860373
+ },
+ "random_cleankv_kl_at_1": {
+  "mean": 0.1909111607616879,
+  "min": 0.18026541350478636,
+  "max": 0.20345537454925688
+ },
+ "note": "random_cleankv_kl_at_1 recomputed 2026-10-19 from conds: the first summary also averaged in identity_cleankv (turn_undo.py filter fixed)"
+}

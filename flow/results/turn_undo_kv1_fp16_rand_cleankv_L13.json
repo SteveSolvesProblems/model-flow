@@ -1,0 +1,73 @@
+{
+ "model": "google/gemma-4-E2B",
+ "dtype": "float16",
+ "layer_input": 13,
+ "reference_layer": 11,
+ "fit": {
+  "n_fit_tokens": 2389,
+  "d": 1536,
+  "cos_mapped_eval": 0.6258484125137329,
+  "cos_mlp_eval": null,
+  "cos_unmapped_eval": 0.19417475163936615,
+  "massive_dims_held": []
+ },
+ "clean_kv_projections": [
+  "13.k_proj",
+  "13.v_proj",
+  "14.k_proj",
+  "14.v_proj"
+ ],
+ "conds": {
+  "identity": {
+   "kl": 0.0,
+   "top1": 1.0,
+   "cos_to_original": 1.0
+  },
+  "random0@1": {
+   "kl": NaN,
+   "top1": 0.04599688742867024,
+   "cos_to_original": -0.011272453699282209
+  },
+  "random1@1": {
+   "kl": NaN,
+   "top1": 0.0019021269237420025,
+   "cos_to_original": -0.013643087170207745
+  },
+  "random2@1": {
+   "kl": NaN,
+   "top1": 0.0,
+   "cos_to_original": -0.011311308412677211
+  },
+  "identity_cleankv": {
+   "kl": 0.0,
+   "top1": 1.0,
+   "cos_to_original": 1.0
+  },
+  "random0_cleankv@1": {
+   "kl": NaN,
+   "top1": 0.7414836590005187,
+   "cos_to_original": -0.011272453699282209
+  },
+  "random1_cleankv@1": {
+   "kl": NaN,
+   "top1": 0.7231540722808231,
+   "cos_to_original": -0.013643087170207745
+  },
+  "random2_cleankv@1": {
+   "kl": NaN,
+   "top1": 0.7131246757738198,
+   "cos_to_original": -0.011311308412677211
+  }
+ },
+ "random_kl_at_1": {
+  "mean": NaN,
+  "min": NaN,
+  "max": NaN
+ },
+ "random_cleankv_kl_at_1": {
+  "mean": NaN,
+  "min": NaN,
+  "max": NaN
+ },
+ "note": "random_cleankv_kl_at_1 recomputed 2026-10-19 from conds: the first summary also averaged in identity_cleankv (turn_undo.py filter fixed)"
+}

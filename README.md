@@ -20,8 +20,14 @@ moves through its layers, rather than weight by weight?
 - Added in v0.2 (18 October 2026): the turn is not carried by a few MLP neurons. Its neurons are somewhat readable,
   but any write of the right size turns the stream, and the previous layer's scalar sets part of that size. Notes,
   including the tests that failed: `docs/notes/neurons_and_the_turn.md`.
-- A side result, a label-free way to pick an embedding layer, is still being tested. Its first registration and the
-  registered follow-up are in docs/preregistrations/ (`PREREG_layer_selection.md`, `PREREG_stability_v2.md`).
+- Added in v0.3: whether the turn matters for what the model predicts. Later layers get nothing from the pre-turn
+  axes. For a few layers after the turn the predictions depend unusually little on the stream's axes, and a control
+  shows this comes mostly from Gemma 4's reuse of earlier layers' attention keys and values, which begins right after
+  the turn. Against neurons of the same activation size, the turn's neurons are no more readable.
+- A side result, a label-free way to pick an embedding layer, is written up in `docs/stability.html`. Its second,
+  pre-registered test found it no better than the second-to-last layer on most models, so that layer is the
+  recommended default. It seemed to help on Gemma 4, whose geometry turns, but that was noticed after the test. Registrations: `docs/preregistrations/PREREG_layer_selection.md`,
+  `PREREG_stability_v2.md`.
 
 This is exploratory research. Claims are narrow on purpose, and failures are reported next to passes.
 

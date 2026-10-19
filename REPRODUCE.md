@@ -25,8 +25,10 @@ There are three levels of reproduction, from cheapest to most expensive.
 
 - Python 3.12, with the packages in `requirements.txt`. The runs used torch 2.11 with CUDA 12.6.
 - GPUs used:
-  - two NVIDIA P100s (16 GB each, fp16/fp32 only);
-  - one RTX 3060 (12 GB) for some Gemma runs, with `DIAG_LOW_VRAM=1 DIAG_ATTN=eager`.
+  - two older datacenter GPUs (16 GB each, fp16/fp32 only, no bf16);
+  - one consumer GPU (12 GB, bf16) for some Gemma runs, with `DIAG_LOW_VRAM=1 DIAG_ATTN=eager`.
+  - Precision follows the hardware: caches made on the 16 GB GPUs are fp16 or fp32, those on the 12 GB GPU bf16
+    (each cache's `meta.json` records it). Small numerical differences between bf16 and fp16 runs are expected.
 - Any GPU with at least 16 GB runs every extraction. Models up to 4B parameters also fit on 12 GB with the two flags
   above.
 - Analyses are CPU-only (k-means via faiss and torch). Set `DIAG_THREADS` to your core count.
@@ -43,7 +45,7 @@ are approximate. They include about 14 GPU-hours spent on two exploratory pilots
 
 | Resource | Amount |
 |---|---|
-| GPU | about 100 GPU-hours: about 88 h on two P100s (up to two jobs at once), about 13 h on one RTX 3060 |
+| GPU | about 110 GPU-hours: about 88 h on the two 16 GB GPUs (up to two jobs at once), about 21 h on the 12 GB GPU (including about 8 h of v0.2–v0.3 runs) |
 | CPU analysis | about 330 job-hours (4–12 threads each), about 96 h of wall-clock time |
 | Feature caches | about 0.6 TB: about 205 million per-layer vectors in fp16, in about 5,500 model × layer caches |
 | Other scratch | about 0.08 TB (quantization KL and pipeline-fault runs) |
@@ -52,7 +54,7 @@ are approximate. They include about 14 GPU-hours spent on two exploratory pilots
 
 Where the GPU time went:
 
-| Work | P100 hours |
+| Work | GPU hours (16 GB GPUs) |
 |---|---|
 | Pythia training checkpoints (410M, 1.4B, 2.8B) | about 37 |
 | Other models and encoders | about 12 |

@@ -1,0 +1,391 @@
+{
+ "dtype": "float16",
+ "exclude": 8,
+ "n_tokens": 21056,
+ "check": {
+  "13": {
+   "turn_in_top8_this_run": 8,
+   "turn_std": [
+    0.4322669506072998,
+    0.4556836485862732,
+    1.5655174255371094,
+    0.2833540141582489,
+    0.8805025219917297,
+    1.174180269241333,
+    1.3420815467834473,
+    0.3487491011619568
+   ],
+   "matched_std_ratio": [
+    0.923858106136322,
+    1.0229650735855103,
+    0.3254738450050354,
+    0.9914923310279846,
+    0.4160708487033844,
+    0.27613481879234314,
+    0.23324526846408844,
+    0.7999544143676758
+   ]
+  },
+  "14": {
+   "turn_in_top8_this_run": 8,
+   "turn_std": [
+    0.7533174157142639,
+    0.6025460362434387,
+    0.6239731311798096,
+    0.6692255139350891,
+    1.5948082208633423,
+    1.4287868738174438,
+    1.365598201751709,
+    0.6340625882148743
+   ],
+   "matched_std_ratio": [
+    0.9833853840827942,
+    1.0244781970977783,
+    0.9245370626449585,
+    0.8386622667312622,
+    0.3344743251800537,
+    0.37024372816085815,
+    0.37434279918670654,
+    0.7935495376586914
+   ]
+  }
+ },
+ "units": [
+  {
+   "id": 0,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 3022,
+   "pair": "13-6"
+  },
+  {
+   "id": 1,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 2056,
+   "pair": null
+  },
+  {
+   "id": 2,
+   "layer": "13",
+   "kind": "matched",
+   "neuron": 1565,
+   "pair": "13-4"
+  },
+  {
+   "id": 3,
+   "layer": "14",
+   "kind": "matched",
+   "neuron": 3325,
+   "pair": "14-36"
+  },
+  {
+   "id": 4,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 1250,
+   "pair": null
+  },
+  {
+   "id": 5,
+   "layer": "13",
+   "kind": "matched",
+   "neuron": 1119,
+   "pair": "13-6"
+  },
+  {
+   "id": 6,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 2663,
+   "pair": null
+  },
+  {
+   "id": 7,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 4289,
+   "pair": "13-10"
+  },
+  {
+   "id": 8,
+   "layer": "14",
+   "kind": "matched",
+   "neuron": 175,
+   "pair": "14-24"
+  },
+  {
+   "id": 9,
+   "layer": "13",
+   "kind": "matched",
+   "neuron": 2618,
+   "pair": "13-2"
+  },
+  {
+   "id": 10,
+   "layer": "14",
+   "kind": "matched",
+   "neuron": 24,
+   "pair": "14-30"
+  },
+  {
+   "id": 11,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 5156,
+   "pair": "13-4"
+  },
+  {
+   "id": 12,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 1476,
+   "pair": null
+  },
+  {
+   "id": 13,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 2502,
+   "pair": "13-12"
+  },
+  {
+   "id": 14,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 1990,
+   "pair": null
+  },
+  {
+   "id": 15,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 3600,
+   "pair": "14-28"
+  },
+  {
+   "id": 16,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 1732,
+   "pair": null
+  },
+  {
+   "id": 17,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 206,
+   "pair": "14-30"
+  },
+  {
+   "id": 18,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 2636,
+   "pair": null
+  },
+  {
+   "id": 19,
+   "layer": "13",
+   "kind": "matched",
+   "neuron": 5860,
+   "pair": "13-12"
+  },
+  {
+   "id": 20,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 1112,
+   "pair": null
+  },
+  {
+   "id": 21,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 4505,
+   "pair": "14-34"
+  },
+  {
+   "id": 22,
+   "layer": "13",
+   "kind": "matched",
+   "neuron": 5496,
+   "pair": "13-10"
+  },
+  {
+   "id": 23,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 598,
+   "pair": "14-24"
+  },
+  {
+   "id": 24,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 4630,
+   "pair": null
+  },
+  {
+   "id": 25,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 5367,
+   "pair": "13-14"
+  },
+  {
+   "id": 26,
+   "layer": "13",
+   "kind": "matched",
+   "neuron": 4181,
+   "pair": "13-0"
+  },
+  {
+   "id": 27,
+   "layer": "13",
+   "kind": "matched",
+   "neuron": 2469,
+   "pair": "13-8"
+  },
+  {
+   "id": 28,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 3236,
+   "pair": null
+  },
+  {
+   "id": 29,
+   "layer": "14",
+   "kind": "matched",
+   "neuron": 4665,
+   "pair": "14-28"
+  },
+  {
+   "id": 30,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 1928,
+   "pair": null
+  },
+  {
+   "id": 31,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 260,
+   "pair": "14-36"
+  },
+  {
+   "id": 32,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 3109,
+   "pair": null
+  },
+  {
+   "id": 33,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 2321,
+   "pair": null
+  },
+  {
+   "id": 34,
+   "layer": "13",
+   "kind": "random",
+   "neuron": 67,
+   "pair": null
+  },
+  {
+   "id": 35,
+   "layer": "14",
+   "kind": "matched",
+   "neuron": 508,
+   "pair": "14-32"
+  },
+  {
+   "id": 36,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 2186,
+   "pair": "13-8"
+  },
+  {
+   "id": 37,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 404,
+   "pair": "14-26"
+  },
+  {
+   "id": 38,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 3159,
+   "pair": "13-2"
+  },
+  {
+   "id": 39,
+   "layer": "14",
+   "kind": "matched",
+   "neuron": 947,
+   "pair": "14-38"
+  },
+  {
+   "id": 40,
+   "layer": "13",
+   "kind": "turn_var",
+   "neuron": 5401,
+   "pair": "13-0"
+  },
+  {
+   "id": 41,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 2804,
+   "pair": "14-32"
+  },
+  {
+   "id": 42,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 5731,
+   "pair": null
+  },
+  {
+   "id": 43,
+   "layer": "14",
+   "kind": "turn_var",
+   "neuron": 3046,
+   "pair": "14-38"
+  },
+  {
+   "id": 44,
+   "layer": "14",
+   "kind": "random",
+   "neuron": 708,
+   "pair": null
+  },
+  {
+   "id": 45,
+   "layer": "13",
+   "kind": "matched",
+   "neuron": 4753,
+   "pair": "13-14"
+  },
+  {
+   "id": 46,
+   "layer": "14",
+   "kind": "matched",
+   "neuron": 6050,
+   "pair": "14-34"
+  },
+  {
+   "id": 47,
+   "layer": "14",
+   "kind": "matched",
+   "neuron": 786,
+   "pair": "14-26"
+  }
+ ]
+}

@@ -7,14 +7,15 @@ abstract: >-
   measures where the population keeps its shape, where it reorganizes, and
   which of those readings survive controls (an untrained model, robust scaling,
   a second model). Includes a causally tested account of Gemma 4's layer-14
-  turn, a pre-registered prediction on Gemma 4 E4B, and (v0.2) tests of whether
-  the turn is carried by a few MLP neurons.
+  turn, a pre-registered prediction on Gemma 4 E4B, tests of whether the turn is
+  carried by a few MLP neurons, and (v0.3) why the model's predictions tolerate
+  the turn, plus a companion note on choosing an embedding layer without labels.
 authors:
   - given-names: Steve
     family-names: Ball
-version: 0.2.0
+version: 0.3.0
 doi: "10.5281/zenodo.23437748"
-date-released: "2026-10-18"
+date-released: "2026-10-19"
 license: MIT
 repository-code: "https://github.com/SteveSolvesProblems/model-flow"
 url: "https://stevesolvesproblems.github.io/model-flow/"

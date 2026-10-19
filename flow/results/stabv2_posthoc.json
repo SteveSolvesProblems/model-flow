@@ -1,0 +1,170 @@
+{
+ "note": "post hoc (2026-10-18), not pre-registered: fixed-depth rules, stability vs quality with depth partialled out, seed agreement",
+ "pairs": {
+  "llama32_1b": {
+   "fixed_depth_shortfall": {
+    "0.75": 2.9383333333333326,
+    "0.85": 0.6716666666666669,
+    "0.9": 0.6716666666666669,
+    "0.95": 0.0
+   },
+   "partial_spearman_stability_p10_given_depth": 0.5799288019368226,
+   "spearman_depth_p10": 0.8676470588235294,
+   "single_seedpair_agrees_with_S10": 0.5
+  },
+  "llama32_1b_20ng": {
+   "fixed_depth_shortfall": {
+    "0.75": 5.649229952203939,
+    "0.85": 2.1441848114710567,
+    "0.9": 2.1441848114710567,
+    "0.95": 2.659320233669682
+   },
+   "partial_spearman_stability_p10_given_depth": 0.188392581025481,
+   "spearman_depth_p10": 0.9441176470588234,
+   "single_seedpair_agrees_with_S10": 0.8
+  },
+  "smollm2_360m": {
+   "fixed_depth_shortfall": {
+    "0.75": 3.0816666666666634,
+    "0.85": 4.816666666666677,
+    "0.9": 2.106666666666669,
+    "0.95": 0.0
+   },
+   "partial_spearman_stability_p10_given_depth": 0.7152099507712236,
+   "spearman_depth_p10": 0.8504398826979472,
+   "single_seedpair_agrees_with_S10": 0.3
+  },
+  "smollm2_360m_20ng": {
+   "fixed_depth_shortfall": {
+    "0.75": 9.289697291556031,
+    "0.85": 6.521508231545411,
+    "0.9": 2.9314922995220414,
+    "0.95": 0.9559214020180562
+   },
+   "partial_spearman_stability_p10_given_depth": 0.60880683346626,
+   "spearman_depth_p10": 0.7907616200382092,
+   "single_seedpair_agrees_with_S10": 0.5
+  },
+  "qwen35_4b_base": {
+   "fixed_depth_shortfall": {
+    "0.75": 0.42499999999999716,
+    "0.85": 2.7716666666666754,
+    "0.9": 1.9483333333333377,
+    "0.95": 3.3300000000000125
+   },
+   "partial_spearman_stability_p10_given_depth": 0.6081617782026522,
+   "spearman_depth_p10": 0.3040967843401458,
+   "single_seedpair_agrees_with_S10": 0.3
+  },
+  "qwen35_4b_base_20ng": {
+   "fixed_depth_shortfall": {
+    "0.75": 2.0831120552310125,
+    "0.85": 1.4976101964949535,
+    "0.9": 1.1484333510355782,
+    "0.95": 0.0
+   },
+   "partial_spearman_stability_p10_given_depth": 0.932828581887389,
+   "spearman_depth_p10": 0.8082844574780058,
+   "single_seedpair_agrees_with_S10": 0.2
+  },
+  "llama32_1b_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 0.818333333333328,
+    "0.85": 1.7716666666666683,
+    "0.9": 1.7716666666666683,
+    "0.95": 1.4216666666666669
+   },
+   "partial_spearman_stability_p10_given_depth": -0.17064675957444256,
+   "spearman_depth_p10": 0.6284034078003653,
+   "single_seedpair_agrees_with_S10": 0.3
+  },
+  "smollm2_360m_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 0.4166666666666643,
+    "0.85": 0.0,
+    "0.9": 0.46333333333333115,
+    "0.95": 0.7650000000000006
+   },
+   "partial_spearman_stability_p10_given_depth": 0.13599758332986295,
+   "spearman_depth_p10": 0.8911290322580645,
+   "single_seedpair_agrees_with_S10": 0.8
+  },
+  "qwen35_4b_base_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 1.6883333333333326,
+    "0.85": 2.8999999999999986,
+    "0.9": 2.7833333333333314,
+    "0.95": 3.344999999999999
+   },
+   "partial_spearman_stability_p10_given_depth": -0.5178476341020221,
+   "spearman_depth_p10": 0.5399560117302052,
+   "single_seedpair_agrees_with_S10": 0.2
+  },
+  "qwen3_17b_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 0.7583333333333329,
+    "0.85": 1.8166666666666629,
+    "0.9": 1.6599999999999966,
+    "0.95": 2.261666666666663
+   },
+   "partial_spearman_stability_p10_given_depth": -0.2380461259958246,
+   "spearman_depth_p10": 0.7728516694033934,
+   "single_seedpair_agrees_with_S10": 0.8
+  },
+  "qwen35_2b_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 1.3133333333333326,
+    "0.85": 1.8349999999999937,
+    "0.9": 2.5150000000000006,
+    "0.95": 2.654999999999994
+   },
+   "partial_spearman_stability_p10_given_depth": -0.4722739043600804,
+   "spearman_depth_p10": 0.5234782608695652,
+   "single_seedpair_agrees_with_S10": 0.6
+  },
+  "gemma4_e2b_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 4.103333333333339,
+    "0.85": 5.088333333333331,
+    "0.9": 5.125,
+    "0.95": 5.030000000000001
+   },
+   "partial_spearman_stability_p10_given_depth": 0.08337580350571794,
+   "spearman_depth_p10": 0.392436974789916,
+   "single_seedpair_agrees_with_S10": 0.4
+  },
+  "smollm2_17b_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 0.10333333333333172,
+    "0.85": 1.106666666666662,
+    "0.9": 1.4883333333333297,
+    "0.95": 1.2283333333333317
+   },
+   "partial_spearman_stability_p10_given_depth": 0.07123567786198341,
+   "spearman_depth_p10": 0.8078260869565217,
+   "single_seedpair_agrees_with_S10": 0.7
+  },
+  "qwen35_4b_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 1.8166666666666629,
+    "0.85": 3.2183333333333337,
+    "0.9": 2.9566666666666706,
+    "0.95": 3.404999999999994
+   },
+   "partial_spearman_stability_p10_given_depth": -0.4701634638734737,
+   "spearman_depth_p10": 0.4461143695014662,
+   "single_seedpair_agrees_with_S10": 0.4
+  },
+  "pythia28b_yelp": {
+   "fixed_depth_shortfall": {
+    "0.75": 1.413333333333327,
+    "0.85": 1.126666666666658,
+    "0.9": 1.3416666666666686,
+    "0.95": 1.2433333333333323
+   },
+   "partial_spearman_stability_p10_given_depth": 0.044036326394249516,
+   "spearman_depth_p10": 0.6348973607038122,
+   "single_seedpair_agrees_with_S10": 0.4
+  }
+ }
+}
